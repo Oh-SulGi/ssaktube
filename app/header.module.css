@@ -1,0 +1,13 @@
+.nav {
+	height: var(--header-height);
+	left: 0;
+	min-width: 800px;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	background-color: var(--color-bg-01);
+	z-index: 500;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}

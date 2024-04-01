@@ -2,5 +2,69 @@ import Image from 'next/image';
 import styles from './page.module.css';
 
 export default function Home() {
-	return <p>시작2</p>;
+	return (
+		<div className={styles.main}>
+			<p>meaningless1</p>
+			<p>meaningless2</p>
+			<p>meaningless3</p>
+			<p>meaningless4</p>
+			<p>meaningless5</p>
+			<p>meaningless6</p>
+			<p>meaningless7</p>
+			<p>meaningless8</p>
+			<p>meaningless9</p>
+			<p>meaningless10</p>
+			<p>meaningless</p>
+			<p>meaningless</p>
+			<p>meaningless</p>
+			<p>meaningless</p>
+			<p>meaningless</p>
+			<p>meaningless</p>
+			<p>meaningless</p>
+			<p>meaningless</p>
+			<p>meaningless</p>
+			<p>meaningless</p>
+			<p>meaningless</p>
+			<p>meaningless</p>
+			<p>meaningless</p>
+			<p>meaningless</p>
+			<p>meaningless</p>
+			<p>meaningless</p>
+			<p>meaningless</p>
+			<p>meaningless</p>
+			<p>meaningless</p>
+			<p>meaningless</p>
+			<p>meaningless</p>
+			<p>meaningless</p>
+			<p>meaningless</p>
+			<p>meaningless</p>
+			<p>meaningless</p>
+			<p>meaningless</p>
+			<p>meaningless</p>
+			<p>meaningless</p>
+			<p>meaningless</p>
+			<p>meaningless</p>
+			<p>meaningless</p>
+			<p>meaningless</p>
+			<p>meaningless</p>
+			<p>meaningless</p>
+			<p>meaningless</p>
+			<p>meaningless</p>
+			<p>meaningless</p>
+			<p>meaningless</p>
+			<p>meaningless</p>
+			<p>meaningless</p>
+			<p>meaningless</p>
+			<p>meaningless</p>
+			<p>meaningless</p>
+			<p>meaningless</p>
+			<p>meaningless</p>
+			<p>meaningless</p>
+			<p>meaningless</p>
+			<p>meaningless</p>
+			<p>meaningless</p>
+			<p>meaningless</p>
+			<p>meaningless</p>
+		</div>
+	);
 }
