@@ -105,9 +105,6 @@ nav,
 section {
 	display: block;
 }
-body {
-	line-height: 1;
-}
 ol,
 ul {
 	list-style: none;
@@ -142,6 +139,13 @@ table {
 		--color-bg-06: #2e3033;
 		--color-content-01: #141517;
 		--color-content-02: #2e3033;
+		--color-content-03: #2e3033;
+		--color-content-04: #666;
+		--color-content-05: grey;
+		--color-content-06: #999;
+		--color-content-07: #b3b3b3;
+		--color-content-08: #ccc;
+		--color-content-09: #fff;
 	}
 }
 @media (prefers-color-scheme: dark) {
@@ -154,9 +158,18 @@ table {
 		--color-bg-06: #c9cedc;
 		--color-content-01: #fff;
 		--color-content-02: #dfe2ea;
+		--color-content-03: #c9cedc;
+		--color-content-04: #9da5b6;
+		--color-content-05: #697183;
+		--color-content-06: #858894;
+		--color-content-07: #525662;
+		--color-content-08: #2e3033;
+		--color-content-09: #141517;
 	}
 }
 
 body {
 	background-color: var(--color-bg-01);
+	font-family: 'Sandoll Nemony2', 'Apple SD Gothic NEO', 'Helvetica Neue', Helvetica, 나눔고딕, NanumGothic, 'Malgun Gothic', '맑은 고딕', 굴림, gulim, 새굴림,
+		'noto sans', 돋움, Dotum, sans-serif;
 }

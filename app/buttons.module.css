@@ -1,7 +1,20 @@
+.btns {
+	display: flex;
+	align-items: center;
+}
 .btn1 {
 	margin: 0 5px;
 	background: 0 0;
 	border: none;
+	color: var(--color-content-01);
+	border-radius: 8px;
+	padding: 7px;
+}
+.btn1:hover {
+	background-color: var(--color-bg-05);
+}
+.btn1 svg {
+	fill: var(--color-content-01);
 	color: var(--color-content-01);
 }
 .btn2 {

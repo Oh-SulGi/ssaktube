@@ -1,21 +1,25 @@
 .type {
-	color: var(--color-content-01);
+	color: var(--color-content-03);
+	padding: 5px 18px 10px 18px;
+	user-select: none;
 }
 .type li {
-	padding: 3px 7px;
+	padding: 5px 8px;
 	display: flex;
 	align-items: center;
-	margin: 3px 5px;
 	border-radius: 5px;
+	cursor: pointer;
 }
 .type li:hover {
-	background-color: var(--color-bg-05);
+	background-color: var(--color-bg-03);
 }
 .type li svg {
-	fill: var(--color-content-01);
+	fill: var(--color-content-03);
 	height: 30px;
 	width: 30px;
 }
 .type li p {
 	padding-left: 10px;
+	font-size: 13px;
+	font-weight: 700;
 }

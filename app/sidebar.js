@@ -11,10 +11,7 @@ export default function Sidebar({ children }) {
 
 			<div className={styles.nav}>
 				<SidebarType />
-				<hr />
 				<SidebarStreamerNav />
-				<hr />
-				<div>탐색</div>
 			</div>
 		</div>
 	);

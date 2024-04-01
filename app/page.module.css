@@ -1,0 +1,11 @@
+.main {
+	padding: 0 30px;
+}
+.preview {
+	padding: 24px 30px 30px 30px;
+	height: 370px;
+}
+.previewLive {
+	background-color: beige;
+	height: 100%;
+}

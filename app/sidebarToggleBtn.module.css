@@ -4,5 +4,12 @@
 	color: var(--color-content-01);
 	width: 50px;
 	height: 50px;
-	margin: 5px 5px 5px 10px;
+	margin: 10px 5px 5px 10px;
+}
+.togglebtn svg {
+	border-radius: 5px;
+	cursor: pointer;
+}
+.togglebtn svg:hover {
+	background-color: var(--color-bg-03);
 }
