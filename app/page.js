@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import styles from './page.module.css';
 
-export default function Home() {
+export default function Page() {
 	return (
-		<div className={styles.main}>
+		<>
 			<p>meaningless1</p>
 			<p>meaningless2</p>
 			<p>meaningless3</p>
@@ -65,6 +65,6 @@ export default function Home() {
 			<p>meaningless</p>
 			<p>meaningless</p>
 			<p>meaningless</p>
-		</div>
+		</>
 	);
 }

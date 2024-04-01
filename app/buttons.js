@@ -1,3 +1,4 @@
+'use client';
 import styles from './buttons.module.css';
 
 export default function Buttons() {

@@ -156,3 +156,7 @@ table {
 		--color-content-02: #dfe2ea;
 	}
 }
+
+body {
+	background-color: var(--color-bg-01);
+}

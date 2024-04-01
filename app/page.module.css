@@ -1,9 +1,0 @@
-.main {
-	margin-left: 240px;
-	margin-top: var(--header-height);
-	background-color: var(--color-bg-01);
-	color: var(--color-content-01);
-	width: 100vw;
-	height: calc(100vh - var(--header-height));
-	overflow-x: scroll;
-}

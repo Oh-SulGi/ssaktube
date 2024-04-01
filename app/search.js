@@ -1,3 +1,4 @@
+'use client';
 import styles from './search.module.css';
 
 export default function Search() {
