@@ -10,7 +10,7 @@ export default function Live({ src }) {
 	const playerref = useRef(null);
 
 	const [play, setplay] = useState(true);
-	const [mute, setmute] = useState(false);
+	const [mute, setmute] = useState(true);
 	const [full, setfull] = useState(false);
 	const [setting, setsetting] = useState(false);
 	const [quality, setquality] = useState([]);
@@ -22,13 +22,11 @@ export default function Live({ src }) {
 				strategy='afterInteractive'
 				onLoad={(e) => {
 					Player = window.IVSPlayer;
-					player = Player.create();
-					player.attachHTMLVideoElement(playerref.current);
-
 					if (Player.isPlayerSupported) {
+						player = Player.create();
+						player.attachHTMLVideoElement(playerref.current);
 						player.load(src);
 						player.setAutoplay(true);
-						player.setMuted(0);
 						player.setVolume(0.1);
 					}
 				}}
@@ -39,7 +37,6 @@ export default function Live({ src }) {
 						<div className={styles.playerControlsInner}>
 							<button
 								className={`${styles.play} ${styles.btn}`}
-								title='Play/pause'
 								onClick={(e) => {
 									if (play) {
 										player.pause();
@@ -62,17 +59,10 @@ export default function Live({ src }) {
 							</button>
 							<button
 								className={`${styles.mute} ${styles.btn}`}
-								title='Toggle mute'
 								onClick={(e) => {
 									console.log(player.isMuted());
-
-									if (mute) {
-										player.setMuted(0);
-									}
-									if (!mute) {
-										player.setMuted(1);
-									}
 									setmute(!mute);
+									player.setMuted(!mute);
 								}}
 							>
 								{!mute ? (
@@ -87,11 +77,10 @@ export default function Live({ src }) {
 							</button>
 							<button
 								className={`${styles.settings} ${styles.btn}`}
-								title='Settings'
 								onClick={(e) => {
 									let qualities = player.getQualities();
 									let currentQuality = player.getQuality();
-									console.log(qualities);
+									setsetting(!setting);
 									setquality(qualities);
 								}}
 							>
@@ -111,16 +100,30 @@ export default function Live({ src }) {
 									</svg>
 								)}
 							</button>
-							{quality.map((item) => (
-								<p key={item.name} className={styles.settingsItem}>
-									{item.name}
-								</p>
-							))}
+							{setting ? (
+								<div className={styles.settingsMenu}>
+									{quality.map((item) => (
+										<p
+											key={item.name}
+											className={styles.settingsItem}
+											onClick={(e) => {
+												player.setQuality(item);
+											}}
+										>
+											{item.name}
+										</p>
+									))}
+								</div>
+							) : (
+								''
+							)}
 						</div>
 					</div>
 					<div id='settings-menu'></div>
 				</div>
-				<video ref={playerref} className={styles.player} style={{ width: '100%' }}></video>
+				<div className={styles.playerWrapper}>
+					<video ref={playerref} className={styles.player} playsInline style={{ width: '100%' }}></video>
+				</div>
 			</div>
 		</>
 	);

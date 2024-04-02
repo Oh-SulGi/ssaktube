@@ -5,7 +5,11 @@
 	color: var(--color-content-01);
 	width: calc(100vw - 240px);
 	height: calc(100vh - var(--header-height));
-	overflow-x: scroll;
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+.main::-webkit-scrollbar {
+	display: none;
 }
 
 .main.close {

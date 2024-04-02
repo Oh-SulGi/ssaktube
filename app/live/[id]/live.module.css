@@ -1,5 +1,6 @@
 .wrapper {
 	position: relative;
+	width: 100%;
 }
 .overlay {
 	position: absolute;
@@ -8,6 +9,15 @@
 	right: 0;
 	bottom: 0;
 	z-index: 1;
+}
+.playerWrapper {
+	position: relative;
+	width: 100%;
+}
+.player {
+	width: 100%;
+	aspect-ratio: 16/9;
+	max-height: 1080px;
 }
 .playerControls {
 	position: absolute;
@@ -79,4 +89,19 @@
 	padding: 0 20px;
 	display: block;
 	cursor: pointer;
+}
+.settingsItem:hover {
+	background: rgba(255, 255, 255, 0.1);
+}
+.settingsMenu {
+	width: 180px;
+	height: auto;
+	padding: 20px 0;
+	position: absolute;
+	right: 10px;
+	bottom: 55px;
+	background: #000;
+	z-index: 1;
+	border-radius: 10px;
+	color: #fff;
 }
