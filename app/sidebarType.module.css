@@ -15,8 +15,8 @@
 }
 .type li svg {
 	fill: var(--color-content-03);
-	height: 30px;
-	width: 30px;
+	height: 26px;
+	width: 26px;
 }
 .type li p {
 	padding-left: 10px;

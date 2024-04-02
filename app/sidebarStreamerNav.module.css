@@ -28,8 +28,7 @@
 .streamer {
 	display: flex;
 	align-items: center;
-	padding: 3px 7px;
-	margin: 2px 0px;
+	padding: 8px 7px;
 	border-radius: 10px;
 	cursor: pointer;
 }

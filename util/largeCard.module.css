@@ -1,0 +1,30 @@
+.card {
+	width: 100%;
+}
+.image {
+	position: relative;
+	width: 100%;
+	padding-top: 56%;
+}
+.caption {
+	width: 100%;
+	display: flex;
+	margin-top: 12px;
+}
+
+.streamerLogo {
+	border-radius: 50%;
+	background-color: var(--color-bg-06);
+	margin: 5px 5px;
+}
+.info {
+	margin-left: 10px;
+}
+.info p:first-child {
+	font-size: 15px;
+	font-weight: 600;
+}
+.info p:last-child {
+	color: var(--color-content-03);
+	font-size: 12px;
+}

@@ -9,7 +9,9 @@
 	height: 100%;
 	flex-direction: column;
 }
-
+.close {
+	width: 80px;
+}
 .nav {
 	flex-grow: 1;
 }
