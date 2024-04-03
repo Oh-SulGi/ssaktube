@@ -5,32 +5,51 @@ import { useEffect, useRef, useState } from 'react';
 
 let Player;
 let player;
-
 export default function Live({ src }) {
-	const playerref = useRef(null);
-
 	const [play, setplay] = useState(true);
 	const [mute, setmute] = useState(true);
 	const [full, setfull] = useState(false);
 	const [setting, setsetting] = useState(false);
 	const [quality, setquality] = useState([]);
+	useEffect(() => {
+		const script = document.createElement('script');
+		script.src = 'https://player.live-video.net/1.22.0/amazon-ivs-player.min.js';
+		script.onload = () => {
+			Player = window.IVSPlayer;
+			if (Player.isPlayerSupported) {
+				player = Player.create();
+				player.attachHTMLVideoElement(document.getElementById('streamingvideo'));
+				player.load(src);
+				player.setAutoplay(true);
+				player.setVolume(0.1);
+				player.setMuted(true);
+			}
+		};
+
+		document.body.appendChild(script);
+
+		return () => {
+			document.body.removeChild(script);
+		};
+	}, []);
 
 	return (
 		<>
-			<Script
+			{/* <Script
 				src='https://player.live-video.net/1.22.0/amazon-ivs-player.min.js'
 				strategy='afterInteractive'
 				onLoad={(e) => {
 					Player = window.IVSPlayer;
 					if (Player.isPlayerSupported) {
 						player = Player.create();
-						player.attachHTMLVideoElement(playerref.current);
+						player.attachHTMLVideoElement(document.getElementById('streamingvideo'));
 						player.load(src);
 						player.setAutoplay(true);
 						player.setVolume(0.1);
+						player.setMuted(true);
 					}
 				}}
-			/>
+			/> */}
 			<div className={styles.wrapper}>
 				<div className={styles.overlay}>
 					<div className={styles.playerControls}>
@@ -122,7 +141,7 @@ export default function Live({ src }) {
 					<div id='settings-menu'></div>
 				</div>
 				<div className={styles.playerWrapper}>
-					<video ref={playerref} className={styles.player} playsInline style={{ width: '100%' }}></video>
+					<video id='streamingvideo' className={styles.player} style={{ width: '100%' }}></video>
 				</div>
 			</div>
 		</>

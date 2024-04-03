@@ -1,9 +1,10 @@
 import Image from 'next/image';
 import styles from './largeCard.module.css';
+import Link from 'next/link';
 
-export default function LargeCard({ m3u8, thumbnail, title, streamer, streamerLogo }) {
+export default function LargeCard({ m3u8, thumbnail, title, streamer, streamerLogo, ID }) {
 	return (
-		<div className={styles.card}>
+		<Link href={`/live/${ID}`} className={styles.card}>
 			<div className={styles.image}>
 				<Image src={thumbnail} alt='섬네일' fill={true} />
 			</div>
@@ -15,6 +16,6 @@ export default function LargeCard({ m3u8, thumbnail, title, streamer, streamerLo
 					<button>스트리밍카테고리</button>
 				</div>
 			</div>
-		</div>
+		</Link>
 	);
 }

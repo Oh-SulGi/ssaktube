@@ -12,7 +12,14 @@ export default function LargeCards({ list }) {
 		<ul className={styles.cardlist}>
 			{list.map((item) => (
 				<li key={item.m3u8} className={styles.card}>
-					<LargeCard m3u8={item.m3u8} streamer={item.streamer} streamerLogo={item.streamerLogo} thumbnail={item.thumbnail} title={item.title} />
+					<LargeCard
+						m3u8={item.m3u8}
+						streamer={item.streamer}
+						streamerLogo={item.streamerLogo}
+						thumbnail={item.thumbnail}
+						title={item.title}
+						ID={item.id}
+					/>
 				</li>
 			))}
 		</ul>

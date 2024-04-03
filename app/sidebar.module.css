@@ -18,3 +18,11 @@
 .nav hr {
 	color: var(--color-content-02);
 }
+.homelogo {
+	position: absolute;
+	top: 15px;
+	left: 70px;
+	background-color: aqua;
+	width: 100px;
+	height: 40px;
+}

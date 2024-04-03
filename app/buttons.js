@@ -1,5 +1,6 @@
 'use client';
 import styles from './buttons.module.css';
+import Link from 'next/link';
 
 export default function Buttons() {
 	return (
@@ -42,7 +43,9 @@ export default function Buttons() {
 					</g>
 				</svg>
 			</button>
-			<button className={styles.btn2}>로그인</button>
+			<button className={styles.btn2}>
+				<Link href={'/login'}>로그인</Link>
+			</button>
 		</div>
 	);
 }
