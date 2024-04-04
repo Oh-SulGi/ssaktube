@@ -14,13 +14,23 @@ export default function Live({ id }) {
 		return <></>;
 	}
 	if (isLoading) {
-		return <div>로딩중</div>;
+		return (
+			<div className={styles.wrapper}>
+				<div className={styles.playerWrapper}>
+					<div className={styles.overlay}>
+						<div className={styles.loading}>
+							<p>로딩중</p>
+						</div>
+					</div>
+					<video id='streamingvideo' className={styles.player}></video>
+				</div>
+			</div>
+		);
 	}
-
 	/**
 	 * @type {{userlogo, username, streamname, userid, streamurl, viewercount}}
 	 */
-	const jdata = data.data['LiveData'];
+	const jdata = data.data;
 
 	return (
 		<>
@@ -35,24 +45,28 @@ function Content({ jdata }) {
 	const [full, setfull] = useState(false);
 	const [setting, setsetting] = useState(false);
 	const [quality, setquality] = useState([]);
+	const script = document.createElement('script');
 
 	useEffect(() => {
-		const script = document.createElement('script');
-		script.src = 'https://player.live-video.net/1.22.0/amazon-ivs-player.min.js';
-		script.onload = () => {
-			Player = window.IVSPlayer;
-			if (Player.isPlayerSupported) {
-				player = Player.create();
-				player.attachHTMLVideoElement(document.getElementById('streamingvideo'));
-				player.load(jdata.streamurl);
-				player.setAutoplay(true);
-				player.setVolume(0.1);
-				player.setMuted(true);
-			}
-		};
+		console.log(jdata);
+		if (!jdata.error) {
+			script.src = 'https://player.live-video.net/1.22.0/amazon-ivs-player.min.js';
+			script.onload = () => {
+				Player = window.IVSPlayer;
+				if (Player.isPlayerSupported) {
+					player = Player.create();
+					player.attachHTMLVideoElement(document.getElementById('streamingvideo'));
+					player.load(jdata['LiveData'].streamurl);
+					player.setAutoplay(true);
+					player.setVolume(0.1);
+					player.setMuted(true);
+				}
+			};
 
-		document.body.appendChild(script);
-
+			document.body.appendChild(script);
+		} else {
+			console.log('방송중아님');
+		}
 		return () => {
 			document.body.removeChild(script);
 		};
@@ -150,7 +164,7 @@ function Content({ jdata }) {
 				<div id='settings-menu'></div>
 			</div>
 			<div className={styles.playerWrapper}>
-				<video id='streamingvideo' className={styles.player} style={{ width: '100%' }}></video>
+				<video id='streamingvideo' className={styles.player}></video>
 			</div>
 		</div>
 	);
