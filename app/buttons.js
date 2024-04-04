@@ -43,9 +43,9 @@ export default function Buttons() {
 					</g>
 				</svg>
 			</button>
-			<button className={styles.btn2}>
-				<Link href={'/login'}>로그인</Link>
-			</button>
+			<Link href={'/login'} className={styles.link}>
+				<button className={styles.btn2}>로그인</button>
+			</Link>
 		</div>
 	);
 }

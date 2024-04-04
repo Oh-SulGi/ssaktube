@@ -1,0 +1,36 @@
+.title {
+	font-size: 25px;
+	padding: 10px 0px;
+}
+.sub {
+	padding: 0 20px;
+	margin-bottom: 20px;
+	display: flex;
+	align-items: center;
+}
+.subtitle {
+	font-size: 20px;
+	padding: 8px 0px;
+}
+.content {
+	margin-left: 20px;
+}
+.stream {
+	display: flex;
+	align-items: center;
+}
+.streamsub {
+	display: flex;
+	padding: 0 20px;
+	align-items: center;
+}
+.copybtn {
+	background: 0 0;
+	border: none;
+}
+.copybtn svg {
+	width: 20px;
+	height: 20px;
+	fill: var(--color-content-02);
+	stroke: var(--color-content-02);
+}

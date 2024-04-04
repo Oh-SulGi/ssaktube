@@ -23,8 +23,10 @@
 	border: 1px solid ghostwhite;
 	padding: 6px 10px;
 	border-radius: 5px;
+	color: var(--color-content-01);
+	cursor: pointer;
 }
-.btn2 a {
+.link {
 	text-decoration: none;
 	color: var(--color-content-01);
 }

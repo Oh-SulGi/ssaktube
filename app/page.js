@@ -6,11 +6,11 @@ import LargeCards from '@/util/largeCards';
 export default function Page() {
 	const tempm3u8 = 'https://fcc3ddae59ed.us-west-2.playback.live-video.net/api/video/v1/us-west-2.893648527354.channel.DmumNckWFTqz.m3u8';
 	const templist = [
-		{ m3u8: tempm3u8, streamer: '스트리머1', streamerLogo: '/aws.png', thumbnail: '/aws.png', title: '방송제목1', id: 1 },
-		{ m3u8: tempm3u8, streamer: '스트리머2', streamerLogo: '/aws.png', thumbnail: '/aws.png', title: '방송제목2', id: 2 },
-		{ m3u8: tempm3u8, streamer: '스트리머3', streamerLogo: '/aws.png', thumbnail: '/aws.png', title: '방송제목3', id: 3 },
-		{ m3u8: tempm3u8, streamer: '스트리머4', streamerLogo: '/aws.png', thumbnail: '/aws.png', title: '방송제목4', id: 4 },
-		{ m3u8: tempm3u8, streamer: '스트리머5', streamerLogo: '/aws.png', thumbnail: '/aws.png', title: '방송제목5', id: 5 },
+		{ m3u8: tempm3u8, streamer: '스트리머1', streamerLogo: '/aws.png', thumbnail: '/aws.png', title: '방송제목1', id: 'HEmFEkJQDcW4' },
+		{ m3u8: tempm3u8, streamer: '스트리머2', streamerLogo: '/aws.png', thumbnail: '/aws.png', title: '방송제목2', id: 'HEmFEkJQDcW4' },
+		{ m3u8: tempm3u8, streamer: '스트리머3', streamerLogo: '/aws.png', thumbnail: '/aws.png', title: '방송제목3', id: 'HEmFEkJQDcW4' },
+		{ m3u8: tempm3u8, streamer: '스트리머4', streamerLogo: '/aws.png', thumbnail: '/aws.png', title: '방송제목4', id: 'HEmFEkJQDcW4' },
+		{ m3u8: tempm3u8, streamer: '스트리머5', streamerLogo: '/aws.png', thumbnail: '/aws.png', title: '방송제목5', id: 'HEmFEkJQDcW4' },
 	];
 	return (
 		<section className={styles.main}>
