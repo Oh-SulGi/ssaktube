@@ -5,7 +5,7 @@ import styles from './stream.module.css';
 export default function Stream() {
 	const [isStream, setisStream] = useState(false);
 	const [isLive, setisLive] = useState(false);
-	const [isCopied1, setisCopied1] = useState(false);
+	// const [isCopied1, setisCopied1] = useState(false);
 	const [isCopied2, setisCopied2] = useState(false);
 	const [isCopied3, setisCopied3] = useState(false);
 
@@ -16,13 +16,13 @@ export default function Stream() {
 					<h2 className={styles.title}>방송설정</h2>
 					<div className={styles.streamsub}>
 						<svg width='64px' height='64px' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
-							<g id='SVGRepo_bgCarrier' stroke-width='0'></g>
-							<g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'></g>
+							<g id='SVGRepo_bgCarrier' strokeWidth='0'></g>
+							<g id='SVGRepo_tracerCarrier' strokeLinecap='round' strokeLinejoin='round'></g>
 							<g id='SVGRepo_iconCarrier'>
-								<path d='M16.5163 8.93451L11.0597 14.7023L8.0959 11.8984' stroke={isStream ? '#00ff4c' : '#acacac'} stroke-width='2'></path>
+								<path d='M16.5163 8.93451L11.0597 14.7023L8.0959 11.8984' stroke={isStream ? '#00ff4c' : '#acacac'} strokeWidth='2'></path>
 								<path
 									d='M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21Z'
-									stroke-width='2'
+									strokeWidth='2'
 									stroke={isStream ? '#00ff4c' : '#acacac'}
 								></path>
 							</g>
@@ -41,8 +41,8 @@ export default function Stream() {
 					<div>
 						<div className={styles.sub}>
 							<svg width='64px' height='64px' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg' fill={isLive ? '#ff0000' : '#acacac'}>
-								<g id='SVGRepo_bgCarrier' stroke-width='0'></g>
-								<g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'></g>
+								<g id='SVGRepo_bgCarrier' strokeWidth='0'></g>
+								<g id='SVGRepo_tracerCarrier' strokeLinecap='round' strokeLinejoin='round'></g>
 								<g id='SVGRepo_iconCarrier'>
 									<g>
 										<path fill='none' d='M0 0h24v24H0z'></path>{' '}
@@ -64,7 +64,18 @@ export default function Stream() {
 						</div>
 						<div className={styles.sub}>
 							<h4 className={styles.subtitle}>방송제목</h4>
-							<p className={styles.content}>이제부터 이 방송은 제껍니다</p>
+							<div className={styles.change}>
+								<input id='nickname' type='text'></input>
+								<button
+									id='nicknamebtn'
+									onClick={(e) => {
+										alert('방송제목변경버튼');
+									}}
+								>
+									변경하기
+								</button>
+							</div>
+							{/* <p className={styles.content}>이제부터 이 방송은 제껍니다</p>
 							<button
 								onClick={(e) => {
 									navigator.clipboard.writeText('야야야야1');
@@ -74,7 +85,7 @@ export default function Stream() {
 							>
 								{isCopied1 ? (
 									<svg viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
-										<g id='SVGRepo_bgCarrier' stroke-width='0'></g>
+										<g id='SVGRepo_bgCarrier' strokeWidth='0'></g>
 										<g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'></g>
 										<g id='SVGRepo_iconCarrier'>
 											<path
@@ -86,7 +97,7 @@ export default function Stream() {
 									</svg>
 								) : (
 									<svg viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
-										<g id='SVGRepo_bgCarrier' stroke-width='0'></g>
+										<g id='SVGRepo_bgCarrier' strokeWidth='0'></g>
 										<g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'></g>
 										<g id='SVGRepo_iconCarrier'>
 											<path
@@ -97,7 +108,7 @@ export default function Stream() {
 										</g>
 									</svg>
 								)}
-							</button>
+							</button> */}
 						</div>
 						<div className={styles.sub}>
 							<h4 className={styles.subtitle}>수집서버</h4>
@@ -111,8 +122,8 @@ export default function Stream() {
 							>
 								{isCopied2 ? (
 									<svg viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
-										<g id='SVGRepo_bgCarrier' stroke-width='0'></g>
-										<g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'></g>
+										<g id='SVGRepo_bgCarrier' strokeWidth='0'></g>
+										<g id='SVGRepo_tracerCarrier' strokeLinecap='round' strokeLinejoin='round'></g>
 										<g id='SVGRepo_iconCarrier'>
 											<path
 												fill-rule='evenodd'
@@ -123,8 +134,8 @@ export default function Stream() {
 									</svg>
 								) : (
 									<svg viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
-										<g id='SVGRepo_bgCarrier' stroke-width='0'></g>
-										<g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'></g>
+										<g id='SVGRepo_bgCarrier' strokeWidth='0'></g>
+										<g id='SVGRepo_tracerCarrier' strokeLinecap='round' strokeLinejoin='round'></g>
 										<g id='SVGRepo_iconCarrier'>
 											<path
 												fill-rule='evenodd'
@@ -148,7 +159,7 @@ export default function Stream() {
 							>
 								{isCopied3 ? (
 									<svg viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
-										<g id='SVGRepo_bgCarrier' stroke-width='0'></g>
+										<g id='SVGRepo_bgCarrier' strokeWidth='0'></g>
 										<g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'></g>
 										<g id='SVGRepo_iconCarrier'>
 											<path
@@ -160,8 +171,8 @@ export default function Stream() {
 									</svg>
 								) : (
 									<svg viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
-										<g id='SVGRepo_bgCarrier' stroke-width='0'></g>
-										<g id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'></g>
+										<g id='SVGRepo_bgCarrier' strokeWidth='0'></g>
+										<g id='SVGRepo_tracerCarrier' strokeLinecap='round' strokeLinejoin='round'></g>
 										<g id='SVGRepo_iconCarrier'>
 											<path
 												fill-rule='evenodd'

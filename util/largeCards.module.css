@@ -5,6 +5,16 @@
 }
 .card {
 	padding: 0 14px 30px 0;
-	width: 33.3333333333%;
 	box-sizing: border-box;
+	width: 33.3333333333%;
+}
+@media (min-width: 1240px) {
+	.card {
+		width: 20%;
+	}
+}
+@media (min-width: 1920px) {
+	.card {
+		width: 16.666666666%;
+	}
 }

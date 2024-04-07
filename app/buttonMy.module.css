@@ -1,0 +1,38 @@
+.profile {
+	position: relative;
+	margin-left: 10px;
+	margin-right: 30px;
+}
+.logo {
+	border-radius: 50%;
+	box-shadow: 0 0 0 2px #01ab8c;
+	box-sizing: border-box;
+}
+.logo:hover {
+	background-color: var(--color-bg-05);
+}
+.tab {
+	position: absolute;
+	color: var(--color-content-01);
+	top: 100%;
+	right: -10px;
+	width: 130px;
+	height: max-content;
+	background-color: var(--color-bg-04);
+	padding: 10px 10px;
+	border-radius: 5px;
+}
+.tab li {
+	padding: 5px 8px;
+	display: flex;
+	align-items: center;
+	border-radius: 5px;
+	cursor: pointer;
+}
+.tab li:hover {
+	background-color: var(--color-bg-05);
+}
+.tab li a {
+	text-decoration: none;
+	color: var(--color-content-01);
+}

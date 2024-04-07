@@ -7,9 +7,40 @@
 	margin-bottom: 20px;
 }
 .subtitle {
-	font-size: 15px;
+	font-size: 18px;
+	font-weight: 400;
 	padding: 8px 0px;
 }
 .nick {
 	display: flex;
+}
+
+.change {
+	display: flex;
+	justify-content: center;
+	border: 2px solid #01ab8c;
+	border-radius: 19px;
+	padding: 10px 15px;
+	height: 100%;
+	width: max-content;
+}
+.change input {
+	background: 0 0;
+	border: none;
+	color: var(--color-content-01);
+	outline: none;
+	width: 300px;
+	font-size: 16px;
+}
+.change button {
+	background: 0 0;
+	border: 1px solid ghostwhite;
+	padding: 6px 10px;
+	border-radius: 5px;
+	color: var(--color-content-01);
+	cursor: pointer;
+	position: relative;
+}
+.change button:not(:disabled):hover {
+	background-color: var(--color-bg-05);
 }

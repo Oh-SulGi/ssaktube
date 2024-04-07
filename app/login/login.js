@@ -35,7 +35,7 @@ export default function Login() {
 					className={styles.button}
 					onClick={(e) => {
 						setstatus('회원가입을 진행중 입니다');
-						fetch(`${process.env.NEXT_PUBLIC_USER_API}/api/user/signup`, {
+						fetch(`/api/user/signup`, {
 							method: 'POST',
 							headers: {
 								'Content-Type': 'application/json',
@@ -47,6 +47,7 @@ export default function Login() {
 						})
 							.then((res) => res.json())
 							.then((data) => {
+								console.log(data.data);
 								if (data.statusCode == 200) {
 									setisauth(true);
 									setstatus('이메일로 전송된 코드를 확인해 주세요');
@@ -79,7 +80,7 @@ export default function Login() {
 							className={styles.button}
 							onClick={(e) => {
 								setstatus('인증번호 확인 중 ...');
-								fetch(`${process.env.NEXT_PUBLIC_USER_API}/api/user/signup/email_authentication`, {
+								fetch(`/api/user/signup/email_authentication`, {
 									method: 'POST',
 									headers: {
 										'Content-Type': 'application/json',
