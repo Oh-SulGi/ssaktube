@@ -2,7 +2,7 @@ import Image from 'next/image';
 import styles from './largeCard.module.css';
 import Link from 'next/link';
 
-export default function LargeCard({ m3u8, thumbnail, title, streamer, streamerLogo, ID }) {
+export default function LargeCard({ thumbnail, title, streamer, streamerLogo, ID }) {
 	return (
 		<Link href={`/live/${ID}`} className={styles.card}>
 			<div className={styles.image}>

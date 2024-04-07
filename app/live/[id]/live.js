@@ -11,7 +11,18 @@ export default function Live({ id }) {
 	const { data, error, isLoading } = useSWR(`/api/live/${id}`, fetcher);
 
 	if (error) {
-		return <></>;
+		return (
+			<div className={styles.wrapper}>
+				<div className={styles.playerWrapper}>
+					<div className={styles.overlay}>
+						<div className={styles.loading}>
+							<p>오류 발생</p>
+						</div>
+					</div>
+					<video id='streamingvideo' className={styles.player}></video>
+				</div>
+			</div>
+		);
 	}
 	if (isLoading) {
 		return (
