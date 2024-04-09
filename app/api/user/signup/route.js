@@ -15,5 +15,8 @@ export async function POST(request, { params }) {
 		}),
 	});
 	const data = await resapi.json();
+	console.log(`/api/user/signup`);
+	console.log(data);
 	return NextResponse.json({ ...data }, { status: 200 });
 }
+export const dynamic = 'force-dynamic';

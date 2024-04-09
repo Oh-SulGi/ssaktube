@@ -112,6 +112,7 @@ export default function SidebarStreamerNav({ children }) {
 	 * @type {{recommend_channel:[{username,thumbnailurl,channelid,streamname,streamurl,viewerCount,userlogo}]}}
 	 */
 	const data_ = data.data;
+	console.log(data_);
 	return (
 		<div className={styles.channels}>
 			<div className={styles.channelsTitle}>

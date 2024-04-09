@@ -6,7 +6,7 @@ import StoreProvider from '@/util/redux/storeProvider';
 import Main from './main';
 
 export const metadata = {
-	title: '싹튜브',
+	title: '슈슈슉',
 	description: '새싹3조 streaming',
 };
 

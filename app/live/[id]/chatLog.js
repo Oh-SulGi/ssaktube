@@ -74,7 +74,7 @@ function Content({ token }) {
 			const msg = JSON.parse(e.data);
 
 			if (msg.Type === 'MESSAGE') {
-				console.log('추가');
+				console.log('ws message');
 				dispatch(addchat(msg));
 			}
 		});
@@ -120,6 +120,7 @@ function Content({ token }) {
 									Content: chat,
 								});
 								ws.current.send(payload);
+								console.log('ws send');
 								setchat('');
 							}
 						}}
@@ -138,6 +139,7 @@ function Content({ token }) {
 								Content: chat,
 							});
 							ws.current.send(payload);
+							console.log('ws send');
 							setchat('');
 						}}
 					>

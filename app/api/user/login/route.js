@@ -16,6 +16,8 @@ export async function POST(request, { params }) {
 		}),
 	});
 	const data = await resapi.json();
-	// cookies().set('user_id', 'tlqkf2');
+	console.log(`/api/user/login`);
+	console.log(data);
 	return NextResponse.json({ ...data }, { status: 200 });
 }
+export const dynamic = 'force-dynamic';

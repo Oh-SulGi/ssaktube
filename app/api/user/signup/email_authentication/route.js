@@ -21,7 +21,8 @@ export async function POST(request, { params }) {
 	console.log(fcookie);
 	const data = await resapi.json();
 	console.log(data);
-	// const response = NextResponse.json({ ...data }, { status: 200 ,headers:{}});
+
 	const response = NextResponse.json({ ...data }, { status: 200 });
 	return response;
 }
+export const dynamic = 'force-dynamic';
