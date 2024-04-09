@@ -7,7 +7,7 @@ import Image from 'next/image';
 let Player;
 let player;
 export default function Live({ id }) {
-	const fetcher = (...args) => fetch(...args, { cache: 'no-cache' }).then((res) => res.json());
+	const fetcher = (...args) => fetch(...args, { cache: 'no-store', next: { revalidate: 0 } }).then((res) => res.json());
 	const { data, error, isLoading } = useSWR(`/api/live/${id}`, fetcher);
 
 	if (error) {

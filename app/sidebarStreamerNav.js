@@ -5,7 +5,7 @@ import { useAppSelector } from '@/util/redux/hooks';
 import useSWR from 'swr';
 
 export default function SidebarStreamerNav({ children }) {
-	const fetcher = (...args) => fetch(...args, { cache: 'no-cache' }).then((res) => res.json());
+	const fetcher = (...args) => fetch(...args, { cache: 'no-store', next: { revalidate: 0 } }).then((res) => res.json());
 	const { data, error, isLoading } = useSWR(`/api/live/recommend`, fetcher);
 	const { isOpen } = useAppSelector((state) => state.ui);
 	if (isLoading) {

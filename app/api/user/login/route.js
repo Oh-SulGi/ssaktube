@@ -6,7 +6,7 @@ export async function POST(request, { params }) {
 	const { email, password } = body;
 	const resapi = await fetch(`${process.env.USER_API}/api/user/login`, {
 		method: 'POST',
-		cache: 'no-cache',
+		cache: 'no-store',
 		headers: {
 			'Content-Type': 'application/json',
 		},

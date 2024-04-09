@@ -5,7 +5,7 @@ import LargeCards from '@/util/largeCards';
 import useSWR from 'swr';
 
 export default function LiveSuggestion() {
-	const fetcher = (...args) => fetch(...args, { cache: 'no-cache' }).then((res) => res.json());
+	const fetcher = (...args) => fetch(...args, { cache: 'no-store', next: { revalidate: 60 } }).then((res) => res.json());
 	const { data, error, isLoading } = useSWR(`/api/live`, fetcher);
 	if (isLoading) {
 		return (
