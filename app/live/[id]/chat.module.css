@@ -82,7 +82,12 @@
 	padding: 0 9px;
 	color: var(--color-content-04);
 	height: 28px;
+	cursor: pointer;
 }
 .chatsubmit button:hover {
 	background-color: var(--color-bg-03);
+}
+
+.chatsubmit button:active {
+	background-color: var(--color-bg-04);
 }

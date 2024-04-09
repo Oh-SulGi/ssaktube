@@ -30,7 +30,41 @@ export default function Login() {
 				></input>
 			</div>
 			<div className={styles.buttons}>
-				<button className={styles.button}>로그인</button>
+				<button
+					className={styles.button}
+					onClick={(e) => {
+						setstatus('로그인 중입니다');
+						fetch(`/api/user/login`, {
+							method: 'POST',
+							headers: {
+								'Content-Type': 'application/json',
+							},
+							body: JSON.stringify({
+								email,
+								password,
+							}),
+						})
+							.then((res) => {
+								console.log(res);
+								if (res.status !== 200) {
+									throw new Error(res.json());
+								}
+								return res.json();
+							})
+							.then((data) => {
+								console.log(data);
+								setstatus('로그인 되었습니다.');
+								router.push('/');
+								router.refresh();
+							})
+							.catch((error) => {
+								console.log(error);
+								setstatus('문제가 발생하였습니다. 다시 시도해주세요');
+							});
+					}}
+				>
+					로그인
+				</button>
 				<button
 					className={styles.button}
 					onClick={(e) => {
@@ -45,15 +79,21 @@ export default function Login() {
 								password,
 							}),
 						})
-							.then((res) => res.json())
+							.then((res) => {
+								console.log(res);
+								if (res.status !== 200) {
+									throw new Error(res.json());
+								}
+								return res.json();
+							})
 							.then((data) => {
 								console.log(data.data);
-								if (data.statusCode == 200) {
-									setisauth(true);
-									setstatus('이메일로 전송된 코드를 확인해 주세요');
-								} else {
-									setstatus('문제가 발생하였습니다. 다시 시도해주세요');
-								}
+								setisauth(true);
+								setstatus('이메일로 전송된 코드를 확인해 주세요');
+							})
+							.catch((error) => {
+								console.log(error);
+								setstatus('문제가 발생하였습니다. 다시 시도해주세요');
 							});
 					}}
 				>
@@ -90,15 +130,20 @@ export default function Login() {
 										code,
 									}),
 								})
-									.then((res) => res.json())
-									.then((data) => {
-										if (data.statusCode == 200) {
-											setstatus('인증번호 확인 완료');
-											router.push('/');
-											router.refresh();
-										} else {
-											setstatus('문제가 발생하였습니다. 다시 시도해주세요');
+									.then((res) => {
+										if (res.status !== 200) {
+											throw new Error(res.json());
 										}
+										return res.json();
+									})
+									.then((data) => {
+										setstatus('인증번호 확인 완료');
+										router.push('/');
+										router.refresh();
+									})
+									.catch((error) => {
+										console.log(error);
+										setstatus('문제가 발생하였습니다. 다시 시도해주세요');
 									});
 							}}
 						>

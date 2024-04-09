@@ -9,11 +9,8 @@ export default function Page({ params }) {
 			<div className={styles.layout}>
 				<div className={styles.stream}>
 					<Live id={params.id} />
-					<div>
-						<p>스트림정보</p>
-					</div>
 				</div>
-				<Chat />
+				<Chat id={params.id} />
 			</div>
 		</>
 	);
