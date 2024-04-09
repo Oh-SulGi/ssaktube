@@ -8,7 +8,7 @@ import { addchat, rstchat } from '@/util/redux/reducers/chat';
 
 export default function ChatLog({ id }) {
 	const fetcher = (...args) => fetch(...args, { cache: 'no-store', next: { revalidate: 0 } }).then((res) => res.json());
-	const { data, error, isLoading } = useSWR(`/api/live/chatroom/${id}`, fetcher);
+	const { data, error, isLoading } = useSWR(`/api/live/chatroom/${id}`, fetcher, { revalidateOnReconnect: false, revalidateOnFocus: false });
 	if (error) {
 		return (
 			<>
