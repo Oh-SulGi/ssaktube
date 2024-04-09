@@ -6,7 +6,7 @@ import useSWR from 'swr';
 
 export default function SidebarStreamerNav({ children }) {
 	const fetcher = (...args) => fetch(...args, { cache: 'no-cache' }).then((res) => res.json());
-	const { data, error, isLoading } = useSWR(`/api/live`, fetcher);
+	const { data, error, isLoading } = useSWR(`/api/live/recommend`, fetcher);
 	const { isOpen } = useAppSelector((state) => state.ui);
 	if (isLoading) {
 		return (
