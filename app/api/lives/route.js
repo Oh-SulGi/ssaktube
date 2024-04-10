@@ -6,7 +6,8 @@ import { NextRequest, NextResponse } from 'next/server';
  * @param {*} param1
  * @returns
  */
-export async function GET(request, { params }) {
+export async function GET(request, { params, searchParams }) {
+	console.log(searchParams);
 	const page = request.nextUrl.searchParams.get('page');
 	const resapi = await fetch(`${process.env.MEDIA_API}/api/lives?page=${page}`, { cache: 'no-store' });
 	const data = await resapi.json();

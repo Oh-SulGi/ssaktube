@@ -1,14 +1,16 @@
-export default async function Page() {
-	const res = await fetchback();
-	const data = await res.json();
+export default function Page({ data }) {
+	console.log(data);
 	return (
 		<>
-			<div>{data.data}</div>
+			<div>{data}</div>
 		</>
 	);
 }
-async function fetchback() {
-	const res = await fetch('http://localhost:3000/api/lives?page=1', { cache: 'no-store' });
-	console.log(res);
-	return res;
+
+export async function generateStaticParams() {
+	const posts = await fetch('https://.../api/lives').then((res) => res.json());
+
+	return posts.map((post) => ({
+		slug: post.slug,
+	}));
 }

@@ -6,7 +6,6 @@ import Image from 'next/image';
 import { useAppDispatch, useAppSelector } from '@/util/redux/hooks';
 import { toggleIsChatOpen } from '@/util/redux/reducers/chat';
 import cstyles from './chat.module.css';
-import { getClientBuildManifest } from 'next/dist/client/route-loader';
 
 export default function Live({ id }) {
 	const fetcher = (...args) => fetch(...args, { cache: 'no-store', next: { revalidate: 0 } }).then((res) => res.json());
@@ -95,12 +94,14 @@ export default function Live({ id }) {
 /**
  *
  * @param {object} param0
- * @param {{userlogo, username, streamname, userid, streamurl, viewerCount, category, chatToken,isstream}} param0.data
+ * @param {{userlogo, username, streamname, streamurl, viewerCount, category,isstream,streamstarttime}} param0.data
  * @returns
  */
 function Content({ data }) {
 	const Player = useRef(null);
 	const player = useRef(null);
+	const timer = useRef(null);
+	const [time, settime] = useState(Math.floor((new Date().getTime() - new Date(data.streamstarttime).getTime()) / 1000));
 	const [play, setplay] = useState(true);
 	const [mute, setmute] = useState(true);
 	const [full, setfull] = useState(false);
@@ -131,6 +132,15 @@ function Content({ data }) {
 				element.setAttribute('disabled', true);
 			});
 		}
+	}, []);
+	useEffect(() => {
+		timer.current = setInterval(() => {
+			settime((time) => time + 1);
+		}, 1000);
+		return () => {
+			console.log('clearInterval');
+			clearInterval(timer.current);
+		};
 	}, []);
 
 	return (
@@ -269,7 +279,7 @@ function Content({ data }) {
 						<p className={styles.streamCategory}>카테고리</p>
 						<div className={styles.streamInfoWrapper}>
 							<p>{data.viewerCount}명 시청 중</p>
-							<p>00:00:00 스트리밍 중</p>
+							<TimePassed time={time} />
 						</div>
 					</div>
 					<div className={styles.btns}>
@@ -278,5 +288,23 @@ function Content({ data }) {
 				</div>
 			</div>
 		</>
+	);
+}
+
+function TimePassed({ time }) {
+	console.log(time);
+	let diff = time;
+	const diffh = Math.floor(diff / 3600);
+	diff = diff % 3600;
+	const diffm = Math.floor(diff / 60);
+	const diffs = diff % 60;
+	console.log(diff);
+	console.log(diffh);
+	console.log(diffm);
+	console.log(diffs);
+	return (
+		<p>
+			{diffh}:{diffm}:{diffs} 스트리밍 중
+		</p>
 	);
 }

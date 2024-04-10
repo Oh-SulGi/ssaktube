@@ -17,7 +17,7 @@ export default function LiveSuggestion() {
 		return (
 			<>
 				<section className={styles.preview}>
-					<div></div>
+					<div className={styles.overview}></div>
 					<div className={styles.previewLive}></div>
 				</section>
 				<section>
@@ -30,7 +30,7 @@ export default function LiveSuggestion() {
 		return (
 			<>
 				<section className={styles.preview}>
-					<div></div>
+					<div className={styles.overview}></div>
 					<div className={styles.previewLive}></div>
 				</section>
 				<section>
@@ -97,7 +97,6 @@ function Preview({ data }) {
 	return (
 		<section className={styles.preview}>
 			<div className={styles.overview}>
-				<div></div>
 				<div className={styles.streamthumbs}>
 					{data.map((stream, index) => (
 						<button key={index} className={styles.streamthumb}>
