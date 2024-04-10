@@ -1,8 +1,8 @@
 'use client';
 import { useAppSelector } from '@/util/redux/hooks';
-import styles from './sidebarType.module.css';
+import styles from './sidebarHelp.module.css';
 import Link from 'next/link';
-export default function SidebarType() {
+export default function SidebarHelp() {
 	const { isOpen } = useAppSelector((state) => state.ui);
 
 	return (

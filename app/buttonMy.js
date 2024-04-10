@@ -33,6 +33,9 @@ export default function ButtonMy() {
 							<li>
 								<Link href={'/my'}>내 정보</Link>
 							</li>
+							<li>
+								<Link href={'/upload'}>영상 업로드</Link>
+							</li>
 							<li
 								onClick={(e) => {
 									router.refresh();

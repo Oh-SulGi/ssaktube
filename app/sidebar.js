@@ -6,6 +6,7 @@ import SidebarType from './sidebarType';
 import { useAppSelector } from '@/util/redux/hooks';
 import Link from 'next/link';
 import Image from 'next/image';
+import SidebarHelp from './sidebarHelp';
 
 export default function Sidebar({ children }) {
 	const { isOpen } = useAppSelector((state) => state.ui);
@@ -18,6 +19,7 @@ export default function Sidebar({ children }) {
 			<div className={styles.nav}>
 				<SidebarType />
 				<SidebarStreamerNav />
+				<SidebarHelp />
 			</div>
 		</div>
 	);

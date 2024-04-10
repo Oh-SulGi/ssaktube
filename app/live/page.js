@@ -1,16 +1,19 @@
-export default function Page({ data }) {
-	console.log(data);
+import styles from './page.module.css';
+import Lives from './lives';
+
+export default function Page() {
 	return (
 		<>
-			<div>{data}</div>
+			<div className={styles.main}>
+				<div className={styles.label}>
+					<h2>전체 라이브</h2>
+					<div>
+						<button>인기순</button>
+						<button>최신순</button>
+					</div>
+				</div>
+				<Lives />
+			</div>
 		</>
 	);
-}
-
-export async function generateStaticParams() {
-	const posts = await fetch('https://.../api/lives').then((res) => res.json());
-
-	return posts.map((post) => ({
-		slug: post.slug,
-	}));
 }
