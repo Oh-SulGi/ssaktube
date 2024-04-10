@@ -10,13 +10,21 @@ export default function ChatLog({ id }) {
 	const [isReady, setisReady] = useState(false);
 	const [token, settoken] = useState('');
 	const dispatch = useAppDispatch();
-	const { chatlog } = useAppSelector((state) => state.chat);
+	const { chatlog, isChatOpen } = useAppSelector((state) => state.chat);
 	const [chat, setchat] = useState('');
 	const chatEndpoint = 'wss://edge.ivschat.ap-northeast-1.amazonaws.com';
 	const ws = useRef(null);
 	useEffect(() => {
+		if (!isChatOpen) {
+			document.getElementById('chatsection').classList.toggle(styles.close);
+		}
 		fetch(`/api/live/chatroom/${id}`)
-			.then((res) => res.json())
+			.then((res) => {
+				if (res.status != 200) {
+					throw new Error();
+				}
+				return res.json();
+			})
 			.then((data) => {
 				console.log('chatToken :', data.data.chatToken);
 				const token = data.data.chatToken;
@@ -39,11 +47,19 @@ export default function ChatLog({ id }) {
 						}, 100);
 					}
 				});
+			})
+			.catch((error) => {
+				console.log('not streaming');
+				document.querySelector(`.${styles.chatinput} input`).setAttribute('disabled', true);
+				document.querySelector(`.${styles.chatsubmit} button`).setAttribute('disabled', true);
+				setisReady(true);
 			});
 
 		return () => {
 			console.log('return chatlog');
-			ws.current.close();
+			if (ws.current) {
+				ws.current.close();
+			}
 			dispatch(rstchat());
 		};
 	}, [token]);

@@ -100,22 +100,21 @@ function Preview({ data }) {
 				<div></div>
 				<div className={styles.streamthumbs}>
 					{data.map((stream, index) => (
-						<Image
-							className={styles.streamthumb}
-							key={index}
-							src={stream.thumbnailurl}
-							width={100}
-							height={60}
-							alt='메인페이지 프리뷰 버튼'
-							onClick={(e) => {
-								if (index != cur) {
-									player.current.load(data[index].streamurl);
-									player.current.setAutoplay(true);
-									player.current.setVolume(0);
-									setcur(index);
-								}
-							}}
-						/>
+						<button key={index} className={styles.streamthumb}>
+							<Image
+								src={stream.thumbnailurl}
+								fill
+								alt='메인페이지 프리뷰 버튼'
+								onClick={(e) => {
+									if (index != cur) {
+										player.current.load(data[index].streamurl);
+										player.current.setAutoplay(true);
+										player.current.setVolume(0);
+										setcur(index);
+									}
+								}}
+							/>
+						</button>
 					))}
 				</div>
 			</div>

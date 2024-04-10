@@ -2,11 +2,14 @@
 	min-width: 353px !important;
 	width: 353px;
 	height: 100%;
-	background-color: var(--color-bg-02);
+	background-color: var(--color-bg-01);
 	border-left: 1px solid #ffffff25;
 	position: relative;
 	display: flex;
 	flex-direction: column;
+}
+.chat.close {
+	display: none;
 }
 .chatlabel {
 	width: 100%;
@@ -91,4 +94,11 @@
 
 .chatsubmit button:active {
 	background-color: var(--color-bg-04);
+}
+.chatlabel button {
+	background: 0 0;
+	border: none;
+}
+.chatlabel button svg {
+	color: var(--color-content-02);
 }

@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
 	chatlog: [],
+	isChatOpen: true,
 };
 
 export const chatSlice = createSlice({
@@ -14,8 +15,11 @@ export const chatSlice = createSlice({
 		rstchat(state, action) {
 			state.chatlog = [];
 		},
+		toggleIsChatOpen(state, action) {
+			state.isChatOpen = !state.isChatOpen;
+		},
 	},
 });
 
-export const { addchat, rstchat } = chatSlice.actions;
+export const { addchat, rstchat, toggleIsChatOpen } = chatSlice.actions;
 export default chatSlice;

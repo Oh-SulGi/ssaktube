@@ -17,6 +17,7 @@ export async function POST(request, { params }) {
 	});
 	const data = await resapi.json();
 	console.log(`/api/user/login`);
+	console.log(body);
 	console.log(resapi.status);
 	console.log(data);
 	return NextResponse.json({ ...data }, { status: resapi.status });

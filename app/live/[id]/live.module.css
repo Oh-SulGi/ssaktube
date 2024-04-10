@@ -77,7 +77,10 @@
 .settings {
 	right: calc(25px + 3rem);
 }
-
+.chat {
+	right: 15px;
+	top: 0;
+}
 .fullscreen {
 	right: 15px;
 }
@@ -114,4 +117,112 @@
 	font-weight: 700;
 	letter-spacing: 20px;
 	color: var(--color-content-04);
+	user-select: none;
+}
+.streamwrapper {
+	padding: 15px 30px 22px;
+}
+
+.streamname {
+	color: var(--color-content-02);
+	font-size: 22px;
+	font-weight: 700;
+	letter-spacing: -0.3px;
+	line-height: 28px;
+}
+.streamerwrapper {
+	margin-top: 15px;
+	display: flex;
+	align-items: center;
+}
+.streamerLogo {
+	border-radius: 50%;
+	box-shadow: 0 0 0 5px var(--color-bg-01), 0 0 0 7px #01ab8c;
+}
+.streamerLogo:hover {
+	box-shadow: 0 0 0 5px var(--color-bg-01), 0 0 0 9px #01ab8c;
+}
+.streamer {
+	flex-grow: 1;
+	margin-left: 15px;
+}
+.streamInfoWrapper {
+	display: flex;
+	color: var(--color-content-04);
+}
+.streamInfoWrapper p:last-child {
+	margin-left: 15px;
+}
+.streamerName {
+	color: var(--color-content-02);
+	font-size: 18px;
+	font-weight: 800;
+	width: fit-content;
+	padding: 4px 6px;
+	border-radius: 4px;
+	margin: 0 -6px;
+}
+.streamerName:hover {
+	background-color: var(--color-bg-04);
+}
+.streamCategory {
+	color: var(--color-theme-01);
+	font-weight: 700;
+	width: fit-content;
+}
+.streamCategory:hover {
+	color: var(--color-theme-03);
+}
+.btns {
+	display: flex;
+	align-items: center;
+}
+
+.followBtn {
+	appearance: none;
+	background-color: var(--color-theme-02);
+	border: 1px solid rgba(27, 31, 35, 0.15);
+	border-radius: 20px;
+	box-shadow: rgba(27, 31, 35, 0.1) 0 1px 0;
+	box-sizing: border-box;
+	color: var(--color-bg-01);
+	cursor: pointer;
+	display: inline-block;
+	font-size: 16px;
+	font-weight: 900;
+	padding: 7px 20px;
+	position: relative;
+	text-align: center;
+	text-decoration: none;
+	user-select: none;
+	-webkit-user-select: none;
+	touch-action: manipulation;
+	vertical-align: middle;
+	white-space: nowrap;
+}
+
+.followBtn:focus:not(:focus-visible):not(.focus-visible) {
+	box-shadow: none;
+	outline: none;
+}
+
+.followBtn:hover {
+	background-color: var(--color-theme-04);
+}
+
+.followBtn:focus {
+	box-shadow: rgba(46, 164, 79, 0.4) 0 0 0 3px;
+	outline: none;
+}
+
+.followBtn:disabled {
+	background-color: #94d3a2;
+	border-color: rgba(27, 31, 35, 0.1);
+	color: rgba(255, 255, 255, 0.8);
+	cursor: default;
+}
+
+.followBtn:active {
+	background-color: #298e46;
+	box-shadow: rgba(20, 70, 32, 0.2) 0 1px 0 inset;
 }

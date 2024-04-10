@@ -19,9 +19,20 @@
 	position: absolute;
 	bottom: 40px;
 	right: 60px;
-	border: 5px double lightblue;
 }
 .streamthumb {
+	border: 3px solid var(--color-theme-04);
+	border-radius: 3px;
+	background: 0 0;
+	width: 100px;
+	height: 60px;
+	position: relative;
+}
+.streamthumb:hover {
+	border: 3px solid var(--color-theme-03);
+}
+.streamthumb:focus {
+	border: 3px solid var(--color-theme-01);
 }
 .previewLive {
 	background-color: var(--color-bg-03);

@@ -16,13 +16,15 @@ export async function POST(request, { params }) {
 		}),
 		credentials: 'include',
 	});
-	const cookieStore = cookies();
-	const fcookie = resapi.headers.get('set-cookie');
-	console.log(fcookie);
+	// const cookieStore = cookies();
+	// const fcookie = resapi.headers.get('set-cookie');
+	// console.log(fcookie);
 	const data = await resapi.json();
+	console.log(body);
+	console.log(resapi.status);
 	console.log(data);
 
-	const response = NextResponse.json({ ...data }, { status: 200 });
+	const response = NextResponse.json({ ...data }, { status: resapi.status });
 	return response;
 }
 export const dynamic = 'force-dynamic';

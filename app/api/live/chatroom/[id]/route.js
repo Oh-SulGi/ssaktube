@@ -5,6 +5,6 @@ export async function GET(request, { params }) {
 	const data = await resapi.json();
 	console.log(`/api/live/chatroom/${params.id}`);
 	console.log(data);
-	return NextResponse.json({ data }, { status: 200 });
+	return NextResponse.json({ data }, { status: resapi.status });
 }
 export const dynamic = 'force-dynamic';

@@ -127,6 +127,10 @@ table {
 
 :root {
 	--header-height: 60px;
+	--color-theme-01: #00ffa3;
+	--color-theme-02: #00ffa3e6;
+	--color-theme-03: #00ffa3cc;
+	--color-theme-04: #00ffa3b3;
 }
 
 @media (prefers-color-scheme: light) {
@@ -208,4 +212,5 @@ body {
 	background-color: var(--color-bg-01);
 	font-family: 'Sandoll Nemony2', 'Apple SD Gothic NEO', 'Helvetica Neue', Helvetica, 나눔고딕, NanumGothic, 'Malgun Gothic', '맑은 고딕', 굴림, gulim, 새굴림,
 		'noto sans', 돋움, Dotum, sans-serif;
+	user-select: none;
 }
