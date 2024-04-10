@@ -137,9 +137,8 @@ export default function Login() {
 										return res.json();
 									})
 									.then((data) => {
-										setstatus('인증번호 확인 완료');
-										router.push('/');
-										router.refresh();
+										setstatus('인증번호 확인 완료, 로그인해주세요');
+										setisauth(false);
 									})
 									.catch((error) => {
 										console.log(error);

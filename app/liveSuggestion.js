@@ -1,8 +1,9 @@
 'use client';
 import Image from 'next/image';
-import styles from './page.module.css';
+import styles from './liveSuggestion.module.css';
 import LargeCards from '@/util/largeCards';
 import useSWR from 'swr';
+import { useEffect, useRef, useState } from 'react';
 
 export default function LiveSuggestion() {
 	const fetcher = (...args) => fetch(...args, { cache: 'no-store', next: { revalidate: 60 } }).then((res) => res.json());
@@ -10,6 +11,10 @@ export default function LiveSuggestion() {
 	if (isLoading) {
 		return (
 			<>
+				<section className={styles.preview}>
+					<div></div>
+					<div className={styles.previewLive}></div>
+				</section>
 				<section>
 					<p>로딩중입니다...</p>
 				</section>
@@ -19,6 +24,10 @@ export default function LiveSuggestion() {
 	if (error) {
 		return (
 			<>
+				<section className={styles.preview}>
+					<div></div>
+					<div className={styles.previewLive}></div>
+				</section>
 				<section>
 					<p>로딩중 에러발생</p>
 				</section>
@@ -32,9 +41,78 @@ export default function LiveSuggestion() {
 	console.log(data_);
 	return (
 		<>
+			<Preview data={data_.sample_channel} />
 			<section>
 				<LargeCards list={data_.main_live} />
 			</section>
 		</>
+	);
+}
+/**
+ *
+ * @param {object} param0
+ * @param {[{username,thumbnailurl, channelid,streamname,streamurl,viewerCount,userlogo}]} param0.data
+ * @returns
+ */
+function Preview({ data }) {
+	if (data.length == 0) {
+		return (
+			<section className={styles.preview}>
+				<div className={styles.overview} style={{}}></div>
+				<div className={styles.previewLive} style={{ fontSize: '60px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+					현재 방송 중인 사람이 없습니다
+				</div>
+			</section>
+		);
+	}
+	const script = document.createElement('script');
+	// eslint-disable-next-line react-hooks/rules-of-hooks
+	const Player = useRef(null);
+	// eslint-disable-next-line react-hooks/rules-of-hooks
+	const player = useRef(null);
+	// eslint-disable-next-line react-hooks/rules-of-hooks
+	useEffect(() => {
+		script.src = 'https://player.live-video.net/1.22.0/amazon-ivs-player.min.js';
+		script.onload = () => {
+			console.log('player onload');
+			Player.current = window.IVSPlayer;
+			if (Player.current.isPlayerSupported) {
+				player.current = Player.current.create();
+				player.current.attachHTMLVideoElement(document.getElementById('streamingvideo'));
+				player.current.load(data[0].streamurl);
+				player.current.setAutoplay(true);
+				player.current.setVolume(0);
+			}
+		};
+
+		document.body.appendChild(script);
+	}, []);
+
+	return (
+		<section className={styles.preview}>
+			<div className={styles.overview}>
+				<div></div>
+				<div className={styles.streamthumbs}>
+					{data.map((stream, index) => (
+						<Image
+							className={styles.streamthumb}
+							key={index}
+							src={stream.thumbnailurl}
+							width={100}
+							height={60}
+							alt='메인페이지 프리뷰 버튼'
+							onClick={(e) => {
+								player.current.load(data[index].streamurl);
+								player.current.setAutoplay(true);
+								player.current.setVolume(0);
+							}}
+						/>
+					))}
+				</div>
+			</div>
+			<div className={styles.previewLive}>
+				<video id='streamingvideo' className={styles.player}></video>
+			</div>
+		</section>
 	);
 }
