@@ -47,6 +47,7 @@
 	height: 102px;
 	padding: 0 12px;
 	box-sizing: border-box;
+	min-height: 102px;
 }
 .chatinput {
 	width: 100%;

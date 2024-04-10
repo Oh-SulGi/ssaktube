@@ -6,7 +6,7 @@ export default function LargeCard({ thumbnailurl, streamname, username, userlogo
 	return (
 		<Link href={`/live/${id}`} className={styles.card}>
 			<div className={styles.image}>
-				<Image src={thumbnailurl} alt='섬네일' fill={true} />
+				<Image src={thumbnailurl} alt='섬네일' fill={true} sizes={100} />
 			</div>
 			<div className={styles.caption}>
 				<Image className={styles.streamerLogo} src={userlogo} alt='스트리머 이미지' width={40} height={40} />

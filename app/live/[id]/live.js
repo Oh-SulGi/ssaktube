@@ -1,14 +1,17 @@
 'use client';
 import styles from './live.module.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import useSWR from 'swr';
 import Image from 'next/image';
 
-let Player;
-let player;
 export default function Live({ id }) {
 	const fetcher = (...args) => fetch(...args, { cache: 'no-store', next: { revalidate: 0 } }).then((res) => res.json());
-	const { data, error, isLoading } = useSWR(`/api/live/${id}`, fetcher);
+	const { data, error, isLoading } = useSWR(`/api/live/${id}`, fetcher, {
+		revalidateIfStale: false,
+		revalidateOnFocus: false,
+		revalidateOnReconnect: false,
+		revalidateOnMount: true,
+	});
 
 	if (error) {
 		return (
@@ -91,6 +94,9 @@ export default function Live({ id }) {
  * @returns
  */
 function Content({ data }) {
+	const Player = useRef(null);
+	const player = useRef(null);
+
 	console.log(data);
 	const [play, setplay] = useState(true);
 	const [mute, setmute] = useState(true);
@@ -102,14 +108,14 @@ function Content({ data }) {
 	useEffect(() => {
 		script.src = 'https://player.live-video.net/1.22.0/amazon-ivs-player.min.js';
 		script.onload = () => {
-			Player = window.IVSPlayer;
-			if (Player.isPlayerSupported) {
-				player = Player.create();
-				player.attachHTMLVideoElement(document.getElementById('streamingvideo'));
-				player.load(data.streamurl);
-				player.setAutoplay(true);
-				player.setVolume(0.1);
-				player.setMuted(true);
+			Player.current = window.IVSPlayer;
+			if (Player.current.isPlayerSupported) {
+				player.current = Player.current.create();
+				player.current.attachHTMLVideoElement(document.getElementById('streamingvideo'));
+				player.current.load(data.streamurl);
+				player.current.setAutoplay(true);
+				player.current.setVolume(0.1);
+				player.current.setMuted(true);
 			}
 		};
 
@@ -126,10 +132,10 @@ function Content({ data }) {
 								className={`${styles.play} ${styles.btn}`}
 								onClick={(e) => {
 									if (play) {
-										player.pause();
+										player.current.pause();
 									}
 									if (!play) {
-										player.play();
+										player.current.play();
 									}
 									setplay(!play);
 								}}
@@ -147,9 +153,9 @@ function Content({ data }) {
 							<button
 								className={`${styles.mute} ${styles.btn}`}
 								onClick={(e) => {
-									console.log(player.isMuted());
+									console.log(player.current.isMuted());
 									setmute(!mute);
-									player.setMuted(!mute);
+									player.current.setMuted(!mute);
 								}}
 							>
 								{!mute ? (
@@ -165,8 +171,8 @@ function Content({ data }) {
 							<button
 								className={`${styles.settings} ${styles.btn}`}
 								onClick={(e) => {
-									let qualities = player.getQualities();
-									let currentQuality = player.getQuality();
+									let qualities = player.current.getQualities();
+									let currentQuality = player.current.getQuality();
 									setsetting(!setting);
 									setquality(qualities);
 								}}
@@ -194,7 +200,7 @@ function Content({ data }) {
 											key={item.name}
 											className={styles.settingsItem}
 											onClick={(e) => {
-												player.setQuality(item);
+												player.current.setQuality(item);
 											}}
 										>
 											{item.name}

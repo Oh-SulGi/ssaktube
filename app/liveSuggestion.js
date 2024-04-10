@@ -6,8 +6,13 @@ import useSWR from 'swr';
 import { useEffect, useRef, useState } from 'react';
 
 export default function LiveSuggestion() {
-	const fetcher = (...args) => fetch(...args, { cache: 'no-store', next: { revalidate: 60 } }).then((res) => res.json());
-	const { data, error, isLoading } = useSWR(`/api/live`, fetcher);
+	const fetcher = (...args) => fetch(...args, { cache: 'no-store' }).then((res) => res.json());
+	const { data, error, isLoading } = useSWR(`/api/live`, fetcher, {
+		revalidateIfStale: false,
+		revalidateOnFocus: false,
+		revalidateOnReconnect: false,
+		revalidateOnMount: true,
+	});
 	if (isLoading) {
 		return (
 			<>
@@ -55,6 +60,7 @@ export default function LiveSuggestion() {
  * @returns
  */
 function Preview({ data }) {
+	const [cur, setcur] = useState(0);
 	if (data.length == 0) {
 		return (
 			<section className={styles.preview}>
@@ -102,9 +108,12 @@ function Preview({ data }) {
 							height={60}
 							alt='메인페이지 프리뷰 버튼'
 							onClick={(e) => {
-								player.current.load(data[index].streamurl);
-								player.current.setAutoplay(true);
-								player.current.setVolume(0);
+								if (index != cur) {
+									player.current.load(data[index].streamurl);
+									player.current.setAutoplay(true);
+									player.current.setVolume(0);
+									setcur(index);
+								}
 							}}
 						/>
 					))}
