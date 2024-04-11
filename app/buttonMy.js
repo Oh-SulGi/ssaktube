@@ -39,7 +39,12 @@ export default function ButtonMy({ userid, userLogo }) {
 							</li>
 							<li
 								onClick={(e) => {
-									router.refresh();
+									fetch('/api/user/logout', { method: 'POST' })
+										.then((res) => res.json())
+										.then((data) => {
+											router.push('/');
+											router.refresh();
+										});
 								}}
 							>
 								로그아웃
