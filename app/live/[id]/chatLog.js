@@ -227,7 +227,7 @@ function Content() {
 				</div> */}
 				{chatlog.map((item) => (
 					<div className={styles.chatwrap} key={item.Id}>
-						<Image className={styles.chaticon} src={item.Attributes.userlogo} alt='사용자프로필' width={20} height={20} />
+						<Image className={styles.chaticon} src={'https://' + item.Attributes.userlogo} alt='사용자프로필' width={20} height={20} />
 						<p className={styles.chatting}>{item.Content}</p>
 					</div>
 				))}
