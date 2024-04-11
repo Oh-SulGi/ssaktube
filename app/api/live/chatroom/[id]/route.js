@@ -4,6 +4,7 @@ export async function GET(request, { params }) {
 	const resapi = await fetch(`${process.env.MEDIA_API2}/api/live/chatroom/${params.id}`, { cache: 'no-store' });
 	const data = await resapi.json();
 	console.log(`/api/live/chatroom/${params.id}`);
+	console.log(resapi.status);
 	console.log(data);
 	return NextResponse.json({ data }, { status: resapi.status });
 }

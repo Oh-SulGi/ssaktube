@@ -6,7 +6,14 @@ export async function PUT(request, { params }) {
 	const id_token = cookestore.get('id_token');
 	const access_token = cookestore.get('access_token');
 	const userid = cookestore.get('userid');
-	const resapi = await fetch(`${process.env.MEDIA_API}/api/channel`, { body: JSON.stringify({ id_token, access_token, userid }), cache: 'no-store' });
+	const resapi = await fetch(`${process.env.MEDIA_API}/api/channel`, {
+		method: 'PUT',
+		body: JSON.stringify({ userid: userid.value, id_token: id_token.value }),
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		cache: 'no-store',
+	});
 	const data = await resapi.json();
 	console.log(`/api/channel`);
 	console.log(data);

@@ -9,7 +9,6 @@ import { useRouter } from 'next/navigation';
 export default function ButtonMy({ userid, userLogo }) {
 	const [isopen, setisopen] = useState(false);
 	const router = useRouter();
-	console.log(`https://${userLogo}`);
 	return (
 		<>
 			<div

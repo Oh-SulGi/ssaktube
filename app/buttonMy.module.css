@@ -35,4 +35,5 @@
 .tab li a {
 	text-decoration: none;
 	color: var(--color-content-01);
+	width: 100%;
 }

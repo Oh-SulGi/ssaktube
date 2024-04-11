@@ -292,16 +292,12 @@ function Content({ data }) {
 }
 
 function TimePassed({ time }) {
-	console.log(time);
 	let diff = time;
 	const diffh = Math.floor(diff / 3600);
 	diff = diff % 3600;
 	const diffm = Math.floor(diff / 60);
 	const diffs = diff % 60;
-	console.log(diff);
-	console.log(diffh);
-	console.log(diffm);
-	console.log(diffs);
+
 	return (
 		<p>
 			{diffh}:{diffm}:{diffs} 스트리밍 중

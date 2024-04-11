@@ -49,7 +49,7 @@ export default function ChatLog({ id }) {
 				});
 			})
 			.catch((error) => {
-				console.log('not streaming');
+				console.log(error);
 				document.querySelector(`.${styles.chatinput} input`).setAttribute('disabled', true);
 				document.querySelector(`.${styles.chatsubmit} button`).setAttribute('disabled', true);
 				setisReady(true);

@@ -2,7 +2,7 @@
 import { useEffect } from 'react';
 import styles from './profile.module.css';
 
-export default function Profile() {
+export default function Profile({ username }) {
 	useEffect(() => {
 		document.getElementById('nickname').setAttribute('disabled', true);
 		document.getElementById('nicknamebtn').setAttribute('disabled', true);
@@ -29,7 +29,7 @@ export default function Profile() {
 						></input>
 					</div>
 					<div className={styles.change}>
-						<input id='nickname' type='text'></input>
+						<input id='nickname' type='text' value={username}></input>
 						<button
 							id='nicknamebtn'
 							onClick={(e) => {
