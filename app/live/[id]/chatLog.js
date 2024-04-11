@@ -40,6 +40,7 @@ export default function ChatLog({ id, user_logo, userid }) {
 
 					if (msg.Type === 'MESSAGE') {
 						console.log('ws message');
+						console.log(msg);
 						dispatch(addchat(msg));
 						setInterval(() => {
 							document.getElementById('chatlog').scrollTo(0, document.getElementById('chatlog').scrollHeight);
@@ -73,7 +74,7 @@ export default function ChatLog({ id, user_logo, userid }) {
 				{isReady ? (
 					chatlog.map((item) => (
 						<div className={styles.chatwrap} key={item.Id}>
-							<Image className={styles.chaticon} src={item.Attributes.userlogo} alt='사용자프로필' width={20} height={20} />
+							<Image className={styles.chaticon} src={'https://' + item.Attributes.userlogo} alt='사용자프로필' width={20} height={20} />
 							<p className={styles.chatting}>{item.Content}</p>
 						</div>
 					))
