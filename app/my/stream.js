@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import styles from './stream.module.css';
+import { useRouter } from 'next/navigation';
 
 export default function Stream({ ischannel, ingestendpoint, streamkey, streamname, isstream }) {
 	const [isChannel, setisChannel] = useState(ischannel);
@@ -8,6 +9,7 @@ export default function Stream({ ischannel, ingestendpoint, streamkey, streamnam
 	// const [isCopied1, setisCopied1] = useState(false);
 	const [isCopied2, setisCopied2] = useState(false);
 	const [isCopied3, setisCopied3] = useState(false);
+	const router = useRouter();
 
 	return (
 		<>
@@ -37,6 +39,7 @@ export default function Stream({ ischannel, ingestendpoint, streamkey, streamnam
 										.then((data) => {
 											setisChannel(true);
 											console.log(data);
+											router.refresh();
 										});
 								}}
 								className={styles.content}

@@ -2,11 +2,10 @@
 import Image from 'next/image';
 import styles from './chat.module.css';
 import { useEffect, useRef, useState } from 'react';
-import useSWR from 'swr';
 import { useAppDispatch, useAppSelector } from '@/util/redux/hooks';
 import { addchat, rstchat } from '@/util/redux/reducers/chat';
 
-export default function ChatLog({ id }) {
+export default function ChatLog({ id, user_logo, userid }) {
 	const [isReady, setisReady] = useState(false);
 	const [token, settoken] = useState('');
 	const dispatch = useAppDispatch();
@@ -98,9 +97,9 @@ export default function ChatLog({ id }) {
 								const payload = JSON.stringify({
 									Action: 'SEND_MESSAGE',
 									Attributes: {
-										user_id: '아이디요',
+										user_id: userid,
 										username: '이름이요',
-										userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/0.jpg',
+										userlogo: user_logo,
 									},
 									Content: chat,
 								});
@@ -117,9 +116,9 @@ export default function ChatLog({ id }) {
 							const payload = JSON.stringify({
 								Action: 'SEND_MESSAGE',
 								Attributes: {
-									user_id: '아이디요',
+									user_id: userid,
 									username: '이름이요',
-									userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/0.jpg',
+									userlogo: user_logo,
 								},
 								Content: chat,
 							});
