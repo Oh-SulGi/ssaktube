@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server';
-import { cookies } from 'next/headers';
 
 export async function POST(request, { params }) {
 	const body = await request.json();
@@ -14,11 +13,7 @@ export async function POST(request, { params }) {
 			email,
 			code,
 		}),
-		credentials: 'include',
 	});
-	// const cookieStore = cookies();
-	// const fcookie = resapi.headers.get('set-cookie');
-	// console.log(fcookie);
 	const data = await resapi.json();
 	console.log(body);
 	console.log(resapi.status);

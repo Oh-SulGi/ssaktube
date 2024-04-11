@@ -20,6 +20,14 @@ export async function POST(request, { params }) {
 	console.log(body);
 	console.log(resapi.status);
 	console.log(data);
-	return NextResponse.json({ ...data }, { status: resapi.status });
+	/**
+	 * @type {NextResponse}
+	 */
+	const response = NextResponse.json({ process: 'done' }, { status: resapi.status });
+	response.cookies.set('id_token', data.id_token, {});
+	response.cookies.set('access_token', data.access_token);
+	response.cookies.set('userid', data.userid);
+	response.cookies.set('user_logo', `streamer-userlogo.s3.ap-northeast-1.amazonaws.com/${data.userid}.jpg`);
+	return response;
 }
 export const dynamic = 'force-dynamic';

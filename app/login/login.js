@@ -87,7 +87,7 @@ export default function Login() {
 								return res.json();
 							})
 							.then((data) => {
-								console.log(data.data);
+								console.log(data);
 								setisauth(true);
 								setstatus('이메일로 전송된 코드를 확인해 주세요');
 							})
@@ -131,6 +131,7 @@ export default function Login() {
 									}),
 								})
 									.then((res) => {
+										console.log(res);
 										if (res.status !== 200) {
 											throw new Error(res.json());
 										}

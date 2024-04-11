@@ -6,9 +6,10 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
-export default function ButtonMy() {
+export default function ButtonMy({ userid, userLogo }) {
 	const [isopen, setisopen] = useState(false);
 	const router = useRouter();
+	console.log(`https://${userLogo}`);
 	return (
 		<>
 			<div
@@ -19,7 +20,7 @@ export default function ButtonMy() {
 			>
 				<Image
 					className={styles.logo}
-					src={'/aws.png'}
+					src={`https://${userLogo}`}
 					width={30}
 					height={30}
 					alt='프로필사진'
