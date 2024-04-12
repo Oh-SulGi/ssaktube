@@ -5,8 +5,6 @@ import styles from './page.module.css';
 
 export default function Page({ params }) {
 	const cookiestore = cookies();
-	const user_logo = cookiestore.get('user_logo').value;
-	const userid = cookiestore.get('userid').value;
 	// const playbackUrl = 'https://fcc3ddae59ed.us-west-2.playback.live-video.net/api/video/v1/us-west-2.893648527354.channel.DmumNckWFTqz.m3u8';
 	return (
 		<>
@@ -14,7 +12,7 @@ export default function Page({ params }) {
 				<div className={styles.stream}>
 					<Live id={params.id} />
 				</div>
-				<Chat id={params.id} user_logo={user_logo} userid={userid} />
+				<Chat id={params.id} />
 			</div>
 		</>
 	);

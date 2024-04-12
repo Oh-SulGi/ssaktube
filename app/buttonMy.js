@@ -19,7 +19,7 @@ export default function ButtonMy({ userid, userLogo }) {
 			>
 				<Image
 					className={styles.logo}
-					src={`https://${userLogo}`}
+					src={`${userLogo}`}
 					width={30}
 					height={30}
 					alt='프로필사진'

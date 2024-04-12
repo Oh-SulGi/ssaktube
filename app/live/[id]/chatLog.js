@@ -5,9 +5,10 @@ import { useEffect, useRef, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/util/redux/hooks';
 import { addchat, rstchat } from '@/util/redux/reducers/chat';
 
-export default function ChatLog({ id, user_logo, userid }) {
+export default function ChatLog({ id }) {
+	const [userid, setuserid] = useState('');
+	const [username, setusername] = useState('');
 	const [isReady, setisReady] = useState(false);
-	const [token, settoken] = useState('');
 	const dispatch = useAppDispatch();
 	const { chatlog, isChatOpen } = useAppSelector((state) => state.chat);
 	const [chat, setchat] = useState('');
@@ -17,7 +18,7 @@ export default function ChatLog({ id, user_logo, userid }) {
 		if (!isChatOpen) {
 			document.getElementById('chatsection').classList.toggle(styles.close);
 		}
-		fetch(`/api/live/chatroom/${id}`)
+		fetch(`/api/user/properties/current_user`, { method: 'POST' })
 			.then((res) => {
 				if (res.status != 200) {
 					throw new Error();
@@ -25,28 +26,39 @@ export default function ChatLog({ id, user_logo, userid }) {
 				return res.json();
 			})
 			.then((data) => {
-				console.log('chatToken :', data.data.chatToken);
-				const token = data.data.chatToken;
-				setisReady(true);
-				ws.current = new WebSocket(chatEndpoint, token);
-				ws.current.addEventListener('open', (e) => {
-					console.log('ws open');
-				});
-				ws.current.addEventListener('close', (e) => {
-					console.log('ws closed');
-				});
-				ws.current.addEventListener('message', (e) => {
-					const msg = JSON.parse(e.data);
+				setuserid(data.data.userid);
+				setusername(data.data.username);
+				fetch(`/api/live/chatroom/${id}`)
+					.then((res) => {
+						if (res.status != 200) {
+							throw new Error();
+						}
+						return res.json();
+					})
+					.then((data) => {
+						console.log('chatToken :', data.data.chatToken);
+						const token = data.data.chatToken;
+						setisReady(true);
+						ws.current = new WebSocket(chatEndpoint, token);
+						ws.current.addEventListener('open', (e) => {
+							console.log('ws open');
+						});
+						ws.current.addEventListener('close', (e) => {
+							console.log('ws closed');
+						});
+						ws.current.addEventListener('message', (e) => {
+							const msg = JSON.parse(e.data);
 
-					if (msg.Type === 'MESSAGE') {
-						console.log('ws message');
-						console.log(msg);
-						dispatch(addchat(msg));
-						setInterval(() => {
-							document.getElementById('chatlog').scrollTo(0, document.getElementById('chatlog').scrollHeight);
-						}, 100);
-					}
-				});
+							if (msg.Type === 'MESSAGE') {
+								console.log('ws message');
+								console.log(msg);
+								dispatch(addchat(msg));
+								setInterval(() => {
+									document.getElementById('chatlog').scrollTo(0, document.getElementById('chatlog').scrollHeight);
+								}, 100);
+							}
+						});
+					});
 			})
 			.catch((error) => {
 				console.log(error);
@@ -62,7 +74,7 @@ export default function ChatLog({ id, user_logo, userid }) {
 			}
 			dispatch(rstchat());
 		};
-	}, [token]);
+	}, []);
 
 	return (
 		<>
@@ -74,7 +86,7 @@ export default function ChatLog({ id, user_logo, userid }) {
 				{isReady ? (
 					chatlog.map((item) => (
 						<div className={styles.chatwrap} key={item.Id}>
-							<Image className={styles.chaticon} src={'https://' + item.Attributes.userlogo} alt='사용자프로필' width={20} height={20} />
+							<Image className={styles.chaticon} src={item.Attributes.userlogo} alt='사용자프로필' width={20} height={20} />
 							<p className={styles.chatting}>{item.Content}</p>
 						</div>
 					))
@@ -99,8 +111,8 @@ export default function ChatLog({ id, user_logo, userid }) {
 									Action: 'SEND_MESSAGE',
 									Attributes: {
 										user_id: userid,
-										username: '이름이요',
-										userlogo: user_logo,
+										username: username,
+										userlogo: `https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/${userid}.jpg`,
 									},
 									Content: chat,
 								});
@@ -118,8 +130,8 @@ export default function ChatLog({ id, user_logo, userid }) {
 								Action: 'SEND_MESSAGE',
 								Attributes: {
 									user_id: userid,
-									username: '이름이요',
-									userlogo: user_logo,
+									username: username,
+									userlogo: `https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/${userid}.jpg`,
 								},
 								Content: chat,
 							});

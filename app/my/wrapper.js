@@ -5,7 +5,7 @@ import useSWR from 'swr';
 
 export default function Wrapper({ children }) {
 	const fetcher = (...args) => fetch(...args, { cache: 'no-store', method: 'POST' }).then((res) => res.json());
-	const { data, error, isLoading } = useSWR(`/api/properties/detail`, fetcher, {
+	const { data, error, isLoading } = useSWR(`/api/user/properties/detail`, fetcher, {
 		revalidateIfStale: false,
 		revalidateOnFocus: false,
 		revalidateOnReconnect: false,
