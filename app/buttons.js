@@ -10,12 +10,12 @@ export default async function Buttons() {
 	 * @type {{data:{userid}}}
 	 */
 	const data_ = await getData();
-	const data = data_.data;
+	const data = data_?.data;
 
 	return (
 		<div className={styles.btns}>
 			<ButtonDark />
-			{data.userid ? (
+			{data?.userid ? (
 				<ButtonMy userid={data.userid} userLogo={`https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/${data.userid}.jpg`} />
 			) : (
 				<ButtonLogin />
