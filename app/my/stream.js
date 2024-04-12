@@ -77,7 +77,6 @@ export default function Stream({ ischannel, ingestendpoint, streamkey, streamnam
 							<h4 className={styles.subtitle}>방송제목</h4>
 							<div className={styles.change}>
 								<input
-									id='nickname'
 									type='text'
 									value={nstreamname}
 									onChange={(e) => {
@@ -85,12 +84,12 @@ export default function Stream({ ischannel, ingestendpoint, streamkey, streamnam
 									}}
 								></input>
 								<button
-									id='nicknamebtn'
 									onClick={(e) => {
 										fetch(`/api/user/properties/change_streamname`, { method: 'POST', body: JSON.stringify({ nstreamname }) })
 											.then((res) => res.json())
 											.then((data) => {
 												router.refresh();
+												alert('방송제목 변경 완료');
 											});
 									}}
 								>

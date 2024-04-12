@@ -29,22 +29,8 @@ export default function Live({ id }) {
 						<video id='streamingvideo' className={styles.player}></video>
 					</div>
 				</div>
-				<div>
-					<h2>에러발생</h2>
-					<div>
-						<Image height={70} width={70} alt='스트리머로고' />
-						<div>
-							<div>
-								<p>에러발생</p>
-								<p>에러발생</p>
-								<p>에러발생</p>
-								<p>에러발생</p>
-							</div>
-							<div>
-								<button>팔로우</button>
-							</div>
-						</div>
-					</div>
+				<div className={styles.streamwrapper}>
+					<h2 className={styles.streamname}>에러 발생</h2>
 				</div>
 			</>
 		);
@@ -62,20 +48,21 @@ export default function Live({ id }) {
 						<video id='streamingvideo' className={styles.player}></video>
 					</div>
 				</div>
-				<div>
-					<h2>로딩중...</h2>
-					<div>
-						<Image height={70} width={70} alt='스트리머로고' />
-						<div>
-							<div>
-								<p>로딩중...</p>
-								<p>로딩중...</p>
-								<p>로딩중...</p>
-								<p>로딩중...</p>
+				<div className={styles.streamwrapper}>
+					<h2 className={styles.streamname}>로딩중 입니다</h2>
+					<div className={styles.streamerwrapper}>
+						<Image className={styles.streamerLogo} src={''} height={0} width={60} alt='스트리머로고' />
+						<div className={styles.streamer}>
+							<div className={styles.streamerName}>
+								<span>로딩중 입니다.</span>
 							</div>
-							<div>
-								<button>팔로우</button>
+							<p className={styles.streamCategory}>카테고리</p>
+							<div className={styles.streamInfoWrapper}>
+								<span>로딩중 입니다</span>
 							</div>
+						</div>
+						<div className={styles.btns}>
+							<button className={styles.followBtn}>팔로우</button>
 						</div>
 					</div>
 				</div>

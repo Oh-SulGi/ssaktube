@@ -15,6 +15,8 @@ export default function ChatLog({ id }) {
 	const chatEndpoint = 'wss://edge.ivschat.ap-northeast-1.amazonaws.com';
 	const ws = useRef(null);
 	useEffect(() => {
+		document.querySelector(`.${styles.chatinput} input`).setAttribute('disabled', true);
+		document.querySelector(`.${styles.chatsubmit} button`).setAttribute('disabled', true);
 		if (!isChatOpen) {
 			document.getElementById('chatsection').classList.toggle(styles.close);
 		}
@@ -53,11 +55,13 @@ export default function ChatLog({ id }) {
 								console.log('ws message');
 								console.log(msg);
 								dispatch(addchat(msg));
-								setInterval(() => {
+								setTimeout(() => {
 									document.getElementById('chatlog').scrollTo(0, document.getElementById('chatlog').scrollHeight);
 								}, 100);
 							}
 						});
+						document.querySelector(`.${styles.chatinput} input`).removeAttribute('disabled');
+						document.querySelector(`.${styles.chatsubmit} button`).removeAttribute('disabled');
 					});
 			})
 			.catch((error) => {

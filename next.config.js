@@ -13,7 +13,7 @@ const nextConfig = {
 				protocol: 'https',
 			},
 		],
-		minimumCacheTTL: 30,
+		minimumCacheTTL: 5,
 	},
 };
 

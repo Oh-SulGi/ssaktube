@@ -19,6 +19,26 @@ export default function Profile({ username }) {
 				<h2 className={styles.title}>회원정보설정</h2>
 				<div className={styles.sub}>
 					<div className={styles.nick}>
+						<h4 className={styles.subtitle}>아이콘 변경</h4>
+					</div>
+					<div className={styles.change}>
+						<input type='file'></input>
+						<button
+						// onClick={(e) => {
+						// 	fetch(`/api/user/properties/change_nickname`, { method: 'POST', body: JSON.stringify({ nnickname: nusername }) })
+						// 		.then((res) => res.json())
+						// 		.then((data) => {
+						// 			router.refresh();
+						// 			alert('아이콘 성공');
+						// 		});
+						// }}
+						>
+							변경하기
+						</button>
+					</div>
+				</div>
+				<div className={styles.sub}>
+					<div className={styles.nick}>
 						<h4 className={styles.subtitle}>닉네임변경</h4>
 						<input
 							type='checkbox'
