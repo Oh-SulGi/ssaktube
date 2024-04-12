@@ -28,7 +28,7 @@ async function getData() {
 	const id_token = cookieStore.get('id_token')?.value;
 	const access_token = cookieStore.get('access_token')?.value;
 	if (id_token) {
-		const res = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/api/user/properties`, {
+		const res = await fetch(`${process.env.NEXT_PUBLIC_FETCHURL}/api/user/properties`, {
 			method: 'POST',
 			cache: 'no-store',
 			body: JSON.stringify({ id_token, access_token }),
@@ -36,7 +36,7 @@ async function getData() {
 
 		console.log(res.status);
 		if (!res.ok) {
-			await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/api/cookies`, { method: 'DELETE', body: JSON.stringify({ list: ['id_token', 'access_token'] }) });
+			await fetch(`${process.env.NEXT_PUBLIC_FETCHURL}/api/cookies`, { method: 'DELETE', body: JSON.stringify({ list: ['id_token', 'access_token'] }) });
 			return {};
 		}
 
