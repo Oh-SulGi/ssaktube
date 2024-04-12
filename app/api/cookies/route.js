@@ -6,13 +6,14 @@ export async function DELETE(request, { params }) {
 	/**
 	 * @type {{list:[String]}}
 	 */
-	const body = await req.json();
+	const body = await request.json();
 	const { list } = body;
 	const cookestore = cookies();
 	list.forEach((string) => {
 		cookestore.delete(string);
 		console.log('cookie', string, 'deleted');
 	});
+
 	return NextResponse.json({ 작업: 'done' }, { status: 200 });
 }
 

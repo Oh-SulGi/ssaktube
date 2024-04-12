@@ -1,4 +1,3 @@
-'use server';
 import { cookies } from 'next/headers';
 import styles from './buttons.module.css';
 import ButtonDark from './buttonDark';
@@ -36,7 +35,7 @@ async function getData() {
 
 		console.log(res.status);
 		if (!res.ok) {
-			await fetch(`${process.env.NEXT_PUBLIC_FETCHURL}/api/cookies`, { method: 'DELETE', body: JSON.stringify({ list: ['id_token', 'access_token'] }) });
+			console.log(res);
 			return {};
 		}
 

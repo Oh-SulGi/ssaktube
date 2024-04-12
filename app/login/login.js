@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './login.module.css';
 import { useRouter } from 'next/navigation';
 export default function Login() {
@@ -9,6 +9,34 @@ export default function Login() {
 	const [code, setcode] = useState('');
 	const [isauth, setisauth] = useState(false);
 	const router = useRouter();
+	useEffect(() => {
+		return () => {
+			fetch(`/api/user/signup/delete_unauth`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					email,
+				}),
+			})
+				.then((res) => {
+					console.log(res);
+					if (res.status !== 200) {
+						throw new Error(res.json());
+					}
+					return res.json();
+				})
+				.then((data) => {
+					console.log(data);
+					console.log('이메일인증안한 아이디 삭제');
+				})
+				.catch((error) => {
+					console.log(error);
+				});
+		};
+	}, []);
+
 	return (
 		<div className={styles.form}>
 			<div className={styles.input}>
