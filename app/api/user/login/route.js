@@ -24,8 +24,8 @@ export async function POST(request, { params }) {
 	 * @type {NextResponse}
 	 */
 	const response = NextResponse.json({ process: 'done' }, { status: resapi.status });
-	response.cookies.set('id_token', data.id_token);
-	response.cookies.set('access_token', data.access_token);
+	response.cookies.set('id_token', data.id_token, { maxAge: 3 * 60 * 60 });
+	response.cookies.set('access_token', data.access_token, { maxAge: 3 * 60 * 60 });
 	// response.cookies.set('userid', data.userid);
 	// response.cookies.set('user_logo', `streamer-userlogo.s3.ap-northeast-1.amazonaws.com/${data.userid}.jpg`);
 	return response;

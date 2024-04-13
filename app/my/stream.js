@@ -2,10 +2,12 @@
 import { useState } from 'react';
 import styles from './stream.module.css';
 import { useRouter } from 'next/navigation';
+import Spinner from '@/util/spinner';
 
 export default function Stream({ ischannel, ingestendpoint, streamkey, streamname, isstream }) {
 	const [isChannel, setisChannel] = useState(ischannel);
 	const [isLive, setisLive] = useState(isstream);
+	const [streamnameChange, setstreamnameChange] = useState(false);
 	// const [isCopied1, setisCopied1] = useState(false);
 	const [isCopied2, setisCopied2] = useState(false);
 	const [isCopied3, setisCopied3] = useState(false);
@@ -85,9 +87,11 @@ export default function Stream({ ischannel, ingestendpoint, streamkey, streamnam
 								></input>
 								<button
 									onClick={(e) => {
+										setstreamnameChange(true);
 										fetch(`/api/user/properties/change_streamname`, { method: 'POST', body: JSON.stringify({ nstreamname }) })
 											.then((res) => res.json())
 											.then((data) => {
+												setstreamnameChange(false);
 												router.refresh();
 												alert('방송제목 변경 완료');
 											});
@@ -95,6 +99,7 @@ export default function Stream({ ischannel, ingestendpoint, streamkey, streamnam
 								>
 									변경하기
 								</button>
+								{streamnameChange ? <Spinner width={25} height={25} margin={'0 0 0 10px'} /> : ''}
 							</div>
 							{/* <p className={styles.content}>이제부터 이 방송은 제껍니다</p>
 							<button

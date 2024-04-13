@@ -23,6 +23,9 @@
 	padding: 10px 15px;
 	height: 100%;
 	width: max-content;
+	margin-top: 10px;
+	justify-content: flex-start;
+	align-items: center;
 }
 .change input {
 	background: 0 0;
@@ -31,6 +34,7 @@
 	outline: none;
 	width: 300px;
 	font-size: 16px;
+	height: 30px;
 }
 .change button {
 	background: 0 0;
@@ -43,4 +47,8 @@
 }
 .change button:not(:disabled):hover {
 	background-color: var(--color-bg-05);
+}
+.spinner {
+	width: 25px;
+	height: 25px;
 }
