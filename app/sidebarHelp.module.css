@@ -27,3 +27,11 @@
 	text-decoration: none;
 	color: var(--color-content-03);
 }
+.title {
+	display: flex;
+	font-size: 15px;
+	font-weight: 600;
+	height: max-content;
+	letter-spacing: -0.3px;
+	text-align: left;
+}

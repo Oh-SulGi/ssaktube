@@ -15,6 +15,15 @@
 	z-index: 300;
 	background: linear-gradient(90deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.8) 40%, rgba(0, 0, 0, 0.2) 60% 70%, rgba(0, 0, 0, 0.5) 80%) content-box;
 }
+.previewLive {
+	background-color: var(--color-bg-03);
+	height: 100%;
+	width: 100%;
+	position: relative;
+	overflow-y: hidden;
+	z-index: 200;
+}
+
 .streaminfo1 {
 	position: absolute;
 	top: 54px;
@@ -76,26 +85,6 @@
 .streamerLogo:hover {
 	box-shadow: 0 0 0 5px var(--color-bg-01), 0 0 0 9px #01ab8c;
 }
-.streamthumbs {
-	position: absolute;
-	bottom: 40px;
-	right: 60px;
-}
-.streamthumb {
-	border: 3px solid var(--color-theme-04);
-	border-radius: 3px;
-	background: 0 0;
-	width: 100px;
-	height: 60px;
-	position: relative;
-	margin-left: 10px;
-}
-.streamthumb:hover {
-	border: 3px solid var(--color-theme-03);
-}
-.streamthumb:focus {
-	border: 3px solid var(--color-theme-01);
-}
 .previewLive {
 	background-color: var(--color-bg-03);
 	height: 100%;
@@ -110,9 +99,4 @@
 	left: 0;
 	transform: translateY(-50%);
 	width: 100%;
-}
-.cardlist {
-	width: 100%;
-	display: flex;
-	flex-wrap: wrap;
 }

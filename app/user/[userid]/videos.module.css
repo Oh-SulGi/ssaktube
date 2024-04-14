@@ -1,0 +1,62 @@
+.video {
+	margin-top: 38px;
+}
+.header {
+	display: flex;
+}
+.label {
+	margin-right: 10px;
+	display: flex;
+	font-size: 19px;
+	font-weight: 700;
+}
+.btns {
+	flex-grow: 1;
+	display: flex;
+	justify-content: space-between;
+}
+.btngroup {
+	display: flex;
+}
+.tabs {
+	margin-top: 15px;
+	width: 100%;
+	display: flex;
+	flex-wrap: nowrap;
+	position: relative;
+	transition: all 0.5s ease;
+}
+.arrowPrev {
+	position: absolute;
+	top: 35%;
+	left: 10px;
+	transform: translateY(-50%);
+	z-index: 500;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background-color: var(--color-bg-02);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+.arrowNext {
+	position: absolute;
+	top: 35%;
+	right: 25px;
+	transform: translateY(-50%);
+	z-index: 500;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background-color: var(--color-bg-02);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+.tabsWrapper {
+	position: relative;
+	overflow-x: hidden;
+}

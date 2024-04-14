@@ -2,13 +2,24 @@
 
 import Image from 'next/image';
 import styles from './buttonMy.module.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useAppDispatch } from '@/util/redux/hooks';
+import { setISLogin } from '@/util/redux/reducers/ui';
 
 export default function ButtonMy({ userid, userLogo }) {
 	const [isopen, setisopen] = useState(false);
 	const router = useRouter();
+	const dispatch = useAppDispatch();
+	useEffect(() => {
+		dispatch(setISLogin(true));
+
+		return () => {
+			dispatch(setISLogin(false));
+		};
+	}, []);
+
 	return (
 		<>
 			<div

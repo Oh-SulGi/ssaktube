@@ -36,7 +36,6 @@
 	background-color: var(--color-bg-03);
 }
 .streamLogo {
-	/* border: 3px ridge #01ab8c; */
 	box-shadow: 0 0 0 2px #000, 0 0 0 4px #01ab8c;
 	border-radius: 50%;
 	background-color: var(--color-bg-06);
@@ -70,4 +69,8 @@
 	border-radius: 50%;
 	background-color: red;
 	transform: translateY(-60%);
+}
+.link {
+	text-decoration: none;
+	color: var(--color-content-01);
 }

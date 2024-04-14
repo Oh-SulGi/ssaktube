@@ -1,0 +1,68 @@
+.main {
+	align-items: center;
+	padding: 20px 30px 0px;
+	box-sizing: content-box;
+	max-width: 1360px;
+	min-width: 950px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 100px;
+}
+.contentWrapper {
+	margin-top: 15px;
+	box-sizing: border-box;
+	text-decoration: none;
+	color: var(--color-content-02);
+	background-color: var(--color-bg-02);
+	border-radius: 16px 16px 0 0;
+	display: flex;
+	padding: 15px 30px 10px;
+	max-width: 960px;
+}
+.streamerLogo {
+	border-radius: 50%;
+	margin-right: 15px;
+}
+.content {
+	position: relative;
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+}
+.info {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.streamer {
+	display: flex;
+	align-items: center;
+}
+.streamerName {
+	font-size: 18px;
+	font-weight: 800;
+}
+.date {
+	font-size: 14px;
+	color: var(--color-content-04);
+}
+.detail {
+	margin-top: 10px;
+	flex-grow: 1;
+	color: var(--color-content-03);
+}
+.etc {
+	margin-top: 12px;
+	display: flex;
+	justify-content: flex-end;
+}
+.comment {
+	display: flex;
+	align-items: center;
+	fill: var(--color-content-04);
+	color: var(--color-content-04);
+	line-height: 2px;
+}
+.comment p {
+	margin-left: 5px;
+}

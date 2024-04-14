@@ -4,8 +4,9 @@ import styles from './profile.module.css';
 import { useRouter } from 'next/navigation';
 import Spinner from '@/util/spinner';
 
-export default function Profile({ username }) {
+export default function Profile({ username, myinfo_ }) {
 	const [nusername, setnusername] = useState(username);
+	const [myinfo, setmyinfo] = useState(myinfo_);
 	const [opassword, setopassword] = useState('');
 	const [npassword, setnpassword] = useState('');
 	const [iconChange, seticonChange] = useState(false);
@@ -78,7 +79,13 @@ export default function Profile({ username }) {
 						>
 							변경하기
 						</button>
-						{iconChange ? <Spinner width={25} height={25} margin={'0 0 0 10px'} /> : ''}
+						{iconChange ? (
+							<div className={styles.spinner}>
+								<Spinner width={30} height={30} />
+							</div>
+						) : (
+							''
+						)}
 					</div>
 				</div>
 				<div className={styles.sub}>
@@ -121,7 +128,13 @@ export default function Profile({ username }) {
 						>
 							변경하기
 						</button>
-						{nickChange ? <Spinner width={25} height={25} margin={'0 0 0 10px'} /> : ''}
+						{nickChange ? (
+							<div className={styles.spinner}>
+								<Spinner width={30} height={30} />
+							</div>
+						) : (
+							''
+						)}
 					</div>
 				</div>
 				<div className={styles.sub}>
@@ -157,7 +170,45 @@ export default function Profile({ username }) {
 						>
 							변경하기
 						</button>
-						{passChange ? <Spinner width={25} height={25} margin={'0 0 0 10px'} /> : ''}
+						{passChange ? (
+							<div className={styles.spinner}>
+								<Spinner width={30} height={30} />
+							</div>
+						) : (
+							''
+						)}
+					</div>
+				</div>
+				<div className={styles.sub}>
+					<h4 className={styles.subtitle}>내정보 변경</h4>
+					<div className={styles.change}>
+						<input
+							type='text'
+							value={myinfo}
+							onChange={(e) => {
+								setmyinfo(e.target.value);
+							}}
+						></input>
+						<button
+							onClick={(e) => {
+								setpassChange(true);
+								fetch(`/api/user/properties/change_password`, { method: 'POST', body: JSON.stringify({ npassword, opassword }) })
+									.then((res) => res.json())
+									.then((data) => {
+										setpassChange(false);
+										router.refresh();
+									});
+							}}
+						>
+							변경하기
+						</button>
+						{passChange ? (
+							<div className={styles.spinner}>
+								<Spinner width={30} height={30} />
+							</div>
+						) : (
+							''
+						)}
 					</div>
 				</div>
 				<div className={styles.sub}>
@@ -177,6 +228,8 @@ export default function Profile({ username }) {
 							></input>
 							<button
 								id='deleteuser'
+								variant='outline'
+								className={styles.button}
 								onClick={(e) => {
 									console.log('delete_user');
 									fetch(`/api/user/properties/delete_user`, { method: 'POST' })
@@ -191,6 +244,7 @@ export default function Profile({ username }) {
 												});
 										});
 								}}
+								style={{ marginLeft: '20px' }}
 							>
 								회원탈퇴
 							</button>

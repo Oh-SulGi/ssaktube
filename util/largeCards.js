@@ -4,7 +4,7 @@ import styles from './largeCards.module.css';
 /**
  *
  * @param {Object} param0
- * @param {[{ username, userlogo, thumbnailurl, streamname, channelid}]} param0.list
+ * @param {[{ username, userlogo, thumbnailurl, streamname, channelid,userid}]} param0.list
  * @returns
  */
 export default function LargeCards({ list }) {
@@ -18,6 +18,7 @@ export default function LargeCards({ list }) {
 						thumbnailurl={item.thumbnailurl}
 						streamname={item.streamname}
 						id={item.channelid}
+						userid={item.channelid}
 					/>
 				</li>
 			))}

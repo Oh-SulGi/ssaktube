@@ -99,7 +99,13 @@ export default function Stream({ ischannel, ingestendpoint, streamkey, streamnam
 								>
 									변경하기
 								</button>
-								{streamnameChange ? <Spinner width={25} height={25} margin={'0 0 0 10px'} /> : ''}
+								{streamnameChange ? (
+									<div className={styles.spinner}>
+										<Spinner width={30} height={30} />
+									</div>
+								) : (
+									''
+								)}
 							</div>
 							{/* <p className={styles.content}>이제부터 이 방송은 제껍니다</p>
 							<button

@@ -46,9 +46,20 @@
 	position: relative;
 }
 .change button:not(:disabled):hover {
-	background-color: var(--color-bg-05);
+	background-color: var(--color-bg-05) !important;
 }
 .spinner {
-	width: 25px;
-	height: 25px;
+	margin-left: 15px;
+}
+.button {
+	background: 0 0;
+	border: 1px solid ghostwhite;
+	padding: 6px 10px;
+	border-radius: 5px;
+	color: var(--color-content-01) !important;
+	cursor: pointer;
+	position: relative;
+}
+.button:not(:disabled):hover {
+	background-color: var(--color-bg-05) !important;
 }

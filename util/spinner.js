@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 
-export default function Spinner({ width, height, margin }) {
+export default function Spinner({ width, height }) {
 	const spinnerAnimation = {
 		rotate: 360,
 	};
@@ -16,12 +16,11 @@ export default function Spinner({ width, height, margin }) {
 			animate={spinnerAnimation}
 			transition={transition}
 			style={{
-				margin: margin,
 				width: `${width}px`,
 				height: `${height}px`,
 				borderRadius: '50%',
 				borderWidth: '5px',
-				borderColor: 'lightblue transparent lightblue transparent',
+				borderColor: 'var(--color-theme-01) transparent transparent transparent',
 				borderStyle: 'solid',
 				boxSizing: 'border-box',
 			}}

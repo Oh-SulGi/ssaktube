@@ -32,7 +32,7 @@ export default function Wrapper({ children }) {
 	console.log(data_);
 	return (
 		<>
-			<Profile username={data_.username} />
+			<Profile username={data_.username} myinfo_={data_.username} />
 			<Stream
 				ischannel={data_.ischannel}
 				ingestendpoint={data_.ingestendpoint}

@@ -1,12 +1,12 @@
 'use client';
 
 import useSWR from 'swr';
-import styles from './lives.module.css';
+import styles from './vods.module.css';
 import LargeCard from '@/util/largeCard';
 
-export default function Lives() {
+export default function Vods() {
 	const fetcher = (...args) => fetch(...args, { cache: 'no-store' }).then((res) => res.json());
-	const { data, error, isLoading } = useSWR(`/api/lives`, fetcher, {
+	const { data, error, isLoading } = useSWR(`/api/vods`, fetcher, {
 		revalidateIfStale: false,
 		revalidateOnFocus: false,
 		revalidateOnReconnect: false,
@@ -22,7 +22,7 @@ export default function Lives() {
 	if (error) {
 		return (
 			<>
-				<div>로딩중 에러가 발생했 습니다..</div>
+				<div>로딩중 에러가 발생했 습니다.</div>
 			</>
 		);
 	}
@@ -43,6 +43,7 @@ export default function Lives() {
 						userlogo={live.userlogo}
 						username={live.username}
 						viewerCount={live.viewerCount}
+						type='vod'
 						key={live.channelid}
 					/>
 				))}

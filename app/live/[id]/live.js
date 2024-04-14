@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { useAppDispatch, useAppSelector } from '@/util/redux/hooks';
 import { toggleIsChatOpen } from '@/util/redux/reducers/chat';
 import cstyles from './chat.module.css';
+import Link from 'next/link';
 
 export default function Live({ id }) {
 	const fetcher = (...args) => fetch(...args, { cache: 'no-store', next: { revalidate: 0 } }).then((res) => res.json());
@@ -260,9 +261,11 @@ function Content({ data }) {
 				<div className={styles.streamerwrapper}>
 					<Image className={styles.streamerLogo} src={data.userlogo} height={60} width={60} alt='스트리머로고' />
 					<div className={styles.streamer}>
-						<div className={styles.streamerName}>
-							<span>{data.username}</span>
-						</div>
+						<Link className={styles.link} href={`/user/${data.userid}`}>
+							<div className={styles.streamerName}>
+								<span>{data.username}</span>
+							</div>
+						</Link>
 						<p className={styles.streamCategory}>카테고리</p>
 						<div className={styles.streamInfoWrapper}>
 							<p>{data.viewerCount}명 시청 중</p>

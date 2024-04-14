@@ -1,4 +1,5 @@
 import styles from './page.module.css';
+import Vods from './vods';
 
 export default function Page() {
 	return (
@@ -11,7 +12,7 @@ export default function Page() {
 						<button>최신순</button>
 					</div>
 				</div>
-				<div>vod섹션</div>
+				<Vods />
 			</div>
 		</>
 	);

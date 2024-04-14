@@ -1,9 +1,9 @@
 'use client';
 import Image from 'next/image';
 import styles from './liveSuggestion.module.css';
-import LargeCards from '@/util/largeCards';
 import useSWR from 'swr';
 import { useEffect, useRef, useState } from 'react';
+import LargeCard from '@/util/largeCard';
 
 export default function LiveSuggestion() {
 	const fetcher = (...args) => fetch(...args, { cache: 'no-store' }).then((res) => res.json());
@@ -40,15 +40,26 @@ export default function LiveSuggestion() {
 		);
 	}
 	/**
-	 * @type {{sample_channel:[{username,thumbnailurl, channelid,streamname,streamurl,viewerCount,userlogo}],main_live:[{username,thumbnailurl,channelid,streamname,streamurl,viewerCount,userlogo}],recommend_channel:[{username,thumbnailurl,channelid,streamname,streamurl,viewerCount,userlogo}]}}
+	 * @type {{sample_channel:[{username,thumbnailurl, channelid,streamname,streamurl,viewerCount,userlogo,userid}],main_live:[{username,thumbnailurl,channelid,streamname,streamurl,viewerCount,userlogo,userid}]}}
 	 */
 	const data_ = data.data;
 	console.log(data_);
 	return (
 		<>
 			<Preview data={data_.sample_channel} />
-			<section>
-				<LargeCards list={data_.main_live} />
+			<section className={styles.cardlist}>
+				{data_.main_live.map((live) => (
+					<LargeCard
+						id={live.channelid}
+						streamname={live.streamname}
+						thumbnailurl={live.thumbnailurl}
+						userid={live.userid}
+						userlogo={live.userlogo}
+						username={live.username}
+						viewerCount={live.viewerCount}
+						key={live.channelid}
+					/>
+				))}
 			</section>
 		</>
 	);
@@ -97,14 +108,30 @@ function Preview({ data }) {
 	return (
 		<section className={styles.preview}>
 			<div className={styles.overview}>
+				<div className={styles.streaminfo1}>
+					<div className={styles.viewer}>
+						<span className={styles.live}>LIVE</span>
+						<span className={styles.viewercount}>{data[cur].viewerCount}명시청</span>
+					</div>
+					<p className={styles.streamname}>{data[cur].streamname}</p>
+				</div>
+				<div className={styles.streaminfo2}>
+					<Image className={styles.streamerLogo} src={data[cur].userlogo} alt='스트리머로고' width={50} height={50} />
+					<div className={styles.stream}>
+						<p className={styles.streamerName}>{data[cur].username}</p>
+						<p className={styles.streamCategory}>카테고리</p>
+					</div>
+				</div>
+
 				<div className={styles.streamthumbs}>
 					{data.map((stream, index) => (
-						<button key={index} className={styles.streamthumb}>
+						<button key={index} className={styles.streamthumb} focus={index == cur ? true : false}>
 							<Image
 								src={stream.thumbnailurl}
 								fill
 								alt='메인페이지 프리뷰 버튼'
 								onClick={(e) => {
+									setcur(index);
 									if (index != cur) {
 										player.current.load(data[index].streamurl);
 										player.current.setAutoplay(true);

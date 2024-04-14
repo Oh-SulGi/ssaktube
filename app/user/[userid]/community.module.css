@@ -1,0 +1,114 @@
+.community {
+	margin-top: 38px;
+}
+.header {
+	display: flex;
+}
+.label {
+	margin-right: 10px;
+	display: flex;
+	font-size: 19px;
+	font-weight: 700;
+}
+.btns {
+	flex-grow: 1;
+	display: flex;
+	justify-content: space-between;
+}
+.btngroup {
+	display: flex;
+}
+.tabs {
+	margin-top: 15px;
+	width: 100%;
+	display: flex;
+	flex-wrap: nowrap;
+	position: relative;
+	transition: all 0.5s ease;
+}
+.arrowPrev {
+	position: absolute;
+	top: 50%;
+	left: 10px;
+	transform: translateY(-50%);
+	z-index: 500;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background-color: var(--color-bg-02);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+.arrowNext {
+	position: absolute;
+	top: 50%;
+	right: 25px;
+	transform: translateY(-50%);
+	z-index: 500;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background-color: var(--color-bg-02);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+.tabsWrapper {
+	position: relative;
+	overflow-x: hidden;
+}
+.contentWrapper {
+	padding: 0 7px;
+	box-sizing: border-box;
+	text-decoration: none;
+	color: var(--color-content-02);
+}
+
+.content {
+	position: relative;
+	background-color: var(--color-bg-04);
+	border-radius: 12px;
+	padding: 14px 17px;
+	height: 215px;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+}
+
+.info {
+	display: flex;
+}
+.streamerLogo {
+	border-radius: 50%;
+	margin-right: 8px;
+}
+.streamerName {
+	font-size: 15px;
+	font-weight: 800;
+}
+.date {
+	font-size: 12px;
+	color: var(--color-content-04);
+}
+.detail {
+	margin-top: 10px;
+	flex-grow: 1;
+	color: var(--color-content-03);
+}
+.etc {
+	margin-top: 12px;
+	display: flex;
+	justify-content: flex-end;
+}
+.comment {
+	display: flex;
+	align-items: center;
+	fill: var(--color-content-04);
+	color: var(--color-content-04);
+}
+.comment p {
+	margin-left: 5px;
+}

@@ -7,6 +7,8 @@ export default function SidebarHelp() {
 
 	return (
 		<div className={styles.type}>
+			<div className={styles.title}>{isOpen ? <label>링크</label> : ''}</div>
+			<hr />
 			<ul>
 				<Link href={'/help/background'} className={styles.Link}>
 					<li>
