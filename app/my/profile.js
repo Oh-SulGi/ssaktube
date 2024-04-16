@@ -34,6 +34,7 @@ export default function Profile({ username, myinfo_ }) {
 									setfile(files[0]);
 								}
 							}}
+							style={{ height: 'fit-content' }}
 						></input>
 						<button
 							onClick={(e) => {
@@ -212,43 +213,40 @@ export default function Profile({ username, myinfo_ }) {
 					</div>
 				</div>
 				<div className={styles.sub}>
-					<h4 className={styles.subtitle}>회원탈퇴</h4>
-					<div>
-						<div className={styles.nick}>
-							<h4 className={styles.subtitle}>탈퇴버튼</h4>
-							<input
-								type='checkbox'
-								onChange={(e) => {
-									if (e.target.checked) {
-										document.getElementById('deleteuser').removeAttribute('disabled');
-									} else {
-										document.getElementById('deleteuser').setAttribute('disabled', true);
-									}
-								}}
-							></input>
-							<button
-								id='deleteuser'
-								variant='outline'
-								className={styles.button}
-								onClick={(e) => {
-									console.log('delete_user');
-									fetch(`/api/user/properties/delete_user`, { method: 'POST' })
-										.then((res) => res.json())
-										.then((data) => {
-											console.log('delete_user complete');
-											fetch('/api/user/logout', { method: 'POST' })
-												.then((res) => res.json())
-												.then((data) => {
-													router.push('/');
-													router.refresh();
-												});
-										});
-								}}
-								style={{ marginLeft: '20px' }}
-							>
-								회원탈퇴
-							</button>
-						</div>
+					<div className={styles.nick}>
+						<h4 className={styles.subtitle}>탈퇴버튼</h4>
+						<input
+							type='checkbox'
+							onChange={(e) => {
+								if (e.target.checked) {
+									document.getElementById('deleteuser').removeAttribute('disabled');
+								} else {
+									document.getElementById('deleteuser').setAttribute('disabled', true);
+								}
+							}}
+						></input>
+						<button
+							id='deleteuser'
+							variant='outline'
+							className={styles.button}
+							onClick={(e) => {
+								console.log('delete_user');
+								fetch(`/api/user/properties/delete_user`, { method: 'POST' })
+									.then((res) => res.json())
+									.then((data) => {
+										console.log('delete_user complete');
+										fetch('/api/user/logout', { method: 'POST' })
+											.then((res) => res.json())
+											.then((data) => {
+												router.push('/');
+												router.refresh();
+											});
+									});
+							}}
+							style={{ marginLeft: '20px' }}
+						>
+							회원탈퇴
+						</button>
 					</div>
 				</div>
 			</div>

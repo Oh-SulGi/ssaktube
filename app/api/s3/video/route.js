@@ -5,7 +5,7 @@ import { fromCognitoIdentityPool } from '@aws-sdk/credential-providers';
 import { cookies } from 'next/headers';
 
 export async function POST(request, { params }) {
-	console.log('/api/s3');
+	console.log('/api/s3/video');
 	console.log(process.env.AWS_REGION);
 	console.log(process.env.AWS_IDENTITY_POOL);
 	console.log(process.env.AWS_USER_POOL_ID);

@@ -6,19 +6,6 @@ import { useEffect, useState } from 'react';
 import { useAppDispatch } from '@/util/redux/hooks';
 
 export default function Videos({ userid }) {
-	// const fetcher = (...args) => fetch(...args, { cache: 'no-store' }).then((res) => res.json());
-	// const { data, error, isLoading } = useSWR(`/api/live`, fetcher, {
-	// 	revalidateIfStale: false,
-	// 	revalidateOnFocus: false,
-	// 	revalidateOnReconnect: false,
-	// 	revalidateOnMount: true,
-	// });
-	// if(isLoading){
-	//     return <></>
-	// }
-	// if(error){
-	//     return <></>
-	// }
 	const [cur, setcur] = useState(0);
 	const [max, setmax] = useState(5);
 	const [vw, setvw] = useState(window.innerWidth);
@@ -44,89 +31,107 @@ export default function Videos({ userid }) {
 		}
 	}, [vw]);
 
-	const data = [
-		{
-			id: 'BB7tICcZh3OK',
-			streamname: '방송이름',
-			thumbnailurl: `https://ivs-stream-live-4321.s3.ap-northeast-1.amazonaws.com/ivs/v1/891377305172/BB7tICcZh3OK/2024/4/14/0/58/7KBFvRJ9AWEO/media/latest_thumbnail/thumb.jpg`,
-			userid: '',
-			userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
-			username: '유저이름',
-			viewerCount: 1,
-		},
-		{
-			id: 'BB7tICcZh3OK',
-			streamname: '방송이름',
-			thumbnailurl: `https://ivs-stream-live-4321.s3.ap-northeast-1.amazonaws.com/ivs/v1/891377305172/BB7tICcZh3OK/2024/4/14/0/58/7KBFvRJ9AWEO/media/latest_thumbnail/thumb.jpg`,
-			userid: '',
-			userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
-			username: '유저이름',
-			viewerCount: 2,
-		},
-		{
-			id: 'BB7tICcZh3OK',
-			streamname: '방송이름',
-			thumbnailurl: `https://ivs-stream-live-4321.s3.ap-northeast-1.amazonaws.com/ivs/v1/891377305172/BB7tICcZh3OK/2024/4/14/0/58/7KBFvRJ9AWEO/media/latest_thumbnail/thumb.jpg`,
-			userid: '',
-			userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
-			username: '유저이름',
-			viewerCount: 3,
-		},
-		{
-			id: 'BB7tICcZh3OK',
-			streamname: '방송이름',
-			thumbnailurl: `https://ivs-stream-live-4321.s3.ap-northeast-1.amazonaws.com/ivs/v1/891377305172/BB7tICcZh3OK/2024/4/14/0/58/7KBFvRJ9AWEO/media/latest_thumbnail/thumb.jpg`,
-			userid: '',
-			userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
-			username: '유저이름',
-			viewerCount: 4,
-		},
-		{
-			id: 'BB7tICcZh3OK',
-			streamname: '방송이름',
-			thumbnailurl: `https://ivs-stream-live-4321.s3.ap-northeast-1.amazonaws.com/ivs/v1/891377305172/BB7tICcZh3OK/2024/4/14/0/58/7KBFvRJ9AWEO/media/latest_thumbnail/thumb.jpg`,
-			userid: '',
-			userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
-			username: '유저이름',
-			viewerCount: 5,
-		},
-		{
-			id: 'BB7tICcZh3OK',
-			streamname: '방송이름',
-			thumbnailurl: `https://ivs-stream-live-4321.s3.ap-northeast-1.amazonaws.com/ivs/v1/891377305172/BB7tICcZh3OK/2024/4/14/0/58/7KBFvRJ9AWEO/media/latest_thumbnail/thumb.jpg`,
-			userid: '',
-			userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
-			username: '유저이름',
-			viewerCount: 6,
-		},
-		{
-			id: 'BB7tICcZh3OK',
-			streamname: '방송이름',
-			thumbnailurl: `https://ivs-stream-live-4321.s3.ap-northeast-1.amazonaws.com/ivs/v1/891377305172/BB7tICcZh3OK/2024/4/14/0/58/7KBFvRJ9AWEO/media/latest_thumbnail/thumb.jpg`,
-			userid: '',
-			userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
-			username: '유저이름',
-			viewerCount: 7,
-		},
-		{
-			id: 'BB7tICcZh3OK',
-			streamname: '방송이름',
-			thumbnailurl: `https://ivs-stream-live-4321.s3.ap-northeast-1.amazonaws.com/ivs/v1/891377305172/BB7tICcZh3OK/2024/4/14/0/58/7KBFvRJ9AWEO/media/latest_thumbnail/thumb.jpg`,
-			userid: '',
-			userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
-			username: '유저이름',
-			viewerCount: 8,
-		},
-		{
-			id: 'BB7tICcZh3OK',
-			streamname: '방송이름',
-			thumbnailurl: `https://ivs-stream-live-4321.s3.ap-northeast-1.amazonaws.com/ivs/v1/891377305172/BB7tICcZh3OK/2024/4/14/0/58/7KBFvRJ9AWEO/media/latest_thumbnail/thumb.jpg`,
-			userid: '',
-			userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
-			username: '유저이름',
-			viewerCount: 9,
-		},
-	];
+	const fetcher = (...args) => fetch(...args, { cache: 'no-store', method: 'POST' }).then((res) => res.json());
+	const { data, error, isLoading } = useSWR(`/api/user/${userid}/video?sort=latest&page=1`, fetcher, {
+		revalidateIfStale: false,
+		revalidateOnFocus: false,
+		revalidateOnReconnect: false,
+		revalidateOnMount: true,
+	});
+	if (isLoading) {
+		return <></>;
+	}
+	if (error) {
+		return <></>;
+	}
+	/**
+	 * @type {[{replay_url,recording_start,recording_end,viewer_count,userid,idx,streamname}]}}
+	 */
+	const data_ = data.data.data;
+	console.log(data_);
+	// const data = [
+	// 	{
+	// 		id: 'BB7tICcZh3OK',
+	// 		streamname: '방송이름',
+	// 		thumbnailurl: `https://ivs-stream-live-4321.s3.ap-northeast-1.amazonaws.com/ivs/v1/891377305172/BB7tICcZh3OK/2024/4/14/0/58/7KBFvRJ9AWEO/media/latest_thumbnail/thumb.jpg`,
+	// 		userid: '',
+	// 		userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
+	// 		username: '유저이름',
+	// 		viewerCount: 1,
+	// 	},
+	// 	{
+	// 		id: 'BB7tICcZh3OK',
+	// 		streamname: '방송이름',
+	// 		thumbnailurl: `https://ivs-stream-live-4321.s3.ap-northeast-1.amazonaws.com/ivs/v1/891377305172/BB7tICcZh3OK/2024/4/14/0/58/7KBFvRJ9AWEO/media/latest_thumbnail/thumb.jpg`,
+	// 		userid: '',
+	// 		userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
+	// 		username: '유저이름',
+	// 		viewerCount: 2,
+	// 	},
+	// 	{
+	// 		id: 'BB7tICcZh3OK',
+	// 		streamname: '방송이름',
+	// 		thumbnailurl: `https://ivs-stream-live-4321.s3.ap-northeast-1.amazonaws.com/ivs/v1/891377305172/BB7tICcZh3OK/2024/4/14/0/58/7KBFvRJ9AWEO/media/latest_thumbnail/thumb.jpg`,
+	// 		userid: '',
+	// 		userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
+	// 		username: '유저이름',
+	// 		viewerCount: 3,
+	// 	},
+	// 	{
+	// 		id: 'BB7tICcZh3OK',
+	// 		streamname: '방송이름',
+	// 		thumbnailurl: `https://ivs-stream-live-4321.s3.ap-northeast-1.amazonaws.com/ivs/v1/891377305172/BB7tICcZh3OK/2024/4/14/0/58/7KBFvRJ9AWEO/media/latest_thumbnail/thumb.jpg`,
+	// 		userid: '',
+	// 		userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
+	// 		username: '유저이름',
+	// 		viewerCount: 4,
+	// 	},
+	// 	{
+	// 		id: 'BB7tICcZh3OK',
+	// 		streamname: '방송이름',
+	// 		thumbnailurl: `https://ivs-stream-live-4321.s3.ap-northeast-1.amazonaws.com/ivs/v1/891377305172/BB7tICcZh3OK/2024/4/14/0/58/7KBFvRJ9AWEO/media/latest_thumbnail/thumb.jpg`,
+	// 		userid: '',
+	// 		userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
+	// 		username: '유저이름',
+	// 		viewerCount: 5,
+	// 	},
+	// 	{
+	// 		id: 'BB7tICcZh3OK',
+	// 		streamname: '방송이름',
+	// 		thumbnailurl: `https://ivs-stream-live-4321.s3.ap-northeast-1.amazonaws.com/ivs/v1/891377305172/BB7tICcZh3OK/2024/4/14/0/58/7KBFvRJ9AWEO/media/latest_thumbnail/thumb.jpg`,
+	// 		userid: '',
+	// 		userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
+	// 		username: '유저이름',
+	// 		viewerCount: 6,
+	// 	},
+	// 	{
+	// 		id: 'BB7tICcZh3OK',
+	// 		streamname: '방송이름',
+	// 		thumbnailurl: `https://ivs-stream-live-4321.s3.ap-northeast-1.amazonaws.com/ivs/v1/891377305172/BB7tICcZh3OK/2024/4/14/0/58/7KBFvRJ9AWEO/media/latest_thumbnail/thumb.jpg`,
+	// 		userid: '',
+	// 		userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
+	// 		username: '유저이름',
+	// 		viewerCount: 7,
+	// 	},
+	// 	{
+	// 		id: 'BB7tICcZh3OK',
+	// 		streamname: '방송이름',
+	// 		thumbnailurl: `https://ivs-stream-live-4321.s3.ap-northeast-1.amazonaws.com/ivs/v1/891377305172/BB7tICcZh3OK/2024/4/14/0/58/7KBFvRJ9AWEO/media/latest_thumbnail/thumb.jpg`,
+	// 		userid: '',
+	// 		userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
+	// 		username: '유저이름',
+	// 		viewerCount: 8,
+	// 	},
+	// 	{
+	// 		id: 'BB7tICcZh3OK',
+	// 		streamname: '방송이름',
+	// 		thumbnailurl: `https://ivs-stream-live-4321.s3.ap-northeast-1.amazonaws.com/ivs/v1/891377305172/BB7tICcZh3OK/2024/4/14/0/58/7KBFvRJ9AWEO/media/latest_thumbnail/thumb.jpg`,
+	// 		userid: '',
+	// 		userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
+	// 		username: '유저이름',
+	// 		viewerCount: 9,
+	// 	},
+	// ];
 	return (
 		<div className={styles.video}>
 			<div className={styles.header}>
@@ -159,18 +164,22 @@ export default function Videos({ userid }) {
 					</svg>
 				</span>
 				<div className={styles.tabs} style={{ transform: `translateX(-${cur * (100 / max)}%)` }}>
-					{data.map((item, index) => (
+					{data_.map((item, index) => (
 						<LargeCard
-							id={item.id}
+							id={item.idx}
 							streamname={item.streamname}
-							thumbnailurl={item.thumbnailurl}
+							thumbnailurl={`${item.replay_url}media/thumbnails/thumb0.jpg`}
 							userid={item.userid}
-							userlogo={item.userlogo}
-							username={item.username}
-							viewerCount={item.viewerCount}
+							userlogo={`https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/${item.userid}.jpg`}
+							// username={item.username}
+							username={'유저이름'}
+							viewerCount={item.viewer_count}
 							type='replay'
 							key={index}
 							style={{ width: `${100 / max}%`, minWidth: `${100 / max}%` }}
+							starttime={item.recording_start}
+							endtime={item.recording_end}
+							isCategory={false}
 						/>
 					))}
 				</div>
@@ -179,7 +188,7 @@ export default function Videos({ userid }) {
 					onClick={(e) => {
 						setcur((cur) => cur + 1);
 					}}
-					style={{ display: cur >= data.length - max ? 'none' : 'flex' }}
+					style={{ display: cur >= data_.length - max ? 'none' : 'flex' }}
 				>
 					<svg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'>
 						<path d='M13 20.5L18.5 15L13 9.5' stroke='currentColor' strokeWidth='3' strokeLinecap='round' strokeLinejoin='round'></path>

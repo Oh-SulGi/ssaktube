@@ -29,6 +29,12 @@
 	top: 5px;
 	left: 5px;
 }
+.length {
+	position: absolute;
+	z-index: 200;
+	bottom: 110px;
+	right: 18px;
+}
 .live {
 	padding: 4px 7px;
 	border-radius: 3px;
@@ -112,7 +118,15 @@
 	font-weight: 700;
 	width: fit-content;
 	font-size: 12px;
+	padding: 1px 2px;
 }
 .category:hover {
 	color: var(--color-theme-03);
+}
+.etc {
+	display: flex;
+	flex-direction: column;
+}
+.etc .username:hover {
+	background-color: var(--color-bg-01);
 }
