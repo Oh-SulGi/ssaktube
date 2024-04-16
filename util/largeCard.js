@@ -15,6 +15,7 @@ export default function LargeCard({
 	starttime,
 	endtime,
 	isCategory = true,
+	duration,
 }) {
 	const Content = () => {
 		if (type == 'live') {
@@ -38,15 +39,22 @@ export default function LargeCard({
 			</>
 		);
 	};
-	const TotalTime = () => {
-		let diff = Math.floor((new Date(endtime).getTime() - new Date(starttime).getTime()) / 1000);
+	const TotalTime = ({ duration }) => {
+		let diff;
+		if (duration) {
+			diff = Math.floor(duration / 1000);
+		} else {
+			diff = Math.floor((new Date(endtime).getTime() - new Date(starttime).getTime()) / 1000);
+		}
 		const diffh = Math.floor(diff / 3600);
 		diff = diff % 3600;
 		const diffm = Math.floor(diff / 60);
 		const diffs = diff % 60;
 		return (
 			<span className={styles.viewercount}>
-				{diffh}:{diffm}:{diffs}
+				{diffh ? diffh + ':' : ''}
+				{diffm ? diffm + ':' : ''}
+				{diffm ? '0' + diffs : diffs}
 			</span>
 		);
 	};
@@ -74,7 +82,7 @@ export default function LargeCard({
 				''
 			) : (
 				<div className={styles.length}>
-					<TotalTime />
+					<TotalTime duration={duration} />
 				</div>
 			)}
 
@@ -89,7 +97,7 @@ export default function LargeCard({
 					<Image className={styles.streamerLogo} src={userlogo} alt='스트리머 이미지' width={40} height={40} />
 				</Link>
 				<div className={styles.info}>
-					<Link href={`/live/${id}`} className={styles.link}>
+					<Link href={type == 'live' ? `/live/${id}` : `/video/${id}`} className={styles.link}>
 						<p className={styles.streamname}>{streamname}</p>
 					</Link>
 					<Link href={`/user/${userid}`} className={styles.link}>

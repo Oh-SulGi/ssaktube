@@ -4,7 +4,7 @@ import styles from './stream.module.css';
 import { useRouter } from 'next/navigation';
 import Spinner from '@/util/spinner';
 
-export default function Stream({ ischannel, ingestendpoint, streamkey, streamname, isstream }) {
+export default function Stream({ ischannel, ingestendpoint, streamkey, streamname, isstream, channelid, userid }) {
 	const [isChannel, setisChannel] = useState(ischannel);
 	const [isLive, setisLive] = useState(isstream);
 	const [streamnameChange, setstreamnameChange] = useState(false);
@@ -73,7 +73,14 @@ export default function Stream({ ischannel, ingestendpoint, streamkey, streamnam
 									</g>
 								</g>
 							</svg>
-							<button className={styles.content}>{isLive ? '방송 바로가기버튼' : 'Sleeping'}</button>
+							<button
+								className={styles.content}
+								onClick={(e) => {
+									!isLive ? router.push(`/user/${userid}`) : router.push(`/live/${channelid}`);
+								}}
+							>
+								{isLive ? '방송 바로가기버튼' : '내 정보 바로가기'}
+							</button>
 						</div>
 						<div className={styles.sub}>
 							<h4 className={styles.subtitle}>방송제목</h4>

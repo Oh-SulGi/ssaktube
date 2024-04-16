@@ -7,7 +7,6 @@ export async function POST(request, { params }) {
 	const resapi = await fetch(`${process.env.MEDIA_API}/api/video/${idx}`, {
 		cache: 'no-store',
 		method: 'POST',
-		body: JSON.stringify({ userid }),
 		headers: {
 			'Content-Type': 'application/json',
 		},

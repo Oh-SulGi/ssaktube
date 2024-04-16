@@ -70,6 +70,7 @@
 .link {
 	text-decoration: none;
 	color: var(--color-content-01);
+	text-wrap: pretty;
 }
 .image {
 	position: relative;

@@ -171,14 +171,14 @@ export default function Videos({ userid }) {
 							thumbnailurl={`${item.replay_url}media/thumbnails/thumb0.jpg`}
 							userid={item.userid}
 							userlogo={`https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/${item.userid}.jpg`}
-							// username={item.username}
-							username={'유저이름'}
+							username={item.nickname}
 							viewerCount={item.viewer_count}
-							type='replay'
+							type={item.duration ? 'vod' : 'replay'}
 							key={index}
 							style={{ width: `${100 / max}%`, minWidth: `${100 / max}%` }}
 							starttime={item.recording_start}
 							endtime={item.recording_end}
+							duration={item.duration}
 							isCategory={false}
 						/>
 					))}

@@ -5,7 +5,7 @@ import { fromCognitoIdentityPool } from '@aws-sdk/credential-providers';
 import { cookies } from 'next/headers';
 
 export async function POST(request, { params }) {
-	console.log('/api/s3/video');
+	console.log('/api/s3/thumb');
 	console.log(process.env.AWS_REGION);
 	console.log(process.env.AWS_IDENTITY_POOL);
 	console.log(process.env.AWS_USER_POOL_ID);
@@ -26,16 +26,16 @@ export async function POST(request, { params }) {
 				},
 			}),
 		});
-		console.log(`row_vod/${userid}/${time}/${filename}.mp4`);
+		console.log(`row_vod/${userid}/${time}/${filename}/media/thumbnails/thumb0.jpg`);
 		const { url, fields } = await createPresignedPost(client, {
 			Bucket: process.env.AWS_VOD_BUCKET,
-			Key: `raw_vod/${userid}/${time}/${filename}/master.mp4`,
+			Key: `output/${userid}/${time}/${filename}/media/thumbnails/thumb0.jpg`,
 			Expires: 3 * 60 * 60,
 			Fields: {
 				'Content-type': contentType,
 			},
 			Conditions: [
-				['content-length-range', 0, 1048576000], // up to 1000 MB
+				['content-length-range', 0, 10485760], // up to 10 MB
 			],
 		});
 		console.log(url);

@@ -34,6 +34,8 @@ export default function Wrapper({ children }) {
 		<>
 			<Profile username={data_.username} myinfo_={data_.username} />
 			<Stream
+				channelid={data_.channelid}
+				userid={data_.userid}
 				ischannel={data_.ischannel}
 				ingestendpoint={data_.ingestendpoint}
 				streamkey={data_.streamkey}
