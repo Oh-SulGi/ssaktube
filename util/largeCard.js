@@ -54,7 +54,7 @@ export default function LargeCard({
 			<span className={styles.viewercount}>
 				{diffh ? diffh + ':' : ''}
 				{diffm ? diffm + ':' : ''}
-				{diffm ? '0' + diffs : diffs}
+				{diffs < 10 && diffm ? '0' + diffs : diffs}
 			</span>
 		);
 	};

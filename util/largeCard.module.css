@@ -70,7 +70,6 @@
 .link {
 	text-decoration: none;
 	color: var(--color-content-01);
-	text-wrap: pretty;
 }
 .image {
 	position: relative;
@@ -78,9 +77,9 @@
 	padding-top: 56%;
 }
 .caption {
-	width: 100%;
 	display: flex;
 	margin-top: 12px;
+	/* overflow: hidden; */
 }
 
 .streamerLogo {
@@ -90,13 +89,19 @@
 	min-width: 40px;
 }
 .info {
-	width: 100%;
 	margin-left: 10px;
+	position: relative;
+	max-width: calc(100% - 60px);
 }
 
 .streamname {
 	font-size: 15px;
 	font-weight: 600;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow-y: hidden;
+	max-height: 37px;
+	max-width: calc(100%);
 }
 .username {
 	color: var(--color-content-03);

@@ -1,12 +1,12 @@
 'use client';
 
 import useSWR from 'swr';
-import styles from './vods.module.css';
+import styles from './replays.module.css';
 import LargeCard from '@/util/largeCard';
 
-export default function Vods() {
+export default function Replays() {
 	const fetcher = (...args) => fetch(...args, { cache: 'no-store' }).then((res) => res.json());
-	const { data, error, isLoading } = useSWR(`/api/vods?page=1`, fetcher, {
+	const { data, error, isLoading } = useSWR(`/api/replays`, fetcher, {
 		revalidateIfStale: false,
 		revalidateOnFocus: false,
 		revalidateOnReconnect: false,
@@ -26,30 +26,28 @@ export default function Vods() {
 			</>
 		);
 	}
-	console.log(data.data);
 
 	/**
-	 * @type {{total_pages,data:[{replay_url,recording_start,recording_end,userid,viewer_count,idx,streamname,nickname,userlogo,duration}]}}
+	 * @type {[{idx,userid,channelid,replayurl,recordingstart,recordingend,viewercount,streamname,nickname,userlogo}]}
 	 */
 	const data_ = data.data;
 	console.log(data_);
 	return (
 		<>
 			<section className={styles.cardlist}>
-				{data_.data.map((live) => (
+				{data_.map((live) => (
 					<LargeCard
 						id={live.idx}
 						streamname={live.streamname}
-						thumbnailurl={`${live.replay_url}media/thumbnails/thumb0.jpg`}
+						thumbnailurl={`${live.replayurl}media/thumbnails/thumb0.jpg`}
 						userid={live.userid}
 						userlogo={live.userlogo}
 						username={live.username}
-						viewerCount={live.viewer_count}
-						type='vod'
+						viewerCount={live.viewercount}
+						type='replay'
+						starttime={live.recordingstart}
+						endtime={live.recordingend}
 						key={live.channelid}
-						endtime={live.recording_end}
-						starttime={live.recording_start}
-						duration={live.duration}
 					/>
 				))}
 			</section>

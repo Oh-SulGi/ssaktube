@@ -39,6 +39,7 @@
 	box-shadow: 0 0 0 2px #000, 0 0 0 4px #01ab8c;
 	border-radius: 50%;
 	background-color: var(--color-bg-06);
+	min-width: 28px;
 }
 .streamInfo {
 	margin: 0 10px;
@@ -52,6 +53,9 @@
 .streamInfo p:last-child {
 	margin-top: 0px;
 	font-size: 11px;
+	max-height: 26px;
+	overflow-y: hidden;
+	text-overflow: ellipsis;
 }
 .viewer {
 	font-size: 12px;
