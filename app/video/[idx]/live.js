@@ -95,10 +95,12 @@ function Content({ data }) {
 	const videoRef = useRef(null);
 	useEffect(() => {
 		const video = videoRef.current;
-
+		let videourl;
+		data.duration ? (videourl = `${data.replay_url}master.m3u8`) : (videourl = `${data.replay_url}media/hls/master.m3u8`);
 		if (!Hls.isSupported()) {
 			const defaultOptions = {};
-			video.src = `${data.replay_url}master.m3u8`;
+			video.src = videourl;
+
 			video.controls = true;
 			const player = new Plyr(video, defaultOptions);
 		} else {
@@ -111,7 +113,8 @@ function Content({ data }) {
 				debug: false,
 			};
 			const hls = new Hls({ smoothQualityChange: true });
-			hls.loadSource(`${data.replay_url}master.m3u8`);
+
+			hls.loadSource(videourl);
 			hls.on(Hls.Events.MANIFEST_PARSED, (event, data) => {
 				const availableQualities = hls.levels.map((l) => l.height);
 				availableQualities.unshift(0);
