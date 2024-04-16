@@ -1,0 +1,60 @@
+.sub {
+	padding: 0 20px;
+	margin-bottom: 20px;
+}
+.subtitle {
+	font-size: 18px;
+	font-weight: 400;
+	padding: 8px 0px;
+}
+
+.change {
+	display: flex;
+	justify-content: center;
+	border: 2px solid #01ab8c;
+	border-radius: 19px;
+	padding: 10px 15px;
+	height: 100%;
+	width: max-content;
+	margin-top: 10px;
+	align-items: center;
+	position: relative;
+	overflow: hidden;
+}
+.progress {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	background: #285dac;
+	right: 0;
+	transform-origin: 0%;
+	border-radius: 16px;
+}
+.progressStatus {
+	mix-blend-mode: difference;
+	font-size: 20px;
+	font-weight: 800;
+	letter-spacing: 5px;
+}
+.change input {
+	background: 0 0;
+	border: none;
+	color: var(--color-content-01);
+	outline: none;
+	width: 300px;
+	font-size: 16px;
+	height: 30px;
+}
+.change button {
+	background: 0 0;
+	border: 1px solid ghostwhite;
+	padding: 6px 10px;
+	border-radius: 5px;
+	color: var(--color-content-01);
+	cursor: pointer;
+	position: relative;
+}
+.change button:not(:disabled):hover {
+	background-color: var(--color-bg-05) !important;
+}

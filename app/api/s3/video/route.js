@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { S3Client, command } from '@aws-sdk/client-s3';
+import { S3Client } from '@aws-sdk/client-s3';
 import { createPresignedPost } from '@aws-sdk/s3-presigned-post';
 import { fromCognitoIdentityPool } from '@aws-sdk/credential-providers';
 import { cookies } from 'next/headers';
@@ -9,7 +9,7 @@ export async function POST(request, { params }) {
 	console.log(process.env.AWS_REGION);
 	console.log(process.env.AWS_IDENTITY_POOL);
 	console.log(process.env.AWS_USER_POOL_ID);
-	console.log(process.env.AWS_LOGO_BUCKET);
+	console.log(process.env.AWS_VOD_BUCKET);
 	const cookiestore = cookies();
 	const id_token = cookiestore.get('id_token')?.value;
 	const access_token = cookiestore.get('access_token')?.value;
@@ -20,21 +20,24 @@ export async function POST(request, { params }) {
 			region: process.env.AWS_REGION,
 			credentials: fromCognitoIdentityPool({
 				clientConfig: { region: process.env.AWS_REGION },
-				identityPoolId: process.env.AWS_IDENTITIY_POOL,
+				identityPoolId: process.env.AWS_IDENTITY_POOL,
 				logins: {
 					[`cognito-idp.${process.env.AWS_REGION}.amazonaws.com/${process.env.AWS_USER_POOL_ID}`]: id_token,
 				},
 			}),
 		});
+		const time = new Date().getTime();
+		console.log(time);
+		console.log(`row_vod/${userid}/${time}/${filename}.mp4`);
 		const { url, fields } = await createPresignedPost(client, {
-			Bucket: process.env.AWS_LOGO_BUCKET,
-			Key: `${userid}.jpg`,
-			Expires: 60,
+			Bucket: process.env.AWS_VOD_BUCKET,
+			Key: `raw_vod/${userid}/${time}/${filename}.mp4`,
+			Expires: 3 * 60 * 60,
 			Fields: {
 				'Content-type': contentType,
 			},
 			Conditions: [
-				['content-length-range', 0, 10485760], // up to 10 MB
+				['content-length-range', 0, 1048576000], // up to 1000 MB
 			],
 		});
 		console.log(url);

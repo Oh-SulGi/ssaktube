@@ -24,14 +24,14 @@ export default function Preview({ userid }) {
 			if (Player.current.isPlayerSupported) {
 				player.current = Player.current.create();
 				player.current.attachHTMLVideoElement(document.getElementById('streamingvideo'));
-				player.current.load(data.streamurl);
+				player.current.load(data_.streamurl);
 				player.current.setAutoplay(true);
 				player.current.setVolume(0);
 			}
 		};
-
 		document.body.appendChild(script);
 	}, []);
+
 	if (isLoading) {
 		return (
 			<section className={styles.preview}>
@@ -64,6 +64,65 @@ export default function Preview({ userid }) {
 			</section>
 		);
 	}
+	return (
+		<>
+			<PreviewSection data_={data_} />
+			{/* <section className={styles.preview}>
+				<div className={styles.overview}>
+					<div className={styles.streaminfo1}>
+						<div className={styles.viewer}>
+							<span className={styles.live}>LIVE</span>
+							<span className={styles.viewercount}>{data_.viewerCount}명시청</span>
+						</div>
+						<p className={styles.streamname}>{data_.streamname}</p>
+					</div>
+					<div className={styles.streaminfo2}>
+						<Image className={styles.streamerLogo} src={data_.userlogo} alt='스트리머로고' width={50} height={50} />
+						<div className={styles.stream}>
+							<p className={styles.streamerName}>{data_.username}</p>
+							<p className={styles.streamCategory}>카테고리</p>
+						</div>
+					</div>
+				</div>
+				<div className={styles.previewLive}>
+					<video id='streamingvideo' className={styles.player}></video>
+				</div>
+			</section> */}
+		</>
+	);
+}
+
+/**
+ *
+ * @param {object} param0
+ * @param {{username,thumbnailurl, channelid,streamname,streamurl,viewerCount,userlogo}} param0.data_
+ * @returns
+ */
+function PreviewSection({ data_ }) {
+	const script = document.createElement('script');
+	const Player = useRef(null);
+	const player = useRef(null);
+	useEffect(() => {
+		script.src = 'https://player.live-video.net/1.22.0/amazon-ivs-player.min.js';
+		script.onload = () => {
+			console.log('player onload');
+			Player.current = window.IVSPlayer;
+			if (Player.current.isPlayerSupported) {
+				player.current = Player.current.create();
+				player.current.attachHTMLVideoElement(document.getElementById('streamingvideo'));
+				player.current.load(data_.streamurl);
+				player.current.setAutoplay(true);
+				player.current.setVolume(0);
+			}
+		};
+
+		document.body.appendChild(script);
+		return () => {
+			player.current = null;
+			Player.current = null;
+			document.body.removeChild(script);
+		};
+	}, []);
 
 	return (
 		<section className={styles.preview}>

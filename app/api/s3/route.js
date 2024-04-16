@@ -20,7 +20,7 @@ export async function POST(request, { params }) {
 			region: process.env.AWS_REGION,
 			credentials: fromCognitoIdentityPool({
 				clientConfig: { region: process.env.AWS_REGION },
-				identityPoolId: process.env.AWS_IDENTITIY_POOL,
+				identityPoolId: process.env.AWS_IDENTITY_POOL,
 				logins: {
 					[`cognito-idp.${process.env.AWS_REGION}.amazonaws.com/${process.env.AWS_USER_POOL_ID}`]: id_token,
 				},
