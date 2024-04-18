@@ -5,6 +5,7 @@ import styles from './sidebarStreamerNav.module.css';
 import { useAppSelector } from '@/util/redux/hooks';
 import useSWR from 'swr';
 import Link from 'next/link';
+import { useState } from 'react';
 
 export default function SidebarStreamerNav({}) {
 	const { isOpen } = useAppSelector((state) => state.ui);
@@ -15,7 +16,7 @@ export default function SidebarStreamerNav({}) {
 		revalidateOnReconnect: false,
 		revalidateOnMount: true,
 	});
-
+	const [islarge, setislarge] = useState(false);
 	if (isLoading) {
 		return (
 			<div className={styles.channels}>
@@ -103,7 +104,7 @@ export default function SidebarStreamerNav({}) {
 				</div>
 				<hr />
 				<ul className={styles.streamers}>
-					<li>리셋중...</li>
+					<li>새로고침</li>
 				</ul>
 			</div>
 		);
@@ -189,45 +190,63 @@ export default function SidebarStreamerNav({}) {
 							</g>
 						</svg>
 					</button>
-					<button className={styles.openbtn}>
-						<svg width='10px' height='10px' viewBox='0 0 1920 1920' xmlns='http://www.w3.org/2000/svg'>
-							<g id='SVGRepo_bgCarrier' strokeWidth='0'></g>
-							<g id='SVGRepo_tracerCarrier' strokeLinecap='round' strokeLinejoin='round'></g>
-							<g id='SVGRepo_iconCarrier'>
-								<path d='m.08 568.063 176.13-176.13 783.988 783.864 783.74-783.864 176.129 176.13-959.87 960.118z' fillRule='evenodd'></path>
-							</g>
-						</svg>
-						{/* <svg width='10px' height='10px' viewBox='0 0 1920 1920' xmlns='http://www.w3.org/2000/svg'>
-							<g id='SVGRepo_bgCarrier' strokeWidth='0'></g>
-							<g id='SVGRepo_tracerCarrier' strokeLinecap='round' strokeLinejoin='round'></g>
-							<g id='SVGRepo_iconCarrier'>
-								<path d='m.08 1351.937 176.13 176.13 783.988-783.864 783.74 783.864 176.129-176.13-959.87-960.118z' fillRule='evenodd'></path>
-							</g>
-						</svg> */}
+					<button
+						className={styles.openbtn}
+						onClick={(e) => {
+							setislarge((islarge) => !islarge);
+						}}
+					>
+						{!islarge ? (
+							<svg width='10px' height='10px' viewBox='0 0 1920 1920' xmlns='http://www.w3.org/2000/svg'>
+								<g id='SVGRepo_bgCarrier' strokeWidth='0'></g>
+								<g id='SVGRepo_tracerCarrier' strokeLinecap='round' strokeLinejoin='round'></g>
+								<g id='SVGRepo_iconCarrier'>
+									<path
+										d='m.08 568.063 176.13-176.13 783.988 783.864 783.74-783.864 176.129 176.13-959.87 960.118z'
+										fillRule='evenodd'
+									></path>
+								</g>
+							</svg>
+						) : (
+							<svg width='10px' height='10px' viewBox='0 0 1920 1920' xmlns='http://www.w3.org/2000/svg'>
+								<g id='SVGRepo_bgCarrier' strokeWidth='0'></g>
+								<g id='SVGRepo_tracerCarrier' strokeLinecap='round' strokeLinejoin='round'></g>
+								<g id='SVGRepo_iconCarrier'>
+									<path
+										d='m.08 1351.937 176.13 176.13 783.988-783.864 783.74 783.864 176.129-176.13-959.87-960.118z'
+										fillRule='evenodd'
+									></path>
+								</g>
+							</svg>
+						)}
 					</button>
 				</div>
 			</div>
 			<hr />
-			<ul className={styles.streamers}>
-				{data_.recommend_channel.map((streamer) => (
-					<Link href={`/live/${streamer.channelid}`} key={streamer.channelid} className={styles.link}>
-						<li className={styles.streamer}>
-							<Image className={styles.streamLogo} src={streamer.userlogo} width={28} height={28} alt='스트리머 아이콘' />
-							{isOpen ? (
-								<>
-									<div className={styles.streamInfo}>
-										<p>{streamer.username}</p>
-										<p>{streamer.streamname}</p>
-									</div>
-									<span className={styles.viewer}>{streamer.viewerCount}</span>
-								</>
-							) : (
-								<></>
-							)}
-						</li>
-					</Link>
-				))}
-			</ul>
+			{!islarge ? (
+				<ul className={styles.streamers}>
+					{data_.recommend_channel.map((streamer) => (
+						<Link href={`/live/${streamer.channelid}`} key={streamer.channelid} className={styles.link}>
+							<li className={styles.streamer}>
+								<Image className={styles.streamLogo} src={streamer.userlogo} width={28} height={28} alt='스트리머 아이콘' />
+								{isOpen ? (
+									<>
+										<div className={styles.streamInfo}>
+											<p>{streamer.username}</p>
+											<p>{streamer.streamname}</p>
+										</div>
+										<span className={styles.viewer}>{streamer.viewerCount}</span>
+									</>
+								) : (
+									<></>
+								)}
+							</li>
+						</Link>
+					))}
+				</ul>
+			) : (
+				''
+			)}
 		</div>
 	);
 }

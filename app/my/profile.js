@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import Spinner from '@/util/spinner';
 
 export default function Profile({ username, myinfo_ }) {
-	console.log(myinfo_);
 	const [nusername, setnusername] = useState(username);
 	const [myinfo, setmyinfo] = useState(myinfo_);
 	const [opassword, setopassword] = useState('');

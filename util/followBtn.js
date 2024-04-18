@@ -54,7 +54,6 @@ export default function FollowBtn({ target_userid }) {
 			</div>
 		);
 	}
-
 	return (
 		<div
 			className={styles.btns}

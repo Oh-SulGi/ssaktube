@@ -49,7 +49,7 @@ export default function SidebarType() {
 						{isOpen ? <p>다시보기</p> : ''}
 					</li>
 				</Link>
-				<li>
+				{/* <li>
 					<svg width='64px' height='64px' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
 						<g id='SVGRepo_bgCarrier' strokeWidth='0'></g>
 						<g id='SVGRepo_tracerCarrier' strokeLinecap='round' strokeLinejoin='round'></g>
@@ -77,7 +77,7 @@ export default function SidebarType() {
 						</g>
 					</svg>
 					{isOpen ? <p>카테고리</p> : ''}
-				</li>
+				</li> */}
 			</ul>
 		</div>
 	);

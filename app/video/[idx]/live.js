@@ -89,7 +89,7 @@ export default function Live({ idx }) {
 /**
  *
  * @param {object} param0
- * @param {{idx,userid,userlogo, nickname, streamname, replay_url, viewer_count, category,recording_start,recording_end,duration}} param0.data
+ * @param {{idx,userid,userlogo, username, streamname, replay_url, viewer_count, category,recording_start,recording_end,duration}} param0.data
  * @returns
  */
 function Content({ data }) {
@@ -180,7 +180,7 @@ function Content({ data }) {
 					<div className={styles.streamer}>
 						<Link className={styles.link} href={`/user/${data.userid}`}>
 							<div className={styles.streamerName}>
-								<span>{data.nickname}</span>
+								<span>{data.username}</span>
 							</div>
 						</Link>
 						<p className={styles.streamCategory}>카테고리</p>
