@@ -58,6 +58,7 @@ export default function LiveSuggestion() {
 						username={live.username}
 						viewerCount={live.viewerCount}
 						key={live.channelid}
+						category={live.category}
 					/>
 				))}
 			</section>
@@ -119,7 +120,7 @@ function Preview({ data }) {
 					<Image className={styles.streamerLogo} src={data[cur].userlogo} alt='스트리머로고' width={50} height={50} />
 					<div className={styles.stream}>
 						<p className={styles.streamerName}>{data[cur].username}</p>
-						<p className={styles.streamCategory}>카테고리</p>
+						<p className={styles.streamCategory}>{data[cur].category}</p>
 					</div>
 				</div>
 

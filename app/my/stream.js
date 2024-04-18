@@ -4,14 +4,14 @@ import styles from './stream.module.css';
 import { useRouter } from 'next/navigation';
 import Spinner from '@/util/spinner';
 
-export default function Stream({ ischannel, ingestendpoint, streamkey, streamname, isstream, channelid, userid }) {
+export default function Stream({ ischannel, ingestendpoint, streamkey, streamname, isstream, channelid, userid, category }) {
 	const [isChannel, setisChannel] = useState(ischannel);
 	const [isLive, setisLive] = useState(isstream);
 	const [streamnameChange, setstreamnameChange] = useState(false);
 	// const [isCopied1, setisCopied1] = useState(false);
 	const [isCopied2, setisCopied2] = useState(false);
 	const [isCopied3, setisCopied3] = useState(false);
-	const [scategory, setscategory] = useState('');
+	const [scategory, setscategory] = useState(category);
 	const [isscategory, setnisscategory] = useState(false);
 	const [nstreamname, setnstreamname] = useState(streamname);
 	const router = useRouter();
@@ -155,6 +155,7 @@ export default function Stream({ ischannel, ingestendpoint, streamkey, streamnam
 							<h4 className={styles.subtitle}>방송카테고리</h4>
 							<div className={styles.change}>
 								<select
+									value={scategory}
 									onChange={(e) => {
 										setscategory(e.target.value);
 									}}
@@ -166,7 +167,7 @@ export default function Stream({ ischannel, ingestendpoint, streamkey, streamnam
 								<button
 									onClick={(e) => {
 										setnisscategory(true);
-										fetch(`/api/user/properties/tlqkfshadk`, { method: 'POST', body: JSON.stringify({ scategory }) })
+										fetch(`/api/user/properties/change_category`, { method: 'POST', body: JSON.stringify({ scategory }) })
 											.then((res) => res.json())
 											.then((data) => {
 												setnisscategory(false);

@@ -26,7 +26,7 @@ export default function Wrapper({ children }) {
 		);
 	}
 	/**
-	 * @type {{ingestendpoint,streamkey,issensor,isstream,sensorlist,email,server,sensorcount,channelid,ischannel,streamname,isadmin,userid,streamurl,userlogo,username,favorite,thumbnailurl}}
+	 * @type {{ingestendpoint,streamkey,issensor,isstream,sensorlist,email,server,sensorcount,channelid,ischannel,streamname,isadmin,userid,streamurl,userlogo,username,favorite,thumbnailurl,category}}
 	 */
 	const data_ = data.data;
 	console.log(data_);
@@ -41,6 +41,7 @@ export default function Wrapper({ children }) {
 				streamkey={data_.streamkey}
 				streamname={data_.streamname}
 				isstream={data_.isstream}
+				category={data_.category}
 			/>
 		</>
 	);

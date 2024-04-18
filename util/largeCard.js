@@ -16,6 +16,7 @@ export default function LargeCard({
 	endtime,
 	isCategory = true,
 	duration,
+	category,
 }) {
 	const Content = () => {
 		if (type == 'live') {
@@ -105,7 +106,7 @@ export default function LargeCard({
 					</Link>
 					<div className={styles.etc}>
 						{type == 'live' ? '' : <ViewCountAndDate />}
-						{isCategory ? <span className={styles.category}>카테고리</span> : ''}
+						{isCategory ? <span className={styles.category}>{category}</span> : ''}
 					</div>
 				</div>
 			</div>

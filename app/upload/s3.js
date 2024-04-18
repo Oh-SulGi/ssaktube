@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 
 export default function S3() {
 	const [file, setfile] = useState('');
+	const [filem, setfilem] = useState('');
 	const [filename, setfilename] = useState('');
 	const [uploadiProgress, setuploadiProgress] = useState(0);
 	const [uploadProgress, setuploadProgress] = useState(0);
@@ -32,6 +33,7 @@ export default function S3() {
 				<div className={styles.change}>
 					<input
 						type='file'
+						accept='image/*'
 						onChange={(e) => {
 							const files = e.target.files;
 							if (files) {
@@ -110,10 +112,11 @@ export default function S3() {
 				<div className={styles.change}>
 					<input
 						type='file'
+						accept='video/*'
 						onChange={(e) => {
 							const files = e.target.files;
 							if (files) {
-								setfile(files[0]);
+								setfilem(files[0]);
 							}
 						}}
 						style={{ height: 'fit-content' }}
@@ -140,7 +143,7 @@ export default function S3() {
 											Object.entries(fields).forEach(([key, value]) => {
 												formData.append(key, value);
 											});
-											formData.append('file', file);
+											formData.append('file', filem);
 
 											const xhr = new XMLHttpRequest();
 											xhr.upload.addEventListener('progress', (e) => {
