@@ -7,9 +7,10 @@ import { useAppSelector } from '@/util/redux/hooks';
 import Link from 'next/link';
 import Image from 'next/image';
 import SidebarHelp from './sidebarHelp';
+import SidebarStreamerNavFav from './sidebarStreamerNavFav';
 
 export default function Sidebar({ children }) {
-	const { isOpen } = useAppSelector((state) => state.ui);
+	const { isOpen, isLogin } = useAppSelector((state) => state.ui);
 	return (
 		<div className={`${styles.sidebar} ${isOpen ? '' : styles.close}`}>
 			<SidebarToggleBtn />
@@ -19,6 +20,7 @@ export default function Sidebar({ children }) {
 			<div className={styles.nav}>
 				<SidebarType />
 				<SidebarStreamerNav />
+				{isLogin ? <SidebarStreamerNavFav /> : ''}
 				<SidebarHelp />
 			</div>
 		</div>

@@ -73,7 +73,7 @@ export default function Videos({ userid }) {
 		);
 	}
 	/**
-	 * @type {[{replay_url,recording_start,recording_end,viewer_count,userid,idx,streamname}]}}
+	 * @type {[{replay_url,recording_start,recording_end,viewer_count,userid,idx,streamname,username}]}}
 	 */
 	const data_ = data.data.data;
 	console.log(data_);
@@ -285,7 +285,7 @@ export default function Videos({ userid }) {
 							thumbnailurl={`${item.replay_url}media/thumbnails/thumb0.jpg`}
 							userid={item.userid}
 							userlogo={`https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/${item.userid}.jpg`}
-							username={item.nickname}
+							username={item.username}
 							viewerCount={item.viewer_count}
 							type={item.duration ? 'vod' : 'replay'}
 							key={index}

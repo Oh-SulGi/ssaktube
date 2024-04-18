@@ -35,7 +35,7 @@ export default function Replays() {
 	}
 
 	/**
-	 * @type {[{idx,userid,channelid,replayurl,recordingstart,recordingend,viewercount,streamname,nickname,userlogo}]}
+	 * @type {[{idx,userid,channelid,replayurl,recordingstart,recordingend,viewercount,streamname,username,userlogo}]}
 	 */
 	const data_ = data.data;
 	console.log(data_);
@@ -69,7 +69,7 @@ export default function Replays() {
 						thumbnailurl={`${live.replayurl}media/thumbnails/thumb0.jpg`}
 						userid={live.userid}
 						userlogo={live.userlogo}
-						username={live.nickname}
+						username={live.username}
 						viewerCount={live.viewercount}
 						type='replay'
 						starttime={live.recordingstart}

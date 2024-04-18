@@ -30,7 +30,7 @@ export default function Vods() {
 	console.log(data.data);
 
 	/**
-	 * @type {{total_pages,data:[{replay_url,recording_start,recording_end,userid,viewer_count,idx,streamname,nickname,userlogo,duration}]}}
+	 * @type {{total_pages,data:[{replay_url,recording_start,recording_end,userid,viewer_count,idx,streamname,username,userlogo,duration}]}}
 	 */
 	const data_ = data.data;
 	console.log(data_);
@@ -80,7 +80,7 @@ export default function Vods() {
 						thumbnailurl={`${live.replay_url}media/thumbnails/thumb0.jpg`}
 						userid={live.userid}
 						userlogo={live.userlogo}
-						username={live.nickname}
+						username={live.username}
 						viewerCount={live.viewer_count}
 						type='vod'
 						key={live.channelid}

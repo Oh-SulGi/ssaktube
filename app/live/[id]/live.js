@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from '@/util/redux/hooks';
 import { toggleIsChatOpen } from '@/util/redux/reducers/chat';
 import cstyles from './chat.module.css';
 import Link from 'next/link';
+import FollowBtn from '@/util/followBtn';
 
 export default function Live({ id }) {
 	const fetcher = (...args) => fetch(...args, { cache: 'no-store', next: { revalidate: 0 } }).then((res) => res.json());
@@ -82,7 +83,7 @@ export default function Live({ id }) {
 /**
  *
  * @param {object} param0
- * @param {{userlogo, username, streamname, streamurl, viewerCount, category,isstream,streamstarttime}} param0.data
+ * @param {{userlogo, username,userid, streamname, streamurl, viewerCount, category,isstream,streamstarttime}} param0.data
  * @returns
  */
 function Content({ data }) {
@@ -272,9 +273,7 @@ function Content({ data }) {
 							<TimePassed time={time} />
 						</div>
 					</div>
-					<div className={styles.btns}>
-						<button className={styles.followBtn}>팔로우</button>
-					</div>
+					<FollowBtn target_userid={data.userid} />
 				</div>
 			</div>
 		</>

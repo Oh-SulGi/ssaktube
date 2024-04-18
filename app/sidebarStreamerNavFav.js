@@ -6,10 +6,10 @@ import { useAppSelector } from '@/util/redux/hooks';
 import useSWR from 'swr';
 import Link from 'next/link';
 
-export default function SidebarStreamerNav({}) {
+export default function SidebarStreamerNavFav({}) {
 	const { isOpen } = useAppSelector((state) => state.ui);
-	const fetcher = (...args) => fetch(...args, { cache: 'no-store' }).then((res) => res.json());
-	const { data, error, isLoading, mutate, isValidating } = useSWR(`/api/live/recommend`, fetcher, {
+	const fetcher = (...args) => fetch(...args, { method: 'POST', cache: 'no-store' }).then((res) => res.json());
+	const { data, error, isLoading, mutate, isValidating } = useSWR(`/api/follow/list`, fetcher, {
 		revalidateIfStale: false,
 		revalidateOnFocus: false,
 		revalidateOnReconnect: false,
@@ -20,7 +20,7 @@ export default function SidebarStreamerNav({}) {
 		return (
 			<div className={styles.channels}>
 				<div className={styles.channelsTitle}>
-					{isOpen ? <label>추천채널</label> : ''}
+					{isOpen ? <label>팔로우채널</label> : ''}
 					<div>
 						<button className={styles.resetbtn}>
 							<svg width='10px' height='10px' viewBox='0 0 1920 1920' xmlns='http://www.w3.org/2000/svg'>
@@ -66,7 +66,7 @@ export default function SidebarStreamerNav({}) {
 		return (
 			<div className={styles.channels}>
 				<div className={styles.channelsTitle}>
-					{isOpen ? <label>추천채널</label> : ''}
+					{isOpen ? <label>팔로우채널</label> : ''}
 					<div>
 						<button className={styles.resetbtn}>
 							<svg width='10px' height='10px' viewBox='0 0 1920 1920' xmlns='http://www.w3.org/2000/svg'>
@@ -112,7 +112,7 @@ export default function SidebarStreamerNav({}) {
 		return (
 			<div className={styles.channels}>
 				<div className={styles.channelsTitle}>
-					{isOpen ? <label>추천채널</label> : ''}
+					{isOpen ? <label>팔로우채널</label> : ''}
 					<div>
 						<button className={styles.resetbtn}>
 							<svg width='10px' height='10px' viewBox='0 0 1920 1920' xmlns='http://www.w3.org/2000/svg'>
@@ -163,14 +163,14 @@ export default function SidebarStreamerNav({}) {
 		},
 	];
 	/**
-	 * @type {{recommend_channel:[{username,thumbnailurl,channelid,streamname,streamurl,viewerCount,userlogo}]}}
+	 * @type {[{userlogo,username,userid}]}
 	 */
 	const data_ = data.data;
 	console.log(data_);
 	return (
 		<div className={styles.channels}>
 			<div className={styles.channelsTitle}>
-				{isOpen ? <label>추천채널</label> : ''}
+				{isOpen ? <label>팔로우채널</label> : ''}
 				<div>
 					<button
 						className={styles.resetbtn}
@@ -209,7 +209,7 @@ export default function SidebarStreamerNav({}) {
 			</div>
 			<hr />
 			<ul className={styles.streamers}>
-				{data_.recommend_channel.map((streamer) => (
+				{data_.map((streamer) => (
 					<Link href={`/live/${streamer.channelid}`} key={streamer.channelid} className={styles.link}>
 						<li className={styles.streamer}>
 							<Image className={styles.streamLogo} src={streamer.userlogo} width={28} height={28} alt='스트리머 아이콘' />

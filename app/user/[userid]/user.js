@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import styles from './user.module.css';
 import useSWR from 'swr';
+import FollowBtn from '@/util/followBtn';
 
 export default function User({ userid }) {
 	const fetcher = (...args) => fetch(...args, { cache: 'no-store', next: { revalidate: 0 }, method: 'POST' }).then((res) => res.json());
@@ -20,9 +21,7 @@ export default function User({ userid }) {
 				<div className={styles.streamer}>
 					<div className={styles.streamerName}>
 						<span>로딩중...</span>
-						<div className={styles.btns}>
-							<button className={styles.followBtn}>팔로우</button>
-						</div>
+						<FollowBtn target_userid={userid} />
 					</div>
 					<div className={styles.streamerDetail}>
 						<p></p>
@@ -43,9 +42,7 @@ export default function User({ userid }) {
 				<div className={styles.streamer}>
 					<div className={styles.streamerName}>
 						<span>에러발생</span>
-						<div className={styles.btns}>
-							<button className={styles.followBtn}>팔로우</button>
-						</div>
+						<FollowBtn target_userid={userid} />
 					</div>
 					<div className={styles.streamerDetail}>
 						<p></p>
@@ -70,9 +67,7 @@ export default function User({ userid }) {
 			<div className={styles.streamer}>
 				<div className={styles.streamerName}>
 					<span>{data_.username}</span>
-					<div className={styles.btns}>
-						<button className={styles.followBtn}>팔로우</button>
-					</div>
+					<FollowBtn target_userid={userid} />
 				</div>
 				<div className={styles.streamerDetail}>
 					<p>팔로워 {data_.followers}명</p>

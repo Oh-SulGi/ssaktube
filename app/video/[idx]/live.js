@@ -7,6 +7,7 @@ import Hls from 'hls.js';
 import Plyr from 'plyr';
 import 'plyr/dist/plyr.css';
 import useSWR from 'swr';
+import FollowBtn from '@/util/followBtn';
 
 export default function Live({ idx }) {
 	const fetcher = (...args) => fetch(...args, { method: 'POST', cache: 'no-store', next: { revalidate: 0 } }).then((res) => res.json());
@@ -188,9 +189,7 @@ function Content({ data }) {
 							<p>{date}</p>
 						</div>
 					</div>
-					<div className={styles.btns}>
-						<button className={styles.followBtn}>팔로우</button>
-					</div>
+					<FollowBtn target_userid={data.userid} />
 				</div>
 			</div>
 		</>
