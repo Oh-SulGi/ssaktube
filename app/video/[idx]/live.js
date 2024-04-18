@@ -179,7 +179,7 @@ function Content({ data }) {
 					<div className={styles.streamer}>
 						<Link className={styles.link} href={`/user/${data.userid}`}>
 							<div className={styles.streamerName}>
-								<span>사용자이름</span>
+								<span>{data.nickname}</span>
 							</div>
 						</Link>
 						<p className={styles.streamCategory}>카테고리</p>

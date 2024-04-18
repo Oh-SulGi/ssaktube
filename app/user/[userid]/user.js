@@ -61,6 +61,7 @@ export default function User({ userid }) {
 	 * @type {{channelid,streamname,userlogo,userid,streamurl,username,thumbnailurl,viewerCount}}
 	 */
 	const data_ = data.data;
+	console.log(data_);
 	return (
 		<div className={styles.streamerwrapper}>
 			<div className={styles.streamerLogoWrapper}>
@@ -74,10 +75,10 @@ export default function User({ userid }) {
 					</div>
 				</div>
 				<div className={styles.streamerDetail}>
-					<p>팔로워 몇명</p>
+					<p>팔로워 {data_.followers}명</p>
 				</div>
 				<div className={styles.streamerInfo}>
-					<p>자기소개</p>
+					<p>{data_.introduce}</p>
 				</div>
 			</div>
 		</div>

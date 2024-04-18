@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 export default function S3() {
 	const [file, setfile] = useState('');
 	const [filename, setfilename] = useState('');
+	const [uploadiProgress, setuploadiProgress] = useState(0);
 	const [uploadProgress, setuploadProgress] = useState(0);
 	const [time, settime] = useState('');
 	useEffect(() => {
@@ -16,7 +17,7 @@ export default function S3() {
 	return (
 		<>
 			<div className={styles.sub}>
-				<h4 className={styles.subtitle}>영상 선택</h4>
+				<h4 className={styles.subtitle}>영상 제목 입력</h4>
 				<div className={styles.change}>
 					<input
 						type='text'
@@ -27,6 +28,7 @@ export default function S3() {
 						style={{ width: '368px' }}
 					></input>
 				</div>
+				<h4 className={styles.subtitle}>섬네일 선택</h4>
 				<div className={styles.change}>
 					<input
 						type='file'
@@ -65,7 +67,7 @@ export default function S3() {
 											const xhr = new XMLHttpRequest();
 											xhr.upload.addEventListener('progress', (e) => {
 												if (e.lengthComputable) {
-													setuploadProgress(((e.loaded / e.total) * 100).toFixed(2));
+													setuploadiProgress(((e.loaded / e.total) * 100).toFixed(2));
 												}
 											});
 											xhr.addEventListener('load', (e) => {
@@ -76,7 +78,7 @@ export default function S3() {
 												}
 											});
 											xhr.addEventListener('error', (e) => {
-												setuploadProgress('업로드실패');
+												setuploadiProgress('업로드실패');
 											});
 											xhr.open('POST', url);
 											xhr.send(formData);
@@ -92,7 +94,7 @@ export default function S3() {
 											// }
 										})
 										.catch((error) => {
-											setuploadProgress('업로드실패');
+											setuploadiProgress('업로드실패');
 										});
 								});
 						}}
@@ -100,6 +102,11 @@ export default function S3() {
 						제출하기
 					</button>
 				</div>
+				<div className={styles.change} style={{ width: '368px' }}>
+					<motion.div className={styles.progress} style={{ scaleX: `${uploadiProgress}%` }}></motion.div>
+					<p className={styles.progressStatus}>{uploadiProgress}%</p>
+				</div>
+				<h4 className={styles.subtitle}>영상 선택</h4>
 				<div className={styles.change}>
 					<input
 						type='file'

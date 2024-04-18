@@ -154,7 +154,7 @@ export default function Stream({ ischannel, ingestendpoint, streamkey, streamnam
 							<p className={styles.content}>{ingestendpoint}</p>
 							<button
 								onClick={(e) => {
-									navigator.clipboard.writeText('야야야야2');
+									navigator.clipboard.writeText(ingestendpoint);
 									setisCopied2(true);
 								}}
 								className={styles.copybtn}
@@ -191,7 +191,7 @@ export default function Stream({ ischannel, ingestendpoint, streamkey, streamnam
 							<p className={styles.content}>{streamkey}</p>
 							<button
 								onClick={(e) => {
-									navigator.clipboard.writeText('야야야야3');
+									navigator.clipboard.writeText(streamkey);
 									setisCopied3(true);
 								}}
 								className={styles.copybtn}

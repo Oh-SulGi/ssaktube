@@ -3,7 +3,6 @@ import useSWR, { useSWRConfig } from 'swr';
 import styles from './videos.module.css';
 import LargeCard from '@/util/largeCard';
 import { useEffect, useState } from 'react';
-import { useAppDispatch } from '@/util/redux/hooks';
 import Link from 'next/link';
 
 export default function Videos({ userid }) {
@@ -11,7 +10,6 @@ export default function Videos({ userid }) {
 	const [cur, setcur] = useState(0);
 	const [max, setmax] = useState(5);
 	const [vw, setvw] = useState(window.innerWidth);
-	const dispatch = useAppDispatch();
 	const resizeListener = () => {
 		setvw(window.innerWidth);
 	};
@@ -41,10 +39,38 @@ export default function Videos({ userid }) {
 		revalidateOnMount: true,
 	});
 	if (isLoading) {
-		return <></>;
+		return (
+			<div className={styles.video}>
+				<div className={styles.header}>
+					<div className={styles.label}>
+						<h2>동영상</h2>
+						<button>
+							<Link href={`/user/${userid}/video`}>바로가기버튼</Link>
+						</button>
+					</div>
+				</div>
+				<div className={styles.tabsWrapper}>
+					<p style={{ marginTop: '20px', marginBottom: '20px' }}>로딩중입니다</p>
+				</div>
+			</div>
+		);
 	}
 	if (error) {
-		return <></>;
+		return (
+			<div className={styles.video}>
+				<div className={styles.header}>
+					<div className={styles.label}>
+						<h2>동영상</h2>
+						<button>
+							<Link href={`/user/${userid}/video`}>바로가기버튼</Link>
+						</button>
+					</div>
+				</div>
+				<div className={styles.tabsWrapper}>
+					<p style={{ marginTop: '20px', marginBottom: '20px' }}>로딩중 에러가 발생했습니다.</p>
+				</div>
+			</div>
+		);
 	}
 	/**
 	 * @type {[{replay_url,recording_start,recording_end,viewer_count,userid,idx,streamname}]}}

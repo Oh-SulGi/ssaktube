@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import Spinner from '@/util/spinner';
 
 export default function Profile({ username, myinfo_ }) {
+	console.log(myinfo_);
 	const [nusername, setnusername] = useState(username);
 	const [myinfo, setmyinfo] = useState(myinfo_);
 	const [opassword, setopassword] = useState('');
@@ -12,6 +13,7 @@ export default function Profile({ username, myinfo_ }) {
 	const [iconChange, seticonChange] = useState(false);
 	const [nickChange, setnickChange] = useState(false);
 	const [passChange, setpassChange] = useState(false);
+	const [introChange, setintroChange] = useState(false);
 	const [file, setfile] = useState(null);
 	useEffect(() => {
 		document.getElementById('nickname').setAttribute('disabled', true);
@@ -67,6 +69,7 @@ export default function Profile({ username, myinfo_ }) {
 												console.log(upload);
 												if (upload.ok) {
 													router.refresh();
+													alert('아이콘 변경 완료');
 												} else {
 													alert('변경실패');
 												}
@@ -123,6 +126,7 @@ export default function Profile({ username, myinfo_ }) {
 									.then((res) => res.json())
 									.then((data) => {
 										router.refresh();
+										alert('닉네임 변경 완료');
 										setnickChange(false);
 									});
 							}}
@@ -165,6 +169,7 @@ export default function Profile({ username, myinfo_ }) {
 									.then((res) => res.json())
 									.then((data) => {
 										setpassChange(false);
+										alert('비밀번호 변경 완료');
 										router.refresh();
 									});
 							}}
@@ -181,7 +186,7 @@ export default function Profile({ username, myinfo_ }) {
 					</div>
 				</div>
 				<div className={styles.sub}>
-					<h4 className={styles.subtitle}>내정보 변경</h4>
+					<h4 className={styles.subtitle}>자기소개 변경</h4>
 					<div className={styles.change}>
 						<input
 							type='text'
@@ -192,18 +197,19 @@ export default function Profile({ username, myinfo_ }) {
 						></input>
 						<button
 							onClick={(e) => {
-								setpassChange(true);
-								fetch(`/api/user/properties/change_password`, { method: 'POST', body: JSON.stringify({ npassword, opassword }) })
+								setintroChange(true);
+								fetch(`/api/user/properties/change_introduce`, { method: 'POST', body: JSON.stringify({ myinfo }) })
 									.then((res) => res.json())
 									.then((data) => {
-										setpassChange(false);
+										setintroChange(false);
+										alert('자기소개 변경 완료');
 										router.refresh();
 									});
 							}}
 						>
 							변경하기
 						</button>
-						{passChange ? (
+						{introChange ? (
 							<div className={styles.spinner}>
 								<Spinner width={30} height={30} />
 							</div>
