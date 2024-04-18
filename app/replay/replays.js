@@ -1,12 +1,13 @@
 'use client';
 
-import useSWR from 'swr';
+import useSWR, { useSWRConfig } from 'swr';
 import styles from './replays.module.css';
 import LargeCard from '@/util/largeCard';
 
 export default function Replays() {
+	const { mutate } = useSWRConfig();
 	const fetcher = (...args) => fetch(...args, { cache: 'no-store' }).then((res) => res.json());
-	const { data, error, isLoading } = useSWR(`/api/replays`, fetcher, {
+	const { data, error, isLoading, isValidating } = useSWR(`/api/replays`, fetcher, {
 		revalidateIfStale: false,
 		revalidateOnFocus: false,
 		revalidateOnReconnect: false,
@@ -26,6 +27,13 @@ export default function Replays() {
 			</>
 		);
 	}
+	if (isValidating) {
+		return (
+			<>
+				<div>새로고침 중입니다.</div>
+			</>
+		);
+	}
 
 	/**
 	 * @type {[{idx,userid,channelid,replayurl,recordingstart,recordingend,viewercount,streamname,nickname,userlogo}]}
@@ -34,6 +42,26 @@ export default function Replays() {
 	console.log(data_);
 	return (
 		<>
+			<div>
+				<button
+					onClick={(e) => {
+						mutate(
+							'/api/replays',
+							async (data) => {
+								const updatedData_ = await fetch('/api/replays?sort=latest', { cache: 'no-store' });
+								const updatedData = await updatedData_.json();
+								console.log(data);
+								console.log(updatedData);
+								return updatedData;
+							},
+							{ revalidate: false }
+						);
+					}}
+				>
+					인기순
+				</button>
+				<button>최신순</button>
+			</div>
 			<section className={styles.cardlist}>
 				{data_.map((live) => (
 					<LargeCard
