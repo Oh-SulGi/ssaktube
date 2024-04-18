@@ -1,11 +1,10 @@
 'use client';
 
-import useSWR, { useSWRConfig } from 'swr';
+import useSWR from 'swr';
 import styles from './replays.module.css';
 import LargeCard from '@/util/largeCard';
 
 export default function Replays() {
-	const { mutate } = useSWRConfig();
 	const fetcher = (...args) => fetch(...args, { cache: 'no-store' }).then((res) => res.json());
 	const { data, error, isLoading, isValidating } = useSWR(`/api/replays`, fetcher, {
 		revalidateIfStale: false,
@@ -42,7 +41,7 @@ export default function Replays() {
 	console.log(data_);
 	return (
 		<>
-			<div>
+			{/* <div>
 				<button
 					onClick={(e) => {
 						mutate(
@@ -61,7 +60,7 @@ export default function Replays() {
 					인기순
 				</button>
 				<button>최신순</button>
-			</div>
+			</div> */}
 			<section className={styles.cardlist}>
 				{data_.map((live) => (
 					<LargeCard
@@ -70,7 +69,7 @@ export default function Replays() {
 						thumbnailurl={`${live.replayurl}media/thumbnails/thumb0.jpg`}
 						userid={live.userid}
 						userlogo={live.userlogo}
-						username={live.username}
+						username={live.nickname}
 						viewerCount={live.viewercount}
 						type='replay'
 						starttime={live.recordingstart}

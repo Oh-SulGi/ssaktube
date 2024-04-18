@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(request, { params }) {
-	console.log('/api/user/[userid]/video');
+	console.log('/api/user/[userid]/replay');
 	const userid = params.userid;
 	console.log(userid);
 	const { searchParams } = new URL(request.url);
@@ -9,7 +9,7 @@ export async function POST(request, { params }) {
 	const page = searchParams.get('page') || 1;
 	console.log(sort);
 	console.log(page);
-	const resapi = await fetch(`${process.env.MEDIA_API}/api/user/${userid}/video?sort=${sort}&page=${page}`, {
+	const resapi = await fetch(`${process.env.MEDIA_API}/api/user/${userid}/replay?sort=${sort}&page=${page}`, {
 		cache: 'no-store',
 		method: 'POST',
 		body: JSON.stringify({ userid }),

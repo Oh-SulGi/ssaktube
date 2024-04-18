@@ -1,11 +1,13 @@
 'use client';
-import useSWR from 'swr';
+import useSWR, { useSWRConfig } from 'swr';
 import styles from './videos.module.css';
 import LargeCard from '@/util/largeCard';
 import { useEffect, useState } from 'react';
 import { useAppDispatch } from '@/util/redux/hooks';
+import Link from 'next/link';
 
 export default function Videos({ userid }) {
+	const [which, setwhich] = useState('video');
 	const [cur, setcur] = useState(0);
 	const [max, setmax] = useState(5);
 	const [vw, setvw] = useState(window.innerWidth);
@@ -30,9 +32,9 @@ export default function Videos({ userid }) {
 			setmax(3);
 		}
 	}, [vw]);
-
+	const { mutate } = useSWRConfig();
 	const fetcher = (...args) => fetch(...args, { cache: 'no-store', method: 'POST' }).then((res) => res.json());
-	const { data, error, isLoading } = useSWR(`/api/user/${userid}/video?sort=latest&page=1`, fetcher, {
+	const { data, error, isLoading } = useSWR(`/api/user/${userid}/video`, fetcher, {
 		revalidateIfStale: false,
 		revalidateOnFocus: false,
 		revalidateOnReconnect: false,
@@ -137,17 +139,103 @@ export default function Videos({ userid }) {
 			<div className={styles.header}>
 				<div className={styles.label}>
 					<h2>동영상</h2>
-					<button>바로가기버튼</button>
+					<button>
+						<Link href={`/user/${userid}/video`}>바로가기버튼</Link>
+					</button>
 				</div>
 				<div className={styles.btns}>
 					<div className={styles.btngroup}>
-						<button>전체</button>
-						<button>지난 방송</button>
-						<button>업로드한 영상</button>
+						<button
+							onClick={(e) => {
+								setwhich('video');
+								mutate(
+									`/api/user/${userid}/video`,
+									async (data) => {
+										const updatedData_ = await fetch(`/api/user/${userid}/video?sort=latest`, { method: 'POST', cache: 'no-store' });
+										const updatedData = await updatedData_.json();
+										console.log(data);
+										console.log(updatedData);
+										return updatedData;
+									},
+									{ revalidate: false }
+								);
+							}}
+						>
+							전체
+						</button>
+						<button
+							onClick={(e) => {
+								setwhich('replay');
+								mutate(
+									`/api/user/${userid}/video`,
+									async (data) => {
+										const updatedData_ = await fetch(`/api/user/${userid}/replay?sort=latest`, { method: 'POST', cache: 'no-store' });
+										const updatedData = await updatedData_.json();
+										console.log(data);
+										console.log(updatedData);
+										return updatedData;
+									},
+									{ revalidate: false }
+								);
+							}}
+						>
+							지난 방송
+						</button>
+						<button
+							onClick={(e) => {
+								setwhich('vod');
+								mutate(
+									`/api/user/${userid}/video`,
+									async (data) => {
+										const updatedData_ = await fetch(`/api/user/${userid}/vod?sort=latest`, { method: 'POST', cache: 'no-store' });
+										const updatedData = await updatedData_.json();
+										console.log(data);
+										console.log(updatedData);
+										return updatedData;
+									},
+									{ revalidate: false }
+								);
+							}}
+						>
+							업로드한 영상
+						</button>
 					</div>
 					<div className={styles.btngroup}>
-						<button>최신순</button>
-						<button>인기순</button>
+						<button
+							onClick={(e) => {
+								mutate(
+									`/api/user/${userid}/video`,
+									async (data) => {
+										const updatedData_ = await fetch(`/api/user/${userid}/${which}?sort=latest`, { method: 'POST', cache: 'no-store' });
+										const updatedData = await updatedData_.json();
+										console.log(data);
+										console.log(updatedData);
+										return updatedData;
+									},
+									{ revalidate: false }
+								);
+							}}
+						>
+							최신순
+						</button>
+						<button
+							onClick={(e) => {
+								mutate(
+									`/api/user/${userid}/video`,
+									async (data) => {
+										const updatedData_ = await fetch(`/api/user/${userid}/${which}?sort=popular`, { method: 'POST', cache: 'no-store' });
+										console.log(updatedData_);
+										const updatedData = await updatedData_.json();
+										console.log(data);
+										console.log(updatedData);
+										return updatedData;
+									},
+									{ revalidate: false }
+								);
+							}}
+						>
+							인기순
+						</button>
 					</div>
 				</div>
 			</div>

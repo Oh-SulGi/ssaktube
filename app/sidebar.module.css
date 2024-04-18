@@ -22,5 +22,5 @@
 	position: absolute;
 	top: 15px;
 	left: 70px;
-	background-color: aqua;
+	background-color: var(--color-bg-02);
 }
