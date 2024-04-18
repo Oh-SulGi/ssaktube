@@ -7,6 +7,7 @@ export async function POST(request, { params }) {
 	const cookestore = cookies();
 	const id_token = cookestore.get('id_token')?.value;
 	const access_token = cookestore.get('access_token')?.value;
+	console.log(scategory);
 	const resapi = await fetch(`${process.env.USER_API}/api/user/properties/change_category`, {
 		cache: 'no-store',
 		method: 'POST',
