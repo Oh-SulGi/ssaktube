@@ -161,8 +161,8 @@ export default function Stream({ ischannel, ingestendpoint, streamkey, streamnam
 									}}
 									style={{ background: '0 0', border: 'none', color: 'var(--color-content-01)', outline: 'none' }}
 								>
-									<option>Game</option>
-									<option>Just Chat</option>
+									<option value={'Game'}>Game</option>
+									<option value={'Just Chat'}>Just Chat</option>
 								</select>
 								<button
 									onClick={(e) => {
