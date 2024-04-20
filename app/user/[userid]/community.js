@@ -6,19 +6,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Community({ userid }) {
-	// const fetcher = (...args) => fetch(...args, { cache: 'no-store' }).then((res) => res.json());
-	// const { data, error, isLoading } = useSWR(`/api/live`, fetcher, {
-	// 	revalidateIfStale: false,
-	// 	revalidateOnFocus: false,
-	// 	revalidateOnReconnect: false,
-	// 	revalidateOnMount: true,
-	// });
-	// if(isLoading){
-	//     return <></>
-	// }
-	// if(error){
-	//     return <></>
-	// }
+	const fetcher = (...args) => fetch(...args, { method: 'POST', cache: 'no-store' }).then((res) => res.json());
+	const { data, error, isLoading } = useSWR(`/api/user/${userid}/community`, fetcher, {
+		revalidateIfStale: false,
+		revalidateOnFocus: false,
+		revalidateOnReconnect: false,
+		revalidateOnMount: true,
+	});
 	const [cur, setcur] = useState(0);
 	const [max, setmax] = useState(6);
 	const [vw, setvw] = useState(window.innerWidth);
@@ -38,45 +32,80 @@ export default function Community({ userid }) {
 			setmax(3);
 		}
 	}, [vw]);
+	if (isLoading) {
+		return (
+			<div className={styles.community}>
+				<div className={styles.header}>
+					<div className={styles.label}>
+						<h2>커뮤니티</h2>
+						<button>바로가기버튼</button>
+					</div>
+				</div>
+				<div className={styles.tabsWrapper}>
+					<p style={{ marginTop: '20px', marginBottom: '20px' }}>로딩중 입니다.</p>
+				</div>
+			</div>
+		);
+	}
+	if (error) {
+		return (
+			<div className={styles.community}>
+				<div className={styles.header}>
+					<div className={styles.label}>
+						<h2>커뮤니티</h2>
+						<button>바로가기버튼</button>
+					</div>
+				</div>
+				<div className={styles.tabsWrapper}>
+					<p style={{ marginTop: '20px', marginBottom: '20px' }}>로딩중 입니다.</p>
+				</div>
+			</div>
+		);
+	}
 
-	const data = [
-		{
-			idx: 0,
-			content: '커뮤니티내용',
-			userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
-			username: '유저이름',
-			commentCount: 1,
-			date: '',
-		},
-		{
-			idx: 1,
-			content: '커뮤니티내용',
-			userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
-			username: '유저이름',
-			commentCount: 2,
-		},
-		{
-			idx: 2,
-			content: '커뮤니티내용',
-			userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
-			username: '유저이름',
-			commentCount: 3,
-		},
-		{
-			idx: 3,
-			content: '커뮤니티내용',
-			userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
-			username: '유저이름',
-			commentCount: 4,
-		},
-		{
-			idx: 4,
-			content: '커뮤니티내용',
-			userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
-			username: '유저이름',
-			commentCount: 5,
-		},
-	];
+	// const data = [
+	// 	{
+	// 		idx: 0,
+	// 		content: '커뮤니티내용',
+	// 		userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
+	// 		username: '유저이름',
+	// 		commentCount: 1,
+	// 		date: '',
+	// 	},
+	// 	{
+	// 		idx: 1,
+	// 		content: '커뮤니티내용',
+	// 		userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
+	// 		username: '유저이름',
+	// 		commentCount: 2,
+	// 	},
+	// 	{
+	// 		idx: 2,
+	// 		content: '커뮤니티내용',
+	// 		userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
+	// 		username: '유저이름',
+	// 		commentCount: 3,
+	// 	},
+	// 	{
+	// 		idx: 3,
+	// 		content: '커뮤니티내용',
+	// 		userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
+	// 		username: '유저이름',
+	// 		commentCount: 4,
+	// 	},
+	// 	{
+	// 		idx: 4,
+	// 		content: '커뮤니티내용',
+	// 		userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
+	// 		username: '유저이름',
+	// 		commentCount: 5,
+	// 	},
+	// ];
+	console.log(data);
+	/**
+	 *  @type {[{boardid,authorid,content,time,userlogo,replycount}]}
+	 */
+	const data_ = data.data.data;
 	return (
 		<div className={styles.community}>
 			<div className={styles.header}>
@@ -98,9 +127,9 @@ export default function Community({ userid }) {
 					</svg>
 				</span>
 				<div className={styles.tabs} style={{ transform: `translateX(-${cur * (100 / max)}%)` }}>
-					{data.map((item, index) => (
+					{data_.map((item, index) => (
 						<Link
-							href={`/user/${userid}/community/${item.idx}`}
+							href={`/user/${item.authorid}/community/${item.boardid}`}
 							key={index}
 							className={styles.contentWrapper}
 							style={{ width: `${100 / max}%`, minWidth: `${100 / max}%` }}
@@ -113,7 +142,7 @@ export default function Community({ userid }) {
 									<div>
 										<p className={styles.streamerName}>{item.username}</p>
 										{/* <p>{item.date}</p> */}
-										<p className={styles.date}>24.2.20</p>
+										<p className={styles.date}>{new Date(item.time).toLocaleDateString()}</p>
 									</div>
 								</div>
 								<div className={styles.detail}>{item.content}</div>
@@ -126,7 +155,7 @@ export default function Community({ userid }) {
 												<path d='M8,11a1,1,0,1,0,1,1A1,1,0,0,0,8,11Zm4,0a1,1,0,1,0,1,1A1,1,0,0,0,12,11Zm4,0a1,1,0,1,0,1,1A1,1,0,0,0,16,11ZM12,2A10,10,0,0,0,2,12a9.89,9.89,0,0,0,2.26,6.33l-2,2a1,1,0,0,0-.21,1.09A1,1,0,0,0,3,22h9A10,10,0,0,0,12,2Zm0,18H5.41l.93-.93a1,1,0,0,0,.3-.71,1,1,0,0,0-.3-.7A8,8,0,1,1,12,20Z'></path>
 											</g>
 										</svg>
-										<p>{item.commentCount}</p>
+										<p>{item.replycount}</p>
 									</div>
 								</div>
 							</div>
