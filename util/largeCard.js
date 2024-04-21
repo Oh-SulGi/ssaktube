@@ -62,8 +62,8 @@ export default function LargeCard({
 	const ViewCountAndDate = () => {
 		const date = new Date(starttime);
 		const year = date.getFullYear();
-		const month = date.getMonth();
-		const day = date.getDay();
+		const month = date.getMonth() + 1;
+		const day = date.getDate();
 		return (
 			<div>
 				<span className={styles.username}>조회수 {viewerCount}회</span>

@@ -98,6 +98,7 @@ export default function Page({ params }) {
 	const userid = params.userid;
 	const { mutate } = useSWRConfig();
 	const [which, setwhich] = useState('video');
+	const [currentPage, setCurrentPage] = useState(1);
 	const fetcher = (...args) => fetch(...args, { cache: 'no-store', method: 'POST' }).then((res) => res.json());
 	const { data, error, isLoading } = useSWR(`/api/user/${userid}/video`, fetcher, {
 		revalidateIfStale: false,
@@ -106,16 +107,17 @@ export default function Page({ params }) {
 		revalidateOnMount: true,
 	});
 	if (isLoading) {
-		return <></>;
+		return <div className={styles.main}>로딩중.</div>;
 	}
 	if (error) {
-		return <></>;
+		return <div className={styles.main}>로딩중 에러가 발생했습니다.</div>;
 	}
 	/**
 	 * @type {[{replay_url,recording_start,recording_end,viewer_count,userid,idx,streamname,username}]}}
 	 */
 	const data_ = data.data.data;
-	console.log(data_);
+	const total_pages = data.data.total_pages;
+	console.log(data.data);
 	return (
 		<>
 			<div className={styles.main}>
@@ -130,6 +132,7 @@ export default function Page({ params }) {
 										async (data) => {
 											const updatedData_ = await fetch(`/api/user/${userid}/video?sort=latest`, { method: 'POST', cache: 'no-store' });
 											const updatedData = await updatedData_.json();
+											setCurrentPage(1);
 											console.log(data);
 											console.log(updatedData);
 											return updatedData;
@@ -148,6 +151,7 @@ export default function Page({ params }) {
 										async (data) => {
 											const updatedData_ = await fetch(`/api/user/${userid}/replay?sort=latest`, { method: 'POST', cache: 'no-store' });
 											const updatedData = await updatedData_.json();
+											setCurrentPage(1);
 											console.log(data);
 											console.log(updatedData);
 											return updatedData;
@@ -166,6 +170,7 @@ export default function Page({ params }) {
 										async (data) => {
 											const updatedData_ = await fetch(`/api/user/${userid}/vod?sort=latest`, { method: 'POST', cache: 'no-store' });
 											const updatedData = await updatedData_.json();
+											setCurrentPage(1);
 											console.log(data);
 											console.log(updatedData);
 											return updatedData;
@@ -185,6 +190,7 @@ export default function Page({ params }) {
 										async (data) => {
 											const updatedData_ = await fetch(`/api/user/${userid}/${which}?sort=latest`, { method: 'POST', cache: 'no-store' });
 											const updatedData = await updatedData_.json();
+											setCurrentPage(1);
 											console.log(data);
 											console.log(updatedData);
 											return updatedData;
@@ -204,8 +210,8 @@ export default function Page({ params }) {
 												method: 'POST',
 												cache: 'no-store',
 											});
-											console.log(updatedData_);
 											const updatedData = await updatedData_.json();
+											setCurrentPage(1);
 											console.log(data);
 											console.log(updatedData);
 											return updatedData;
@@ -238,7 +244,60 @@ export default function Page({ params }) {
 						/>
 					))}
 				</div>
+				<div className={styles.pages}>
+					<PagesBtn
+						total_pages={total_pages}
+						current_page={currentPage}
+						setCurrentPage={setCurrentPage}
+						mutate={mutate}
+						which={which}
+						userid={userid}
+					/>
+				</div>
 			</div>
 		</>
+	);
+}
+
+function PagesBtn({ total_pages, current_page, setCurrentPage, which, mutate, userid }) {
+	const [pageGroup, setPageGroup] = useState([]);
+	useEffect(() => {
+		const pagesPerGroup = 10;
+		const currentGroupIndex = Math.floor((current_page - 1) / pagesPerGroup);
+		const startPage = currentGroupIndex * pagesPerGroup + 1;
+		const endPage = Math.min(startPage + pagesPerGroup - 1, total_pages);
+
+		const pages = [];
+		for (let page = startPage; page <= endPage; page++) {
+			pages.push(page);
+		}
+
+		setPageGroup(pages);
+	}, [current_page, total_pages]);
+	return (
+		<div>
+			{pageGroup.map((page) => (
+				<button
+					key={page}
+					style={{ margin: '0 5px', fontWeight: current_page === page ? 'bold' : 'normal' }}
+					onClick={(e) => {
+						setCurrentPage(page);
+						mutate(
+							`/api/user/${userid}/video`,
+							async (data) => {
+								const updatedData_ = await fetch(`/api/user/${userid}/${which}?page=${page}`, { method: 'POST', cache: 'no-store' });
+								const updatedData = await updatedData_.json();
+								console.log(data);
+								console.log(updatedData);
+								return updatedData;
+							},
+							{ revalidate: false }
+						);
+					}}
+				>
+					{page}
+				</button>
+			))}
+		</div>
 	);
 }
