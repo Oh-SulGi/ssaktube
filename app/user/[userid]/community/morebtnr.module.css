@@ -1,0 +1,22 @@
+.moreWrapper {
+	position: absolute;
+	top: 15px;
+	right: 20px;
+	/* width: 70px;
+	height: 20px; */
+}
+.more {
+	/* width: 70px; */
+	height: 30px;
+}
+.moreAction {
+	background-color: var(--color-bg-05);
+	width: 50px;
+	height: 30px;
+	border-radius: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 5px;
+	cursor: pointer;
+}

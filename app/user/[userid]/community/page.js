@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from 'react';
 import { setUserTab } from '@/util/redux/reducers/ui';
 import useSWR, { useSWRConfig } from 'swr';
 import { useRouter } from 'next/navigation';
+import MoreBtn from './morebtn';
 
 // const data = [
 // 	{
@@ -87,6 +88,7 @@ export default function Page({ params }) {
 	 * @type {[{boardid,authorid,content,time,userlogo,replycount,username}]}}
 	 */
 	const data_ = data.data.data;
+	console.log(data_);
 	const total_pages = data.data.total_pages;
 
 	return (
@@ -172,7 +174,7 @@ export default function Page({ params }) {
 										</div>
 									</div>
 								</Link>
-								<MoreBtn boardid={item.boardid} />
+								{isme ? <MoreBtn boardid={item.boardid} /> : ''}
 							</div>
 						</>
 					))}
@@ -181,41 +183,41 @@ export default function Page({ params }) {
 		</>
 	);
 }
-function MoreBtn({ boardid }) {
-	const [isopen, setisopen] = useState(false);
-	return (
-		<div className={styles.moreWrapper}>
-			<button
-				className={styles.more}
-				onClick={(e) => {
-					setisopen((isopen) => !isopen);
-				}}
-			>
-				더보기
-			</button>
-			{isopen ? (
-				<ul>
-					<li
-						className={styles.moreAction}
-						onClick={(e) => {
-							fetch(`/api/board/${boardid}`, {
-								method: 'DELETE',
-								cache: 'no-store',
-							})
-								.then((res) => res.json())
-								.then((data) => {
-									alert('삭제 완료되었습니다.');
-									console.log(data);
-									window.location.reload();
-								});
-						}}
-					>
-						삭제
-					</li>
-				</ul>
-			) : (
-				''
-			)}
-		</div>
-	);
-}
+// function MoreBtn({ boardid }) {
+// 	const [isopen, setisopen] = useState(false);
+// 	return (
+// 		<div className={styles.moreWrapper}>
+// 			<button
+// 				className={styles.more}
+// 				onClick={(e) => {
+// 					setisopen((isopen) => !isopen);
+// 				}}
+// 			>
+// 				더보기
+// 			</button>
+// 			{isopen ? (
+// 				<ul>
+// 					<li
+// 						className={styles.moreAction}
+// 						onClick={(e) => {
+// 							fetch(`/api/board/${boardid}`, {
+// 								method: 'DELETE',
+// 								cache: 'no-store',
+// 							})
+// 								.then((res) => res.json())
+// 								.then((data) => {
+// 									alert('삭제 완료되었습니다.');
+// 									console.log(data);
+// 									window.location.reload();
+// 								});
+// 						}}
+// 					>
+// 						삭제
+// 					</li>
+// 				</ul>
+// 			) : (
+// 				''
+// 			)}
+// 		</div>
+// 	);
+// }

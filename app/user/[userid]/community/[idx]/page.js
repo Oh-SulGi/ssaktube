@@ -8,11 +8,19 @@ import { setUserTab } from '@/util/redux/reducers/ui';
 import { useAppDispatch } from '@/util/redux/hooks';
 import { useEffect, useState } from 'react';
 import useSWR, { useSWRConfig } from 'swr';
+import MoreBtn from '../morebtn';
 
 export default function Page({ params }) {
+	const userid = params.userid;
+	const [myid, setmyid] = useState('');
 	const dispatch = useAppDispatch();
 	useEffect(() => {
 		dispatch(setUserTab('community'));
+		fetch('/api/user/properties', { method: 'OPTIONS', cache: 'no-store' })
+			.then((res) => res.json())
+			.then((data) => {
+				setmyid(data.data.userid);
+			});
 	}, []);
 	// const data = {
 	// 	idx: 0,
@@ -23,10 +31,7 @@ export default function Page({ params }) {
 	// 	date: '',
 	// };
 	const router = useRouter();
-	const userid = params.userid;
-	const { mutate } = useSWRConfig();
-	const [which, setwhich] = useState('video');
-	const [currentPage, setCurrentPage] = useState(1);
+	const idx = params.idx;
 	const fetcher = (...args) => fetch(...args, { cache: 'no-store', method: 'POST' }).then((res) => res.json());
 	const { data, error, isLoading } = useSWR(`/api/community/${params.idx}`, fetcher, {
 		revalidateIfStale: false,
@@ -40,14 +45,11 @@ export default function Page({ params }) {
 	if (error) {
 		return <div className={styles.main}>로딩중 에러가 발생했습니다.</div>;
 	}
-	console.log(data);
 	/**
 	 * @type {{boardid,time,userlogo,username,authorid,content,replycount}}
 	 */
-	const temp1 = data.data[0][0];
-	console.log(temp1);
-	const temp2 = data.data[1];
-	console.log(temp2);
+	const data_ = data.data[0];
+	console.log(data_);
 	return (
 		<>
 			<div className={styles.main}>
@@ -64,15 +66,15 @@ export default function Page({ params }) {
 					<div className={styles.content}>
 						<div className={styles.info}>
 							<div className={styles.streamer}>
-								<Image className={styles.streamerLogo} src={temp1.userlogo} width={50} height={50} alt='스트리머 로고' />
+								<Image className={styles.streamerLogo} src={data_.userlogo} width={50} height={50} alt='스트리머 로고' />
 								<div>
-									<p className={styles.streamerName}>{temp1.username}</p>
-									<p className={styles.date}>{new Date(temp1.time).toLocaleDateString()}</p>
+									<p className={styles.streamerName}>{data_.username}</p>
+									<p className={styles.date}>{new Date(data_.time).toLocaleDateString()}</p>
 								</div>
 							</div>
-							<button>더보기</button>
+							{userid == myid ? <MoreBtn boardid={idx} /> : ''}
 						</div>
-						<div className={styles.detail}>{temp1.content}</div>
+						<div className={styles.detail}>{data_.content}</div>
 						<div className={styles.etc}>
 							<div className={styles.comment}>
 								<svg width='17px' height='17px' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
@@ -82,12 +84,12 @@ export default function Page({ params }) {
 										<path d='M8,11a1,1,0,1,0,1,1A1,1,0,0,0,8,11Zm4,0a1,1,0,1,0,1,1A1,1,0,0,0,12,11Zm4,0a1,1,0,1,0,1,1A1,1,0,0,0,16,11ZM12,2A10,10,0,0,0,2,12a9.89,9.89,0,0,0,2.26,6.33l-2,2a1,1,0,0,0-.21,1.09A1,1,0,0,0,3,22h9A10,10,0,0,0,12,2Zm0,18H5.41l.93-.93a1,1,0,0,0,.3-.71,1,1,0,0,0-.3-.7A8,8,0,1,1,12,20Z'></path>
 									</g>
 								</svg>
-								<p>{temp1.replycount}</p>
+								<p>{data_.replycount}</p>
 							</div>
 						</div>
 					</div>
 				</div>
-				<Comments />
+				<Comments idx={idx} myid={myid} />
 			</div>
 		</>
 	);

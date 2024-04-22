@@ -1,14 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function DELETE(request, { params }) {
-	console.log('/api/board/{boardid}');
-	const resapi = await fetch(`${process.env.MEDIA_API}/api/board/${params.boardid}`, {
+	console.log('/api/reply/{replyid}');
+	const resapi = await fetch(`${process.env.MEDIA_API}/api/reply/${params.replyid}`, {
 		cache: 'no-store',
 		method: 'DELETE',
 		headers: {
 			'Content-Type': 'application/json',
 		},
 	});
+	console.log(resapi);
 	const data = await resapi.json();
 	console.log(data);
 
