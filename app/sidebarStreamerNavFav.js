@@ -7,9 +7,26 @@ import useSWR from 'swr';
 import Link from 'next/link';
 import { useState } from 'react';
 
-export default function SidebarStreamerNavFav({}) {
+// const test_streamers = [
+// 	{
+// 		streamerName: '스트리머1',
+// 		streamName: '방송제목',
+// 		streamerIcon: '/aws.png',
+// 		viewer: 12,
+// 	},
+// ];
+
+export default function SidebarStreamerNavFav({ userid }) {
 	const { isOpen } = useAppSelector((state) => state.ui);
-	const fetcher = (...args) => fetch(...args, { method: 'POST', cache: 'no-store' }).then((res) => res.json());
+	const fetcher = (...args) =>
+		fetch(...args, {
+			method: 'POST',
+			cache: 'no-store',
+			body: JSON.stringify({ userid }),
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		}).then((res) => res.json());
 	const { data, error, isLoading, mutate, isValidating } = useSWR(`/api/follow/list`, fetcher, {
 		revalidateIfStale: false,
 		revalidateOnFocus: false,
@@ -156,14 +173,7 @@ export default function SidebarStreamerNavFav({}) {
 			</div>
 		);
 	}
-	const test_streamers = [
-		{
-			streamerName: '스트리머1',
-			streamName: '방송제목',
-			streamerIcon: '/aws.png',
-			viewer: 12,
-		},
-	];
+
 	/**
 	 * @type {[{userlogo,username,userid}]}
 	 */

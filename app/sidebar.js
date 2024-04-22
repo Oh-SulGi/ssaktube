@@ -21,7 +21,7 @@ export default function Sidebar({ children }) {
 			<div className={styles.nav}>
 				<SidebarType />
 				<SidebarStreamerNav />
-				{userid ? <SidebarStreamerNavFav /> : ''}
+				{userid ? <SidebarStreamerNavFav userid={userid} /> : ''}
 				<SidebarHelp />
 			</div>
 		</div>
