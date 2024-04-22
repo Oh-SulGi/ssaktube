@@ -6,19 +6,12 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useAppDispatch } from '@/util/redux/hooks';
-import { setISLogin } from '@/util/redux/reducers/ui';
+import { setuserid } from '@/util/redux/reducers/login';
 
 export default function ButtonMy({ userid, userLogo }) {
 	const [isopen, setisopen] = useState(false);
 	const router = useRouter();
 	const dispatch = useAppDispatch();
-	useEffect(() => {
-		dispatch(setISLogin(true));
-
-		return () => {
-			dispatch(setISLogin(false));
-		};
-	}, []);
 
 	return (
 		<>
@@ -54,6 +47,7 @@ export default function ButtonMy({ userid, userLogo }) {
 										.then((data) => {
 											router.push('/');
 											router.refresh();
+											dispatch(setuserid(null));
 										});
 								}}
 							>

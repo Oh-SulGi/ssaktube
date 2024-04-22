@@ -5,12 +5,10 @@ import LargeCards from '@/util/largeCards';
 import LiveSuggestion from './liveSuggestion';
 
 export default function Page() {
-	const templist = [{ username: '스트리머1', streamerLogo: '/aws.png', thumbnailurl: '/aws.png', streamname: '방송제목1', id: '8XkHHxGmgjCw' }];
+	// const templist = [{ username: '스트리머1', streamerLogo: '/aws.png', thumbnailurl: '/aws.png', streamname: '방송제목1', id: '8XkHHxGmgjCw' }];
 	return (
 		<section className={styles.main}>
 			<LiveSuggestion />
-			{/* <section>VOD 추천 한 3줄</section>
-			<section>카테고리</section> */}
 		</section>
 	);
 }

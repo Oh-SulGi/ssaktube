@@ -5,78 +5,78 @@ import { useEffect, useState } from 'react';
 import useSWR from 'swr';
 import MoreBtnr from '../morebtnr';
 
-export default function Comments({ idx, myid }) {
-	// const data = [
-	// 	{
-	// 		userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
-	// 		username: '유저이름',
-	// 		userid: '22',
-	// 		date: '',
-	// 		content: '댓글1',
-	// 		reply: [
-	// 			{
-	// 				userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
-	// 				username: '유저이름',
-	// 				userid: '22',
-	// 				date: '',
-	// 				content: '대댓글1',
-	// 			},
-	// 			{
-	// 				userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
-	// 				username: '유저이름',
-	// 				userid: '22',
-	// 				date: '',
-	// 				content: '대댓글2',
-	// 			},
-	// 			{
-	// 				userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
-	// 				username: '유저이름',
-	// 				userid: '22',
-	// 				date: '',
-	// 				content: '대댓글3',
-	// 			},
-	// 		],
-	// 	},
-	// 	{
-	// 		userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
-	// 		username: '유저이름',
-	// 		userid: '22',
-	// 		date: '',
-	// 		content: '댓글2',
-	// 		reply: [
-	// 			{
-	// 				userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
-	// 				username: '유저이름',
-	// 				userid: '22',
-	// 				date: '',
-	// 				content: '대댓글1',
-	// 			},
-	// 			{
-	// 				userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
-	// 				username: '유저이름',
-	// 				userid: '22',
-	// 				date: '',
-	// 				content: '대댓글2',
-	// 			},
-	// 			{
-	// 				userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
-	// 				username: '유저이름',
-	// 				userid: '22',
-	// 				date: '',
-	// 				content: '대댓글3',
-	// 			},
-	// 		],
-	// 	},
-	// 	{
-	// 		userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
-	// 		username: '유저이름',
-	// 		userid: '22',
-	// 		date: '',
-	// 		content: '댓글3',
-	// 		reply: [],
-	// 	},
-	// ];
+// const data = [
+// 	{
+// 		userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
+// 		username: '유저이름',
+// 		userid: '22',
+// 		date: '',
+// 		content: '댓글1',
+// 		reply: [
+// 			{
+// 				userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
+// 				username: '유저이름',
+// 				userid: '22',
+// 				date: '',
+// 				content: '대댓글1',
+// 			},
+// 			{
+// 				userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
+// 				username: '유저이름',
+// 				userid: '22',
+// 				date: '',
+// 				content: '대댓글2',
+// 			},
+// 			{
+// 				userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
+// 				username: '유저이름',
+// 				userid: '22',
+// 				date: '',
+// 				content: '대댓글3',
+// 			},
+// 		],
+// 	},
+// 	{
+// 		userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
+// 		username: '유저이름',
+// 		userid: '22',
+// 		date: '',
+// 		content: '댓글2',
+// 		reply: [
+// 			{
+// 				userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
+// 				username: '유저이름',
+// 				userid: '22',
+// 				date: '',
+// 				content: '대댓글1',
+// 			},
+// 			{
+// 				userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
+// 				username: '유저이름',
+// 				userid: '22',
+// 				date: '',
+// 				content: '대댓글2',
+// 			},
+// 			{
+// 				userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
+// 				username: '유저이름',
+// 				userid: '22',
+// 				date: '',
+// 				content: '대댓글3',
+// 			},
+// 		],
+// 	},
+// 	{
+// 		userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
+// 		username: '유저이름',
+// 		userid: '22',
+// 		date: '',
+// 		content: '댓글3',
+// 		reply: [],
+// 	},
+// ];
 
+export default function Comments({ idx, myid }) {
 	const [newComment, setnewComment] = useState('');
 	const fetcher = (...args) => fetch(...args, { method: 'POST', cache: 'no-store' }).then((res) => res.json());
 	const { data, error, isLoading, mutate } = useSWR(`/api/community/${idx}/reply`, fetcher, {
@@ -147,6 +147,7 @@ export default function Comments({ idx, myid }) {
 							})
 								.then((res) => res.json())
 								.then((data) => {
+									setnewComment('');
 									mutate({}, { populateCache: false });
 								});
 						}}
@@ -212,7 +213,7 @@ export default function Comments({ idx, myid }) {
 	);
 }
 
-function ReplyInput({ boardid, authorid, parentreplyid, mutate, myid }) {
+function ReplyInput({ boardid, authorid, parentreplyid, mutate }) {
 	const [nreply, setnreply] = useState('');
 	const [set, setset] = useState(false);
 	return set ? (
@@ -225,7 +226,7 @@ function ReplyInput({ boardid, authorid, parentreplyid, mutate, myid }) {
 					onChange={(e) => {
 						setnreply(e.target.value);
 					}}
-					disabled={myid ? false : true}
+					disabled={authorid ? false : true}
 				/>
 				<button
 					className={styles.replyinputSubmit}
@@ -242,6 +243,7 @@ function ReplyInput({ boardid, authorid, parentreplyid, mutate, myid }) {
 						})
 							.then((res) => res.json())
 							.then((data) => {
+								setnreply('');
 								mutate({}, { populateCache: false });
 								setset(false);
 							});

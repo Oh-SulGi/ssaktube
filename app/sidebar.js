@@ -10,7 +10,8 @@ import SidebarHelp from './sidebarHelp';
 import SidebarStreamerNavFav from './sidebarStreamerNavFav';
 
 export default function Sidebar({ children }) {
-	const { isOpen, isLogin } = useAppSelector((state) => state.ui);
+	const { isOpen } = useAppSelector((state) => state.ui);
+	const { userid } = useAppSelector((state) => state.login);
 	return (
 		<div className={`${styles.sidebar} ${isOpen ? '' : styles.close}`}>
 			<SidebarToggleBtn />
@@ -20,7 +21,7 @@ export default function Sidebar({ children }) {
 			<div className={styles.nav}>
 				<SidebarType />
 				<SidebarStreamerNav />
-				{isLogin ? <SidebarStreamerNavFav /> : ''}
+				{userid ? <SidebarStreamerNavFav /> : ''}
 				<SidebarHelp />
 			</div>
 		</div>

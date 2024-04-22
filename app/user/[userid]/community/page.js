@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import styles from './page.module.css';
 import Link from 'next/link';
-import { useAppDispatch } from '@/util/redux/hooks';
+import { useAppDispatch, useAppSelector } from '@/util/redux/hooks';
 import { useEffect, useRef, useState } from 'react';
 import { setUserTab } from '@/util/redux/reducers/ui';
 import useSWR, { useSWRConfig } from 'swr';
@@ -49,9 +49,10 @@ import MoreBtn from './morebtn';
 // ];
 
 export default function Page({ params }) {
-	const userid = params.userid;
-	const dispatch = useAppDispatch();
+	const userid_ = params.userid;
 
+	const { userid } = useAppSelector((state) => state.login);
+	const dispatch = useAppDispatch();
 	const [isme, setisme] = useState(false);
 	const [set, setset] = useState(false);
 	const [content, setcontent] = useState('');
@@ -59,7 +60,7 @@ export default function Page({ params }) {
 
 	const { mutate } = useSWRConfig();
 	const fetcher = (...args) => fetch(...args, { cache: 'no-store', method: 'POST' }).then((res) => res.json());
-	const { data, error, isLoading } = useSWR(`/api/user/${userid}/community`, fetcher, {
+	const { data, error, isLoading } = useSWR(`/api/user/${userid_}/community`, fetcher, {
 		revalidateIfStale: false,
 		revalidateOnFocus: false,
 		revalidateOnReconnect: false,
@@ -68,15 +69,10 @@ export default function Page({ params }) {
 
 	useEffect(() => {
 		dispatch(setUserTab('community'));
-
-		fetch('/api/user/properties', { method: 'OPTIONS', cache: 'no-store' })
-			.then((res) => res.json())
-			.then((data) => {
-				if (userid == data.data.userid) {
-					setisme(true);
-				}
-			});
-	}, []);
+		if (userid == userid_) {
+			setisme(true);
+		}
+	}, [userid]);
 
 	if (isLoading) {
 		return <div className={styles.main}>로딩중.</div>;
@@ -115,7 +111,7 @@ export default function Page({ params }) {
 												cache: 'no-store',
 												body: JSON.stringify({
 													content,
-													authorid: userid,
+													authorid: userid_,
 												}),
 											})
 												.then((res) => res.json())

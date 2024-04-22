@@ -2,6 +2,8 @@
 import { useEffect, useState } from 'react';
 import styles from './login.module.css';
 import { useRouter } from 'next/navigation';
+import { useAppDispatch } from '@/util/redux/hooks';
+import { setneedcheck } from '@/util/redux/reducers/login';
 export default function Login() {
 	const [status, setstatus] = useState('로그인 / 회원가입을 선택해 주세요');
 	const [email, setid] = useState('');
@@ -9,6 +11,7 @@ export default function Login() {
 	const [code, setcode] = useState('');
 	const [isauth, setisauth] = useState(false);
 	const router = useRouter();
+	const dispatch = useAppDispatch();
 	useEffect(() => {
 		return () => {
 			fetch(`/api/user/signup/delete_unauth`, {
@@ -83,6 +86,7 @@ export default function Login() {
 								console.log(data);
 								setstatus('로그인 되었습니다.');
 								router.push('/');
+								dispatch(setneedcheck(true));
 								router.refresh();
 							})
 							.catch((error) => {

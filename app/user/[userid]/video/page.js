@@ -6,99 +6,103 @@ import { useAppDispatch } from '@/util/redux/hooks';
 import { setUserTab } from '@/util/redux/reducers/ui';
 import useSWR, { useSWRConfig } from 'swr';
 
+// const data = [
+// 	{
+// 		id: 'BB7tICcZh3OK',
+// 		streamname: '방송이름',
+// 		thumbnailurl: `https://ivs-stream-live-4321.s3.ap-northeast-1.amazonaws.com/ivs/v1/891377305172/BB7tICcZh3OK/2024/4/14/0/58/7KBFvRJ9AWEO/media/latest_thumbnail/thumb.jpg`,
+// 		userid: '',
+// 		userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
+// 		username: '유저이름',
+// 		viewerCount: 1,
+// 	},
+// 	{
+// 		id: 'BB7tICcZh3OK',
+// 		streamname: '방송이름',
+// 		thumbnailurl: `https://ivs-stream-live-4321.s3.ap-northeast-1.amazonaws.com/ivs/v1/891377305172/BB7tICcZh3OK/2024/4/14/0/58/7KBFvRJ9AWEO/media/latest_thumbnail/thumb.jpg`,
+// 		userid: '',
+// 		userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
+// 		username: '유저이름',
+// 		viewerCount: 2,
+// 	},
+// 	{
+// 		id: 'BB7tICcZh3OK',
+// 		streamname: '방송이름',
+// 		thumbnailurl: `https://ivs-stream-live-4321.s3.ap-northeast-1.amazonaws.com/ivs/v1/891377305172/BB7tICcZh3OK/2024/4/14/0/58/7KBFvRJ9AWEO/media/latest_thumbnail/thumb.jpg`,
+// 		userid: '',
+// 		userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
+// 		username: '유저이름',
+// 		viewerCount: 3,
+// 	},
+// 	{
+// 		id: 'BB7tICcZh3OK',
+// 		streamname: '방송이름',
+// 		thumbnailurl: `https://ivs-stream-live-4321.s3.ap-northeast-1.amazonaws.com/ivs/v1/891377305172/BB7tICcZh3OK/2024/4/14/0/58/7KBFvRJ9AWEO/media/latest_thumbnail/thumb.jpg`,
+// 		userid: '',
+// 		userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
+// 		username: '유저이름',
+// 		viewerCount: 4,
+// 	},
+// 	{
+// 		id: 'BB7tICcZh3OK',
+// 		streamname: '방송이름',
+// 		thumbnailurl: `https://ivs-stream-live-4321.s3.ap-northeast-1.amazonaws.com/ivs/v1/891377305172/BB7tICcZh3OK/2024/4/14/0/58/7KBFvRJ9AWEO/media/latest_thumbnail/thumb.jpg`,
+// 		userid: '',
+// 		userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
+// 		username: '유저이름',
+// 		viewerCount: 5,
+// 	},
+// 	{
+// 		id: 'BB7tICcZh3OK',
+// 		streamname: '방송이름',
+// 		thumbnailurl: `https://ivs-stream-live-4321.s3.ap-northeast-1.amazonaws.com/ivs/v1/891377305172/BB7tICcZh3OK/2024/4/14/0/58/7KBFvRJ9AWEO/media/latest_thumbnail/thumb.jpg`,
+// 		userid: '',
+// 		userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
+// 		username: '유저이름',
+// 		viewerCount: 6,
+// 	},
+// 	{
+// 		id: 'BB7tICcZh3OK',
+// 		streamname: '방송이름',
+// 		thumbnailurl: `https://ivs-stream-live-4321.s3.ap-northeast-1.amazonaws.com/ivs/v1/891377305172/BB7tICcZh3OK/2024/4/14/0/58/7KBFvRJ9AWEO/media/latest_thumbnail/thumb.jpg`,
+// 		userid: '',
+// 		userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
+// 		username: '유저이름',
+// 		viewerCount: 7,
+// 	},
+// 	{
+// 		id: 'BB7tICcZh3OK',
+// 		streamname: '방송이름',
+// 		thumbnailurl: `https://ivs-stream-live-4321.s3.ap-northeast-1.amazonaws.com/ivs/v1/891377305172/BB7tICcZh3OK/2024/4/14/0/58/7KBFvRJ9AWEO/media/latest_thumbnail/thumb.jpg`,
+// 		userid: '',
+// 		userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
+// 		username: '유저이름',
+// 		viewerCount: 8,
+// 	},
+// 	{
+// 		id: 'BB7tICcZh3OK',
+// 		streamname: '방송이름',
+// 		thumbnailurl: `https://ivs-stream-live-4321.s3.ap-northeast-1.amazonaws.com/ivs/v1/891377305172/BB7tICcZh3OK/2024/4/14/0/58/7KBFvRJ9AWEO/media/latest_thumbnail/thumb.jpg`,
+// 		userid: '',
+// 		userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
+// 		username: '유저이름',
+// 		viewerCount: 9,
+// 	},
+// ];
+
 export default function Page({ params }) {
+	const userid = params.userid;
+
 	const dispatch = useAppDispatch();
+
+	const [which, setwhich] = useState('video');
+	const [currentPage, setCurrentPage] = useState(1);
+
 	useEffect(() => {
 		dispatch(setUserTab('video'));
 	}, []);
 
-	// const data = [
-	// 	{
-	// 		id: 'BB7tICcZh3OK',
-	// 		streamname: '방송이름',
-	// 		thumbnailurl: `https://ivs-stream-live-4321.s3.ap-northeast-1.amazonaws.com/ivs/v1/891377305172/BB7tICcZh3OK/2024/4/14/0/58/7KBFvRJ9AWEO/media/latest_thumbnail/thumb.jpg`,
-	// 		userid: '',
-	// 		userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
-	// 		username: '유저이름',
-	// 		viewerCount: 1,
-	// 	},
-	// 	{
-	// 		id: 'BB7tICcZh3OK',
-	// 		streamname: '방송이름',
-	// 		thumbnailurl: `https://ivs-stream-live-4321.s3.ap-northeast-1.amazonaws.com/ivs/v1/891377305172/BB7tICcZh3OK/2024/4/14/0/58/7KBFvRJ9AWEO/media/latest_thumbnail/thumb.jpg`,
-	// 		userid: '',
-	// 		userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
-	// 		username: '유저이름',
-	// 		viewerCount: 2,
-	// 	},
-	// 	{
-	// 		id: 'BB7tICcZh3OK',
-	// 		streamname: '방송이름',
-	// 		thumbnailurl: `https://ivs-stream-live-4321.s3.ap-northeast-1.amazonaws.com/ivs/v1/891377305172/BB7tICcZh3OK/2024/4/14/0/58/7KBFvRJ9AWEO/media/latest_thumbnail/thumb.jpg`,
-	// 		userid: '',
-	// 		userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
-	// 		username: '유저이름',
-	// 		viewerCount: 3,
-	// 	},
-	// 	{
-	// 		id: 'BB7tICcZh3OK',
-	// 		streamname: '방송이름',
-	// 		thumbnailurl: `https://ivs-stream-live-4321.s3.ap-northeast-1.amazonaws.com/ivs/v1/891377305172/BB7tICcZh3OK/2024/4/14/0/58/7KBFvRJ9AWEO/media/latest_thumbnail/thumb.jpg`,
-	// 		userid: '',
-	// 		userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
-	// 		username: '유저이름',
-	// 		viewerCount: 4,
-	// 	},
-	// 	{
-	// 		id: 'BB7tICcZh3OK',
-	// 		streamname: '방송이름',
-	// 		thumbnailurl: `https://ivs-stream-live-4321.s3.ap-northeast-1.amazonaws.com/ivs/v1/891377305172/BB7tICcZh3OK/2024/4/14/0/58/7KBFvRJ9AWEO/media/latest_thumbnail/thumb.jpg`,
-	// 		userid: '',
-	// 		userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
-	// 		username: '유저이름',
-	// 		viewerCount: 5,
-	// 	},
-	// 	{
-	// 		id: 'BB7tICcZh3OK',
-	// 		streamname: '방송이름',
-	// 		thumbnailurl: `https://ivs-stream-live-4321.s3.ap-northeast-1.amazonaws.com/ivs/v1/891377305172/BB7tICcZh3OK/2024/4/14/0/58/7KBFvRJ9AWEO/media/latest_thumbnail/thumb.jpg`,
-	// 		userid: '',
-	// 		userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
-	// 		username: '유저이름',
-	// 		viewerCount: 6,
-	// 	},
-	// 	{
-	// 		id: 'BB7tICcZh3OK',
-	// 		streamname: '방송이름',
-	// 		thumbnailurl: `https://ivs-stream-live-4321.s3.ap-northeast-1.amazonaws.com/ivs/v1/891377305172/BB7tICcZh3OK/2024/4/14/0/58/7KBFvRJ9AWEO/media/latest_thumbnail/thumb.jpg`,
-	// 		userid: '',
-	// 		userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
-	// 		username: '유저이름',
-	// 		viewerCount: 7,
-	// 	},
-	// 	{
-	// 		id: 'BB7tICcZh3OK',
-	// 		streamname: '방송이름',
-	// 		thumbnailurl: `https://ivs-stream-live-4321.s3.ap-northeast-1.amazonaws.com/ivs/v1/891377305172/BB7tICcZh3OK/2024/4/14/0/58/7KBFvRJ9AWEO/media/latest_thumbnail/thumb.jpg`,
-	// 		userid: '',
-	// 		userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
-	// 		username: '유저이름',
-	// 		viewerCount: 8,
-	// 	},
-	// 	{
-	// 		id: 'BB7tICcZh3OK',
-	// 		streamname: '방송이름',
-	// 		thumbnailurl: `https://ivs-stream-live-4321.s3.ap-northeast-1.amazonaws.com/ivs/v1/891377305172/BB7tICcZh3OK/2024/4/14/0/58/7KBFvRJ9AWEO/media/latest_thumbnail/thumb.jpg`,
-	// 		userid: '',
-	// 		userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
-	// 		username: '유저이름',
-	// 		viewerCount: 9,
-	// 	},
-	// ];
-	const userid = params.userid;
 	const { mutate } = useSWRConfig();
-	const [which, setwhich] = useState('video');
-	const [currentPage, setCurrentPage] = useState(1);
 	const fetcher = (...args) => fetch(...args, { cache: 'no-store', method: 'POST' }).then((res) => res.json());
 	const { data, error, isLoading } = useSWR(`/api/user/${userid}/video`, fetcher, {
 		revalidateIfStale: false,

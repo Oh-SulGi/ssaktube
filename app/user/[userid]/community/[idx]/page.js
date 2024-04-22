@@ -5,33 +5,32 @@ import Link from 'next/link';
 import Comments from './comment';
 import { useRouter } from 'next/navigation';
 import { setUserTab } from '@/util/redux/reducers/ui';
-import { useAppDispatch } from '@/util/redux/hooks';
+import { useAppDispatch, useAppSelector } from '@/util/redux/hooks';
 import { useEffect, useState } from 'react';
 import useSWR, { useSWRConfig } from 'swr';
 import MoreBtn from '../morebtn';
 
+// const data = {
+// 	idx: 0,
+// 	content: '커뮤니티내용',
+// 	userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
+// 	username: '유저이름',
+// 	commentCount: 1,
+// 	date: '',
+// };
+
 export default function Page({ params }) {
-	const userid = params.userid;
-	const [myid, setmyid] = useState('');
+	const userid_ = params.userid;
+	const idx = params.idx;
+	const router = useRouter();
 	const dispatch = useAppDispatch();
+
+	const { userid } = useAppSelector((state) => state.login);
+
 	useEffect(() => {
 		dispatch(setUserTab('community'));
-		fetch('/api/user/properties', { method: 'OPTIONS', cache: 'no-store' })
-			.then((res) => res.json())
-			.then((data) => {
-				setmyid(data.data.userid);
-			});
 	}, []);
-	// const data = {
-	// 	idx: 0,
-	// 	content: '커뮤니티내용',
-	// 	userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
-	// 	username: '유저이름',
-	// 	commentCount: 1,
-	// 	date: '',
-	// };
-	const router = useRouter();
-	const idx = params.idx;
+
 	const fetcher = (...args) => fetch(...args, { cache: 'no-store', method: 'POST' }).then((res) => res.json());
 	const { data, error, isLoading } = useSWR(`/api/community/${params.idx}`, fetcher, {
 		revalidateIfStale: false,
@@ -72,7 +71,7 @@ export default function Page({ params }) {
 									<p className={styles.date}>{new Date(data_.time).toLocaleDateString()}</p>
 								</div>
 							</div>
-							{userid == myid ? <MoreBtn boardid={idx} /> : ''}
+							{userid_ == userid ? <MoreBtn boardid={idx} /> : ''}
 						</div>
 						<div className={styles.detail}>{data_.content}</div>
 						<div className={styles.etc}>
@@ -89,7 +88,7 @@ export default function Page({ params }) {
 						</div>
 					</div>
 				</div>
-				<Comments idx={idx} myid={myid} />
+				<Comments idx={idx} myid={userid} />
 			</div>
 		</>
 	);
