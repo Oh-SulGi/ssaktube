@@ -112,6 +112,7 @@ export default function Comments({ idx, myid }) {
 				<p className={styles.label}>댓글 {data_.length}개</p>
 				<div className={styles.resetBtnGroup}>
 					<button
+						className={styles.sortBtn}
 						onClick={(e) => {
 							mutate({}, { populateCache: false });
 						}}

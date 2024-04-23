@@ -54,6 +54,7 @@ export default function Page({ params }) {
 			<div className={styles.main}>
 				<div>
 					<button
+						className={styles.sortBtn}
 						onClick={(e) => {
 							router.push(`/user/${params.userid}/community`);
 						}}

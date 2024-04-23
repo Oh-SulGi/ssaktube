@@ -183,7 +183,7 @@ function Content({ data }) {
 								<span>{data.username}</span>
 							</div>
 						</Link>
-						<p className={styles.streamCategory}>카테고리</p>
+						<p className={styles.streamCategory}>{data.category}</p>
 						<div className={styles.streamInfoWrapper}>
 							<p>조회수 {data.viewer_count}회</p>
 							<p>{date}</p>

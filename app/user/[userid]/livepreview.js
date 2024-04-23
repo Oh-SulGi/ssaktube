@@ -138,7 +138,7 @@ function PreviewSection({ data_ }) {
 					<Image className={styles.streamerLogo} src={data_.userlogo} alt='스트리머로고' width={50} height={50} />
 					<div className={styles.stream}>
 						<p className={styles.streamerName}>{data_.username}</p>
-						<p className={styles.streamCategory}>카테고리</p>
+						<p className={styles.streamCategory}>{data_.category}</p>
 					</div>
 				</div>
 			</div>

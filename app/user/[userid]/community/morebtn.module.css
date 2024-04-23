@@ -1,17 +1,20 @@
 .moreWrapper {
 	position: absolute;
-	top: 15px;
-	right: 20px;
+	top: 10px;
+	right: 15px;
 	/* width: 70px;
 	height: 20px; */
 }
 .more {
-	/* width: 70px; */
-	height: 30px;
+	height: 40px;
+	width: 40px;
+	background: 0 0;
+	border: none;
+	stroke: var(--color-content-01);
 }
 .moreAction {
 	background-color: var(--color-bg-05);
-	width: 50px;
+	width: 40px;
 	height: 30px;
 	border-radius: 10px;
 	display: flex;
@@ -19,4 +22,5 @@
 	align-items: center;
 	margin-top: 5px;
 	cursor: pointer;
+	font-size: 12px;
 }

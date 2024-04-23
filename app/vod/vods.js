@@ -36,8 +36,9 @@ export default function Vods() {
 	console.log(data_);
 	return (
 		<>
-			<div>
+			<div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '-45px', marginBottom: '30px' }}>
 				<button
+					className={styles.sortBtn}
 					onClick={(e) => {
 						mutate(
 							'/api/vods',
@@ -55,6 +56,7 @@ export default function Vods() {
 					인기순
 				</button>
 				<button
+					className={styles.sortBtn}
 					onClick={(e) => {
 						mutate(
 							'/api/vods',

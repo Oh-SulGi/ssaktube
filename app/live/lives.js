@@ -33,6 +33,10 @@ export default function Lives() {
 	console.log(data_);
 	return (
 		<>
+			<div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '-45px', marginBottom: '30px' }}>
+				<button className={styles.sortBtn}>인기순</button>
+				<button className={styles.sortBtn}>최신순</button>
+			</div>
 			<section className={styles.cardlist}>
 				{data_.page_channels.map((live) => (
 					<LargeCard
@@ -44,6 +48,7 @@ export default function Lives() {
 						username={live.username}
 						viewerCount={live.viewerCount}
 						key={live.channelid}
+						category={live.category}
 					/>
 				))}
 			</section>

@@ -27,6 +27,7 @@ export default function ChatLog({ id, login }) {
 				.then((res) => {
 					if (res.status != 200) {
 						console.log('/api/user/properties/current_user 에러');
+						console.log(res.status, res.statusText);
 						throw new Error();
 					}
 					return res.json();
@@ -38,6 +39,7 @@ export default function ChatLog({ id, login }) {
 						.then((res) => {
 							if (res.status != 200) {
 								console.log('/api/live/chatroom/${id} 에러');
+								console.log(res.status, res.statusText);
 								throw new Error();
 							}
 							return res.json();

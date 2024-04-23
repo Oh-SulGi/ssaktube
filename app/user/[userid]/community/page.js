@@ -128,6 +128,7 @@ export default function Page({ params }) {
 							</div>
 						) : (
 							<button
+								className={styles.sortBtn}
 								onClick={(e) => {
 									setset(true);
 								}}

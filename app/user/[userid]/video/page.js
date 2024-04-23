@@ -129,6 +129,7 @@ export default function Page({ params }) {
 					<div className={styles.btns}>
 						<div className={styles.btngroup}>
 							<button
+								className={styles.sortBtn}
 								onClick={(e) => {
 									setwhich('video');
 									mutate(
@@ -148,6 +149,7 @@ export default function Page({ params }) {
 								전체
 							</button>
 							<button
+								className={styles.sortBtn}
 								onClick={(e) => {
 									setwhich('replay');
 									mutate(
@@ -167,6 +169,7 @@ export default function Page({ params }) {
 								지난 방송
 							</button>
 							<button
+								className={styles.sortBtn}
 								onClick={(e) => {
 									setwhich('vod');
 									mutate(
@@ -188,6 +191,7 @@ export default function Page({ params }) {
 						</div>
 						<div className={styles.btngroup}>
 							<button
+								className={styles.sortBtn}
 								onClick={(e) => {
 									mutate(
 										`/api/user/${userid}/video`,
@@ -206,6 +210,7 @@ export default function Page({ params }) {
 								최신순
 							</button>
 							<button
+								className={styles.sortBtn}
 								onClick={(e) => {
 									mutate(
 										`/api/user/${userid}/video`,

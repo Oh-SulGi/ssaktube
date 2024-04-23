@@ -9,6 +9,7 @@
 	display: flex;
 	font-size: 19px;
 	font-weight: 700;
+	align-items: center;
 }
 .btns {
 	flex-grow: 1;
@@ -111,4 +112,11 @@
 }
 .comment p {
 	margin-left: 5px;
+}
+.linkIcon {
+	width: 30px;
+	height: 30px;
+	background: 0 0;
+	border: none;
+	stroke: var(--color-content-01);
 }

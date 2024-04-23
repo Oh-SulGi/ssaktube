@@ -3,3 +3,21 @@
 	display: flex;
 	flex-wrap: wrap;
 }
+.sortBtn {
+	height: 30px;
+	background: 0 0;
+	border: 0;
+	background-color: var(--color-bg-03);
+	border-radius: 10px;
+	padding: 5px 7px;
+	margin-right: 10px;
+	color: var(--color-content-02);
+	font-weight: 700;
+	font-size: 12px;
+}
+.sortBtn:hover {
+	background-color: var(--color-bg-04);
+}
+.sortBtn:active {
+	background-color: var(--color-bg-05);
+}

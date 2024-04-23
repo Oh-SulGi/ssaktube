@@ -267,7 +267,7 @@ function Content({ data }) {
 								<span>{data.username}</span>
 							</div>
 						</Link>
-						<p className={styles.streamCategory}>카테고리</p>
+						<p className={styles.streamCategory}>{data.category}</p>
 						<div className={styles.streamInfoWrapper}>
 							<p>{data.viewerCount}명 시청 중</p>
 							<TimePassed time={time} />
