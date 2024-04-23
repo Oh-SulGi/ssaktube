@@ -11,7 +11,6 @@ export default function Main({ children }) {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		console.log(needcheck);
 		if (needcheck) {
 			fetch(`/api/user/properties`, {
 				method: 'OPTIONS',
@@ -32,6 +31,7 @@ export default function Main({ children }) {
 					console.log(error.message);
 				});
 		}
+		dispatch(setneedcheck(false));
 	}, [needcheck]);
 
 	return <div className={`${styles.main} ${isOpen ? '' : styles.close}`}>{children}</div>;
