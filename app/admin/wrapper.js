@@ -36,7 +36,6 @@ export default function Wrapper({ children }) {
 	}
 	return (
 		<>
-			<h2>검열리스트</h2>
 			<Censor />
 		</>
 	);

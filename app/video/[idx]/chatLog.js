@@ -6,8 +6,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 export default function ChatLog({ id }) {
-	const fetcher = (...args) => fetch(...args, { cache: 'no-store', method: 'POST' }).then((res) => res.json());
-	const { data, error, isLoading } = useSWR(`/api/video`, fetcher, {
+	const fetcher = (...args) => fetch(...args, { cache: 'no-store' }).then((res) => res.json());
+	const { data, error, isLoading } = useSWR(`/api/vod/recent`, fetcher, {
 		revalidateIfStale: false,
 		revalidateOnFocus: false,
 		revalidateOnReconnect: false,
@@ -19,25 +19,31 @@ export default function ChatLog({ id }) {
 	if (isLoading) {
 		return <></>;
 	}
-	console.log(data);
+	/**
+	 * @type {[{idx,userid,channelid,replayurl,recordingstart,recordingend,viewercount,streamname,username,userlogo}]}
+	 */
+	const data_ = data.data;
+	console.log(data_);
 	return (
 		<>
 			<ul className={styles.vodList}>
-				<li className={styles.vodItem}>
-					<Link href={''}>
-						<div className={styles.smallCard}>
-							<Image className={styles.thumbnail} src={'/aws.png'} width={150} height={85} alt='섬네일' />
-							<div>
-								<p className={styles.title}>동해물과 백두산이 마르고닳도록 하느님이 보우하사 우리나라만세</p>
-								<p className={styles.streamer}>스트리머</p>
+				{data_.map((item) => (
+					<li className={styles.vodItem} key={item.idx}>
+						<Link href={''}>
+							<div className={styles.smallCard}>
+								<Image className={styles.thumbnail} src={`${item.replayurl}media/thumbnails/thumb0.jpg`} width={150} height={85} alt='섬네일' />
 								<div>
-									<span className={styles.streamer}>조회수</span>
-									<span className={styles.streamer}>업로드시간</span>
+									<p className={styles.title}>{item.streamname}</p>
+									<p className={styles.streamer}>{item.username}</p>
+									<div>
+										<span className={styles.streamer}>조회수 {item.viewercount}회 </span>
+										<span className={styles.streamer}>{new Date(item.recordingstart).toLocaleDateString()}</span>
+									</div>
 								</div>
 							</div>
-						</div>
-					</Link>
-				</li>
+						</Link>
+					</li>
+				))}
 			</ul>
 		</>
 	);
