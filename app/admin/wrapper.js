@@ -2,6 +2,7 @@
 
 import useSWR from 'swr';
 import Censor from './censor';
+import Ban from './ban';
 
 export default function Wrapper({ children }) {
 	const fetcher = (...args) => fetch(...args, { cache: 'no-store', method: 'POST' }).then((res) => res.json());
@@ -37,6 +38,7 @@ export default function Wrapper({ children }) {
 	return (
 		<>
 			<Censor />
+			<Ban />
 		</>
 	);
 }

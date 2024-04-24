@@ -1,12 +1,12 @@
 'use client';
 
-import styles from './censor.module.css';
+import styles from './ban.module.css';
 import Image from 'next/image';
 import useSWR from 'swr';
 
-export default function Censor() {
+export default function Ban() {
 	const fetcher = (...args) => fetch(...args, { cache: 'no-store', method: 'POST' }).then((res) => res.json());
-	const { data, error, isLoading } = useSWR(`/api/channel/censorlist`, fetcher, {
+	const { data, error, isLoading } = useSWR(`/api/channel/banlist`, fetcher, {
 		revalidateIfStale: false,
 		revalidateOnFocus: false,
 		revalidateOnReconnect: false,
@@ -26,7 +26,7 @@ export default function Censor() {
 	console.log(data_);
 	return (
 		<div>
-			<h2 className={styles.header}>검열리스트</h2>
+			<h2 className={styles.header}>밴리스트</h2>
 			<hr />
 			<div>
 				{data_.map((item) => (
@@ -34,22 +34,7 @@ export default function Censor() {
 						<div className={styles.label}>
 							<Image src={item.userlogo} width={40} height={40} alt='스트리머로고' className={styles.logo} />
 							<h2 className={styles.username}>{item.username}</h2>
-							<button className={styles.sortBtn}>죽이기</button>
-						</div>
-						<div className={styles.list}>
-							{item.censorlist.map((timestamp_, index) => (
-								<div key={index} className={styles.item}>
-									<Image
-										src={`https://rekognition-sesac-test.s3.ap-northeast-1.amazonaws.com/${item.channelid}/${timestamp_}.jpg`}
-										alt='검열된이미지'
-										width={320}
-										height={180}
-									/>
-									<p>
-										{new Date(timestamp_ * 1000).toLocaleDateString()} {new Date(timestamp_ * 1000).toLocaleTimeString()}
-									</p>
-								</div>
-							))}
+							<button className={styles.sortBtn}>살리기</button>
 						</div>
 					</div>
 				))}

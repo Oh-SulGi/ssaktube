@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
 
 export async function POST(request, { params }) {
-	console.log('api/channel/listban');
-	const resapi = await fetch(`${process.env.MEDIA_API}/api/channel/listban`, {
+	console.log('api/channel/banlist');
+	const resapi = await fetch(`${process.env.MEDIA_API}/api/channel/banlist`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
