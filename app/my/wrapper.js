@@ -29,7 +29,9 @@ export default function Wrapper({ children }) {
 	 * @type {{ingestendpoint,streamkey,issensor,isstream,sensorlist,email,server,sensorcount,channelid,ischannel,streamname,isadmin,userid,streamurl,userlogo,username,favorite,thumbnailurl,category}}
 	 */
 	const data_ = data.data;
+	console.log('myWrapper');
 	console.log(data_);
+	console.log('---------');
 	return (
 		<>
 			<Profile username={data_.username} myinfo_={data_.introduce} />
