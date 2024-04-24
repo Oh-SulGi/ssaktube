@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import useSWR from 'swr';
 import styles from './livepreview.module.css';
+import Link from 'next/link';
 
 export default function Preview({ userid }) {
 	const fetcher = (...args) => fetch(...args, { cache: 'no-store', next: { revalidate: 0 }, method: 'POST' }).then((res) => res.json());
@@ -132,7 +133,9 @@ function PreviewSection({ data_ }) {
 						<span className={styles.live}>LIVE</span>
 						<span className={styles.viewercount}>{data_.viewerCount}명시청</span>
 					</div>
-					<p className={styles.streamname}>{data_.streamname}</p>
+					<Link href={`/live/${data_.channelid}`} className={styles.link}>
+						<p className={styles.streamname}>{data_.streamname}</p>
+					</Link>
 				</div>
 				<div className={styles.streaminfo2}>
 					<Image className={styles.streamerLogo} src={data_.userlogo} alt='스트리머로고' width={50} height={50} />

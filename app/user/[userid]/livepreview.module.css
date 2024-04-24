@@ -50,9 +50,13 @@
 	color: red;
 }
 .streamname {
-	margin-top: 10px;
+	margin-top: 15px;
 	font-size: 24px;
 	font-weight: 800;
+	color: var(--color-content-01);
+}
+.link {
+	text-decoration: none;
 }
 .streaminfo2 {
 	position: absolute;

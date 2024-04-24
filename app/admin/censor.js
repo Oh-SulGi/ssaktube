@@ -1,5 +1,18 @@
 'use client';
 export default function Censor() {
+	const fetcher = (...args) => fetch(...args, { cache: 'no-store', method: 'POST' }).then((res) => res.json());
+	const { data, error, isLoading } = useSWR(`/api/`, fetcher, {
+		revalidateIfStale: false,
+		revalidateOnFocus: false,
+		revalidateOnReconnect: false,
+		revalidateOnMount: true,
+	});
+	if (error) {
+		return <></>;
+	}
+	if (isLoading) {
+		return <></>;
+	}
 	return (
 		<div>
 			<h2>검열리스트</h2>
