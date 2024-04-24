@@ -1,18 +1,22 @@
 'use client';
+
+import useSWR from 'swr';
+
 export default function Censor() {
 	const fetcher = (...args) => fetch(...args, { cache: 'no-store', method: 'POST' }).then((res) => res.json());
-	const { data, error, isLoading } = useSWR(`/api/`, fetcher, {
+	const { data, error, isLoading } = useSWR(`/api/channel/listban`, fetcher, {
 		revalidateIfStale: false,
 		revalidateOnFocus: false,
 		revalidateOnReconnect: false,
 		revalidateOnMount: true,
 	});
 	if (error) {
-		return <></>;
+		return <div>에러발생</div>;
 	}
 	if (isLoading) {
-		return <></>;
+		return <div>로딩중</div>;
 	}
+	console.log(data.data);
 	return (
 		<div>
 			<h2>검열리스트</h2>

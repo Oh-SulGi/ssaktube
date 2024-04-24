@@ -17,7 +17,9 @@ export default function LargeCard({
 	isCategory = true,
 	duration,
 	category,
+	key,
 }) {
+	console.log(viewerCount);
 	const Content = () => {
 		if (type == 'live') {
 			return (
@@ -75,7 +77,7 @@ export default function LargeCard({
 	};
 
 	return (
-		<div className={styles.card} style={style}>
+		<div className={styles.card} style={style} key={key}>
 			<div className={styles.viewer}>
 				<Content />
 			</div>

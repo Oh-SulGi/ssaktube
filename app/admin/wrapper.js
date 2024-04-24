@@ -29,12 +29,14 @@ export default function Wrapper({ children }) {
 	 * @type {{ingestendpoint,streamkey,issensor,isstream,sensorlist,email,server,sensorcount,channelid,ischannel,streamname,isadmin,userid,streamurl,userlogo,username,favorite,thumbnailurl,category}}
 	 */
 	const data_ = data.data;
-	console.log(data_);
+	console.log('isadmin : ', data_.isadmin);
+
 	if (!data_.isadmin) {
 		return <div>관리자가 아닙니다.</div>;
 	}
 	return (
 		<>
+			<h2>검열리스트</h2>
 			<Censor />
 		</>
 	);

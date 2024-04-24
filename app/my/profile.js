@@ -20,6 +20,9 @@ export default function Profile({ username, myinfo_ }) {
 		document.getElementById('deleteuser').setAttribute('disabled', true);
 	}, []);
 	const router = useRouter();
+	console.log('profile.js');
+	console.log(username);
+	console.log(myinfo_);
 	return (
 		<>
 			<div>
