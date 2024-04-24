@@ -4,7 +4,13 @@ import Stream from './stream';
 import useSWR from 'swr';
 
 export default function Wrapper({ children }) {
-	const fetcher = (...args) => fetch(...args, { cache: 'no-store', method: 'POST' }).then((res) => res.json());
+	const fetcher = (...args) =>
+		fetch(...args, { cache: 'no-store', method: 'POST' }).then((res) => {
+			if (!res.ok) {
+				throw new Error(`${res.status}, ${res.statusText}`);
+			}
+			return res.json();
+		});
 	const { data, error, isLoading } = useSWR(`/api/user/properties/detail`, fetcher, {
 		revalidateIfStale: false,
 		revalidateOnFocus: false,
@@ -19,12 +25,14 @@ export default function Wrapper({ children }) {
 		);
 	}
 	if (error) {
+		console.log(error);
 		return (
 			<>
 				<p>에러발생</p>
 			</>
 		);
 	}
+	console.log(data);
 	/**
 	 * @type {{ingestendpoint,streamkey,issensor,isstream,sensorlist,email,server,sensorcount,channelid,ischannel,streamname,isadmin,userid,streamurl,userlogo,username,favorite,thumbnailurl,category}}
 	 */

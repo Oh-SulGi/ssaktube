@@ -16,6 +16,7 @@ export async function POST(request, { params }) {
 			'Content-Type': 'application/json',
 		},
 	});
+	console.log(resapi.status);
 	const data = await resapi.json();
 	console.log(data);
 

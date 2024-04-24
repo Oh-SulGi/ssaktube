@@ -6,7 +6,7 @@ import useSWR from 'swr';
 
 export default function Ban() {
 	const fetcher = (...args) => fetch(...args, { cache: 'no-store', method: 'POST' }).then((res) => res.json());
-	const { data, error, isLoading } = useSWR(`/api/channel/banlist`, fetcher, {
+	const { data, error, isLoading, mutate } = useSWR(`/api/channel/banlist`, fetcher, {
 		revalidateIfStale: false,
 		revalidateOnFocus: false,
 		revalidateOnReconnect: false,
@@ -34,7 +34,29 @@ export default function Ban() {
 						<div className={styles.label}>
 							<Image src={item.userlogo} width={40} height={40} alt='스트리머로고' className={styles.logo} />
 							<h2 className={styles.username}>{item.username}</h2>
-							<button className={styles.sortBtn}>살리기</button>
+							<button
+								className={styles.sortBtn}
+								onClick={(e) => {
+									fetch(`/api/channel/unban/${item.channelid}`, { method: 'POST' })
+										.then((res) => {
+											if (!res.ok) {
+												throw new Error(`/api/channel/unban 에러 : ${res.status}`);
+											}
+											return res.json();
+										})
+										.then((data) => {
+											if (data.data.action == 'follow') {
+												console.log('언밴완료');
+											}
+											mutate({}, { populateCache: false });
+										})
+										.catch((error) => {
+											console.log(error);
+										});
+								}}
+							>
+								살리기
+							</button>
 						</div>
 					</div>
 				))}

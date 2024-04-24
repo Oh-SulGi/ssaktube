@@ -6,7 +6,7 @@ import useSWR from 'swr';
 
 export default function Censor() {
 	const fetcher = (...args) => fetch(...args, { cache: 'no-store', method: 'POST' }).then((res) => res.json());
-	const { data, error, isLoading } = useSWR(`/api/channel/censorlist`, fetcher, {
+	const { data, error, isLoading, mutate } = useSWR(`/api/channel/censorlist`, fetcher, {
 		revalidateIfStale: false,
 		revalidateOnFocus: false,
 		revalidateOnReconnect: false,
@@ -20,7 +20,7 @@ export default function Censor() {
 	}
 
 	/**
-	 * @type {[{channelid, censorlist:[],streamname,userid,streamkey,userlogo,username}]}
+	 * @type {[{channelid, censorlist:[],streamname,userid,streamkey:string,userlogo,username}]}
 	 */
 	const data_ = data.data;
 	console.log(data_);
@@ -34,7 +34,30 @@ export default function Censor() {
 						<div className={styles.label}>
 							<Image src={item.userlogo} width={40} height={40} alt='스트리머로고' className={styles.logo} />
 							<h2 className={styles.username}>{item.username}</h2>
-							<button className={styles.sortBtn}>죽이기</button>
+							<button
+								className={styles.sortBtn}
+								onClick={(e) => {
+									const streamkey = item.streamkey.split('_')[2];
+									fetch(`/api/channel/ban`, { method: 'POST', body: JSON.stringify({ channelid: item.channelid, streamkey }) })
+										.then((res) => {
+											if (!res.ok) {
+												throw new Error(`/api/channel/ban 에러 : ${res.status}`);
+											}
+											return res.json();
+										})
+										.then((data) => {
+											if (data.data.action == 'follow') {
+												console.log('밴완료');
+											}
+											mutate({}, { populateCache: false });
+										})
+										.catch((error) => {
+											console.log(error);
+										});
+								}}
+							>
+								죽이기
+							</button>
 						</div>
 						<div className={styles.list}>
 							{item.censorlist.map((timestamp_, index) => (

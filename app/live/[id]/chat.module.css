@@ -37,13 +37,14 @@
 	margin: 8px 10px 8px 5px;
 	border-radius: 50%;
 	box-shadow: 0 0 0 2px green;
+	min-width: 20px;
 }
 .chatting {
-	text-wrap: balance;
+	text-wrap: wrap;
 	font-size: 14px;
 	font-weight: 400;
 	padding: 8px 10px 5px 10px;
-	text-wrap: pretty;
+	word-break: break-all;
 }
 .chatform {
 	width: 100%;

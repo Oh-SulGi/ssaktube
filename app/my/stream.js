@@ -48,11 +48,12 @@ export default function Stream({ ischannel, ingestendpoint, streamkey, streamnam
 												.then((data) => {
 													setisChannel(true);
 													console.log(data);
-													router.refresh();
+													alert('방송설정완료');
+													window.location.reload();
 												});
 										});
 								}}
-								className={styles.content}
+								className={styles.sortBtn}
 							>
 								방송하기
 							</button>
@@ -76,7 +77,7 @@ export default function Stream({ ischannel, ingestendpoint, streamkey, streamnam
 								</g>
 							</svg>
 							<button
-								className={styles.content}
+								className={styles.sortBtn}
 								onClick={(e) => {
 									!isLive ? router.push(`/user/${userid}`) : router.push(`/live/${channelid}`);
 								}}

@@ -29,7 +29,7 @@ export default function ChatLog({ id }) {
 			<ul className={styles.vodList}>
 				{data_.map((item) => (
 					<li className={styles.vodItem} key={item.idx}>
-						<Link href={''}>
+						<Link href={`/video/${item.idx}`} style={{ textDecoration: 'none' }}>
 							<div className={styles.smallCard}>
 								<Image className={styles.thumbnail} src={`${item.replayurl}media/thumbnails/thumb0.jpg`} width={150} height={85} alt='섬네일' />
 								<div>

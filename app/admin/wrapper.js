@@ -5,7 +5,13 @@ import Censor from './censor';
 import Ban from './ban';
 
 export default function Wrapper({ children }) {
-	const fetcher = (...args) => fetch(...args, { cache: 'no-store', method: 'POST' }).then((res) => res.json());
+	const fetcher = (...args) =>
+		fetch(...args, { cache: 'no-store', method: 'POST' }).then((res) => {
+			if (!res.ok) {
+				throw new Error(`${res.status} ${res.statusText}`);
+			}
+			return res.json();
+		});
 	const { data, error, isLoading } = useSWR(`/api/user/properties/detail`, fetcher, {
 		revalidateIfStale: false,
 		revalidateOnFocus: false,
