@@ -13,10 +13,22 @@ export default function Censor() {
 		revalidateOnMount: true,
 	});
 	if (error) {
-		return <div>에러발생</div>;
+		return (
+			<div>
+				<h2 className={styles.header}>검열리스트</h2>
+				<hr />
+				<div>에러발생</div>
+			</div>
+		);
 	}
 	if (isLoading) {
-		return <div>로딩중</div>;
+		return (
+			<div>
+				<h2 className={styles.header}>검열리스트</h2>
+				<hr />
+				<div>로딩중</div>
+			</div>
+		);
 	}
 
 	/**
@@ -50,13 +62,15 @@ export default function Censor() {
 												console.log('밴완료');
 											}
 											mutate({}, { populateCache: false });
+											alert('사용자를 차단하였습니다.');
+											window.location.reload();
 										})
 										.catch((error) => {
 											console.log(error);
 										});
 								}}
 							>
-								죽이기
+								차단
 							</button>
 						</div>
 						<div className={styles.list}>

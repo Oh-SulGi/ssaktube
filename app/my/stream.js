@@ -227,7 +227,14 @@ export default function Stream({ ischannel, ingestendpoint, streamkey, streamnam
 							<p className={styles.content}>{ingestendpoint}</p>
 							<button
 								onClick={(e) => {
-									navigator.clipboard.writeText(ingestendpoint);
+									// navigator.clipboard.writeText(ingestendpoint);
+									const textarea = document.createElement('textarea');
+									textarea.value = ingestendpoint;
+									document.body.appendChild(textarea);
+									textarea.select();
+									document.execCommand('copy');
+									document.body.removeChild(textarea);
+
 									setisCopied2(true);
 								}}
 								className={styles.copybtn}
@@ -264,7 +271,13 @@ export default function Stream({ ischannel, ingestendpoint, streamkey, streamnam
 							<p className={styles.content}>{streamkey}</p>
 							<button
 								onClick={(e) => {
-									navigator.clipboard.writeText(streamkey);
+									// navigator.clipboard.writeText(streamkey);
+									const textarea = document.createElement('textarea');
+									textarea.value = streamkey;
+									document.body.appendChild(textarea);
+									textarea.select();
+									document.execCommand('copy');
+									document.body.removeChild(textarea);
 									setisCopied3(true);
 								}}
 								className={styles.copybtn}

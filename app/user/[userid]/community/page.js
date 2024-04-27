@@ -176,6 +176,7 @@ export default function Page({ params }) {
 						</>
 					))}
 				</div>
+				<PagesBtn current_page={currentPage} mutate={mutate} setCurrentPage={setCurrentPage} total_pages={total_pages} userid_={userid_} />
 			</div>
 		</>
 	);
@@ -218,3 +219,46 @@ export default function Page({ params }) {
 // 		</div>
 // 	);
 // }
+function PagesBtn({ total_pages, current_page, setCurrentPage, mutate, userid_ }) {
+	const [pageGroup, setPageGroup] = useState([]);
+	useEffect(() => {
+		const pagesPerGroup = 10;
+		const currentGroupIndex = Math.floor((current_page - 1) / pagesPerGroup);
+		const startPage = currentGroupIndex * pagesPerGroup + 1;
+		const endPage = Math.min(startPage + pagesPerGroup - 1, total_pages);
+
+		const pages = [];
+		for (let page = startPage; page <= endPage; page++) {
+			pages.push(page);
+		}
+
+		setPageGroup(pages);
+	}, [current_page, total_pages]);
+	return (
+		<div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px', maxWidth: '960px' }}>
+			{pageGroup.map((page) => (
+				<button
+					key={page}
+					className={styles.sortBtn}
+					style={{ fontWeight: current_page === page ? 'bold' : 'normal' }}
+					onClick={(e) => {
+						setCurrentPage(page);
+						mutate(
+							`/api/user/${userid_}/community`,
+							async (data) => {
+								const updatedData_ = await fetch(`/api/user/${userid_}/community?page=${page}`, { method: 'POST', cache: 'no-store' });
+								const updatedData = await updatedData_.json();
+								console.log(data);
+								console.log(updatedData);
+								return updatedData;
+							},
+							{ revalidate: false }
+						);
+					}}
+				>
+					{page}
+				</button>
+			))}
+		</div>
+	);
+}

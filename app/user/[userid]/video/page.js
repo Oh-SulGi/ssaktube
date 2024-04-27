@@ -284,11 +284,12 @@ function PagesBtn({ total_pages, current_page, setCurrentPage, which, mutate, us
 		setPageGroup(pages);
 	}, [current_page, total_pages]);
 	return (
-		<div>
+		<div style={{ display: 'flex', justifyContent: 'center' }}>
 			{pageGroup.map((page) => (
 				<button
 					key={page}
-					style={{ margin: '0 5px', fontWeight: current_page === page ? 'bold' : 'normal' }}
+					className={styles.sortBtn}
+					style={{ fontWeight: current_page === page ? 'bold' : 'normal' }}
 					onClick={(e) => {
 						setCurrentPage(page);
 						mutate(

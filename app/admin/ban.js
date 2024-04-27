@@ -13,10 +13,22 @@ export default function Ban() {
 		revalidateOnMount: true,
 	});
 	if (error) {
-		return <div>에러발생</div>;
+		return (
+			<div>
+				<h2 className={styles.header}>밴리스트</h2>
+				<hr />
+				<div>에러발생</div>
+			</div>
+		);
 	}
 	if (isLoading) {
-		return <div>로딩중</div>;
+		return (
+			<div>
+				<h2 className={styles.header}>밴리스트</h2>
+				<hr />
+				<div>로딩중</div>
+			</div>
+		);
 	}
 
 	/**
@@ -49,13 +61,15 @@ export default function Ban() {
 												console.log('언밴완료');
 											}
 											mutate({}, { populateCache: false });
+											alert('사용자의 차단을 해지하였습니다.');
+											window.location.reload();
 										})
 										.catch((error) => {
 											console.log(error);
 										});
 								}}
 							>
-								살리기
+								차단해제
 							</button>
 						</div>
 					</div>
