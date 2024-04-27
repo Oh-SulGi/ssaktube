@@ -104,6 +104,10 @@ function Preview({ data }) {
 		};
 
 		document.body.appendChild(script);
+		return () => {
+			Player.current = null;
+			player.current = null;
+		};
 	}, []);
 
 	return (

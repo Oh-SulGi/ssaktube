@@ -32,6 +32,9 @@ export default function Main({ children }) {
 				});
 		}
 		dispatch(setneedcheck(false));
+		return () => {
+			dispatch(setneedcheck(false));
+		};
 	}, [needcheck]);
 
 	return <div className={`${styles.main} ${isOpen ? '' : styles.close}`}>{children}</div>;

@@ -77,6 +77,7 @@ export default function ChatLog({ id, login }) {
 					document.querySelector(`.${styles.chatinput} input`).setAttribute('disabled', true);
 					document.querySelector(`.${styles.chatsubmit} button`).setAttribute('disabled', true);
 					console.log('채팅 비활성화');
+
 					setisReady(true);
 				});
 		} else {

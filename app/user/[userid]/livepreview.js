@@ -31,8 +31,11 @@ export default function Preview({ userid }) {
 			}
 		};
 		document.body.appendChild(script);
+		return () => {
+			Player.current = null;
+			player.current = null;
+		};
 	}, []);
-
 	if (isLoading) {
 		return (
 			<section className={styles.preview}>
