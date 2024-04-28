@@ -122,7 +122,7 @@ export default function SidebarStreamerNavFav({ userid }) {
 				</div>
 				<hr />
 				<ul className={styles.streamers}>
-					<li>리셋중...</li>
+					<li>새로고침</li>
 				</ul>
 			</div>
 		);

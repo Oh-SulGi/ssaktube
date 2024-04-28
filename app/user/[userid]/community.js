@@ -215,7 +215,7 @@ export default function Community({ userid }) {
 					onClick={(e) => {
 						setcur((cur) => cur + 1);
 					}}
-					style={{ display: cur >= data.length - max ? 'none' : 'flex' }}
+					style={{ display: cur + max >= data_.length ? 'none' : 'flex' }}
 				>
 					<svg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'>
 						<path d='M13 20.5L18.5 15L13 9.5' stroke='currentColor' strokeWidth='3' strokeLinecap='round' strokeLinejoin='round'></path>
