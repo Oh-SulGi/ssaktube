@@ -1,0 +1,32 @@
+.container {
+	display: flex;
+	width: 100%;
+}
+.wrapper {
+	width: 100%;
+	max-width: 1344px;
+}
+.imgWrapper {
+	flex-grow: 1;
+	position: relative;
+	aspect-ratio: 16/9;
+	margin-bottom: 30px;
+}
+.thumbList {
+	margin-left: 15px;
+}
+.thumb {
+	border: 3px solid var(--color-theme-04);
+	border-radius: 3px;
+	background: 0 0;
+	position: relative;
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+.thumb:hover {
+	border: 3px solid var(--color-theme-03);
+}
+.thumb:focus {
+	border: 3px solid var(--color-theme-01);
+}
