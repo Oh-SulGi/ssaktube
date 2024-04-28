@@ -199,13 +199,12 @@ export default function Videos({ userid }) {
 								<g id='SVGRepo_bgCarrier' strokeWidth='0'></g>
 								<g id='SVGRepo_tracerCarrier' strokeLinecap='round' strokeLinejoin='round'></g>
 								<g id='SVGRepo_iconCarrier'>
-									{' '}
 									<path
 										d='M21 9L21 3M21 3H15M21 3L13 11M10 5H7.8C6.11984 5 5.27976 5 4.63803 5.32698C4.07354 5.6146 3.6146 6.07354 3.32698 6.63803C3 7.27976 3 8.11984 3 9.8V16.2C3 17.8802 3 18.7202 3.32698 19.362C3.6146 19.9265 4.07354 20.3854 4.63803 20.673C5.27976 21 6.11984 21 7.8 21H14.2C15.8802 21 16.7202 21 17.362 20.673C17.9265 20.3854 18.3854 19.9265 18.673 19.362C19 18.7202 19 17.8802 19 16.2V14'
 										strokeWidth='2'
 										strokeLinecap='round'
 										strokeLinejoin='round'
-									></path>{' '}
+									></path>
 								</g>
 							</svg>
 						</Link>
@@ -349,7 +348,7 @@ export default function Videos({ userid }) {
 					onClick={(e) => {
 						setcur((cur) => cur + 1);
 					}}
-					style={{ display: cur >= data_.length - max ? 'none' : 'flex' }}
+					style={{ display: cur + max >= data_.length ? 'none' : 'flex' }}
 				>
 					<svg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'>
 						<path d='M13 20.5L18.5 15L13 9.5' stroke='currentColor' strokeWidth='3' strokeLinecap='round' strokeLinejoin='round'></path>

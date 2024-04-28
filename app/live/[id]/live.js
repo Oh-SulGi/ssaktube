@@ -121,6 +121,10 @@ function Content({ data }) {
 				element.setAttribute('disabled', true);
 			});
 		}
+		return () => {
+			Player.current = null;
+			player.current = null;
+		};
 	}, []);
 	useEffect(() => {
 		timer.current = setInterval(() => {

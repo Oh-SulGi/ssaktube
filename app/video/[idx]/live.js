@@ -164,6 +164,9 @@ function Content({ data }) {
 			}
 			// console.log(newQuality);
 		}
+		return () => {
+			videoRef.current = null;
+		};
 	}, []);
 	const date = new Date(data.recording_start).toLocaleDateString();
 	return (

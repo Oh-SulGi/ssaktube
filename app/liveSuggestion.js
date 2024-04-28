@@ -61,6 +61,76 @@ export default function LiveSuggestion() {
 						category={live.category}
 					/>
 				))}
+				<LargeCard
+					id={'sample'}
+					streamname={'샘플스트리밍1'}
+					thumbnailurl={'/sample/11111.png'}
+					userid={'sample'}
+					userlogo={'/aws.png'}
+					username={'샘플스트리머1'}
+					viewerCount={'1'}
+					category={'Game'}
+				/>
+				<LargeCard
+					id={'sample'}
+					streamname={'샘플스트리밍2'}
+					thumbnailurl={'/sample/22222.png'}
+					userid={'sample'}
+					userlogo={'/aws.png'}
+					username={'샘플스트리머2'}
+					viewerCount={'2'}
+					category={'Game'}
+				/>
+				<LargeCard
+					id={'sample'}
+					streamname={'샘플스트리밍3'}
+					thumbnailurl={'/sample/33333.png'}
+					userid={'sample'}
+					userlogo={'/aws.png'}
+					username={'샘플스트리머3'}
+					viewerCount={'3'}
+					category={'Just Chatting'}
+				/>
+				<LargeCard
+					id={'sample'}
+					streamname={'샘플스트리밍4'}
+					thumbnailurl={'/sample/44444.png'}
+					userid={'sample'}
+					userlogo={'/aws.png'}
+					username={'샘플스트리머4'}
+					viewerCount={'4'}
+					category={'Just Chatting'}
+				/>
+				<LargeCard
+					id={'sample'}
+					streamname={'샘플스트리밍5'}
+					thumbnailurl={'/sample/55555.png'}
+					userid={'sample'}
+					userlogo={'/aws.png'}
+					username={'샘플스트리머5'}
+					viewerCount={'5'}
+					category={'Just Chatting'}
+				/>
+				<LargeCard
+					id={'sample'}
+					streamname={'샘플스트리밍6'}
+					thumbnailurl={'/sample/66666.png'}
+					userid={'sample'}
+					userlogo={'/aws.png'}
+					username={'샘플스트리머6'}
+					viewerCount={'6'}
+					category={'Just Chatting'}
+				/>
+				<LargeCard
+					id={'sample'}
+					streamname={'샘플스트리밍7'}
+					thumbnailurl={'/sample/77777.png'}
+					userid={'sample'}
+					userlogo={'/aws.png'}
+					username={'샘플스트리머7'}
+					viewerCount={'7'}
+					category={'Just Chatting'}
+				/>
 			</section>
 		</>
 	);
