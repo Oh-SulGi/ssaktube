@@ -3,70 +3,127 @@
 import useSWR from 'swr';
 import styles from './replays.module.css';
 import LargeCard from '@/util/largeCard';
+import { useEffect, useState } from 'react';
 
 export default function Replays() {
-	const fetcher = (...args) => fetch(...args, { cache: 'no-store' }).then((res) => res.json());
-	const { data, error, isLoading, isValidating } = useSWR(`/api/replays`, fetcher, {
-		revalidateIfStale: false,
-		revalidateOnFocus: false,
-		revalidateOnReconnect: false,
-		revalidateOnMount: true,
-	});
-	if (isLoading) {
-		return (
-			<>
-				<div>로딩중 입니다.</div>
-			</>
-		);
-	}
-	if (error) {
-		return (
-			<>
-				<div>로딩중 에러가 발생했 습니다.</div>
-			</>
-		);
-	}
-	if (isValidating) {
-		return (
-			<>
-				<div>새로고침 중입니다.</div>
-			</>
-		);
-	}
+	const [sample, setsample] = useState([]);
 
-	/**
-	 * @type {[{idx,userid,channelid,replayurl,recordingstart,recordingend,viewercount,streamname,username,userlogo}]}
-	 */
-	const data_ = data.data;
-	console.log(data_);
+	useEffect(() => {
+		setsample(
+			[
+				{
+					idx: 'sample',
+					streamname: 'REPLAY1',
+					thumbnailurl: `/sample/11111.png`,
+					userid: 'sample',
+					userlogo: '/sample/11111.png',
+					username: '샘플스트리머이름',
+					viewercount: 111,
+					type: 'REPLAY',
+
+					recordingstart: 1713785882000,
+					recordingend: 1713825882000,
+					duration: 100000,
+					isCategory: false,
+				},
+				{
+					idx: 'sample',
+					streamname: 'REPLAY2',
+					thumbnailurl: `/sample/22222.png`,
+					userid: 'sample',
+					userlogo: '/sample/22222.png',
+					username: '샘플스트리머이름',
+					viewercount: 333,
+					type: 'REPLAY',
+					recordingstart: 1714131482000,
+					recordingend: 1714131912000,
+					duration: 100000,
+					isCategory: false,
+				},
+				{
+					idx: 'sample',
+					streamname: 'REPLAY3',
+					thumbnailurl: `/sample/33333.png`,
+					userid: 'sample',
+					userlogo: '/sample/33333.png',
+					username: '샘플스트리머이름',
+					viewercount: 222,
+					type: 'REPLAY',
+					recordingstart: 1714217882000,
+					recordingend: 1714227882000,
+					duration: 100000,
+					isCategory: false,
+				},
+				{
+					idx: 'sample',
+					streamname: 'REPLAY4',
+					thumbnailurl: `/sample/44444.png`,
+					userid: 'sample',
+					userlogo: '/sample/44444.png',
+					username: '샘플스트리머이름',
+					viewercount: 444,
+					type: 'replay',
+					recordingstart: 1714045082000,
+					recordingend: 1714045182000,
+					duration: '',
+					isCategory: false,
+				},
+				{
+					idx: 'sample',
+					streamname: 'REPLAY5',
+					thumbnailurl: `/sample/55555.png`,
+					userid: 'sample',
+					userlogo: '/sample/55555.png',
+					username: '샘플스트리머이름',
+					viewercount: 555,
+					type: 'replay',
+					recordingstart: 1714304282000,
+					recordingend: 1714324282000,
+
+					duration: '',
+					isCategory: false,
+				},
+				{
+					idx: 'sample',
+					streamname: 'REPLAY6',
+					thumbnailurl: `/sample/66666.png`,
+					userid: 'sample',
+					userlogo: '/sample/66666.png',
+					username: '샘플스트리머이름',
+					viewercount: 777,
+					type: 'replay',
+
+					recordingstart: 1714217882000,
+					recordingend: 1714267882000,
+					duration: '',
+					isCategory: false,
+				},
+				{
+					idx: 'sample',
+					streamname: 'REPLAY7',
+					thumbnailurl: `/sample/77777.png`,
+					userid: 'sample',
+					userlogo: '/sample/77777.png',
+					username: '샘플스트리머이름',
+					viewercount: 666,
+					type: 'replay',
+					recordingstart: 1714045082000,
+					recordingend: 1714055082000,
+					duration: '',
+					isCategory: false,
+				},
+			].sort((a, b) => b.recordingstart - a.recordingstart)
+		);
+	}, []);
 	return (
 		<>
-			{/* <div>
-				<button
-					onClick={(e) => {
-						mutate(
-							'/api/replays',
-							async (data) => {
-								const updatedData_ = await fetch('/api/replays?sort=latest', { cache: 'no-store' });
-								const updatedData = await updatedData_.json();
-								console.log(data);
-								console.log(updatedData);
-								return updatedData;
-							},
-							{ revalidate: false }
-						);
-					}}
-				>
-					인기순
-				</button>
-				<button>최신순</button>
-			</div> */}
+			<div style={{ marginBottom: '30px' }}></div>
 			<section className={styles.cardlist}>
-				{data_.map((live) => (
+				{sample.map((live) => (
 					<LargeCard
 						id={live.idx}
 						streamname={live.streamname}
-						thumbnailurl={`${live.replayurl}media/thumbnails/thumb0.jpg`}
+						thumbnailurl={live.thumbnailurl}
 						userid={live.userid}
 						userlogo={live.userlogo}
 						username={live.username}

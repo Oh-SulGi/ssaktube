@@ -1,0 +1,12 @@
+.layout {
+	display: flex;
+	height: 100%;
+}
+.stream {
+	flex-grow: 1;
+	overflow-y: scroll;
+	min-width: 540px;
+}
+.stream::-webkit-scrollbar {
+	display: none;
+}

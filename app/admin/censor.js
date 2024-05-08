@@ -5,37 +5,6 @@ import Image from 'next/image';
 import useSWR from 'swr';
 
 export default function Censor() {
-	const fetcher = (...args) => fetch(...args, { cache: 'no-store', method: 'POST' }).then((res) => res.json());
-	const { data, error, isLoading, mutate } = useSWR(`/api/channel/censorlist`, fetcher, {
-		revalidateIfStale: false,
-		revalidateOnFocus: false,
-		revalidateOnReconnect: false,
-		revalidateOnMount: true,
-	});
-	if (error) {
-		return (
-			<div>
-				<h2 className={styles.header}>검열리스트</h2>
-				<hr />
-				<div>에러발생</div>
-			</div>
-		);
-	}
-	if (isLoading) {
-		return (
-			<div>
-				<h2 className={styles.header}>검열리스트</h2>
-				<hr />
-				<div>로딩중</div>
-			</div>
-		);
-	}
-
-	/**
-	 * @type {[{channelid, censorlist:[],streamname,userid,streamkey:string,userlogo,username}]}
-	 */
-	const data_ = data.data;
-	console.log(data_);
 	return (
 		<div>
 			<h2 className={styles.header}>검열리스트</h2>
@@ -49,25 +18,8 @@ export default function Censor() {
 							<button
 								className={styles.sortBtn}
 								onClick={(e) => {
-									const streamkey = item.streamkey.split('_')[2];
-									fetch(`/api/channel/ban`, { method: 'POST', body: JSON.stringify({ channelid: item.channelid, streamkey }) })
-										.then((res) => {
-											if (!res.ok) {
-												throw new Error(`/api/channel/ban 에러 : ${res.status}`);
-											}
-											return res.json();
-										})
-										.then((data) => {
-											if (data.data.action == 'follow') {
-												console.log('밴완료');
-											}
-											mutate({}, { populateCache: false });
-											alert('사용자를 차단하였습니다.');
-											window.location.reload();
-										})
-										.catch((error) => {
-											console.log(error);
-										});
+									alert('사용자를 차단하였습니다.');
+									window.location.reload();
 								}}
 							>
 								차단

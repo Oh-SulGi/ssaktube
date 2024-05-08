@@ -1,9 +1,16 @@
-import Community from './community';
-import Preview from './livepreview';
+import dynamic from 'next/dynamic';
 import styles from './page.module.css';
-import Videos from './videos';
 
 export default function Page({ params }) {
+	const Preview = dynamic(() => import('./livepreview'), {
+		ssr: false,
+	});
+	const Videos = dynamic(() => import('./videos'), {
+		ssr: false,
+	});
+	const Community = dynamic(() => import('./community'), {
+		ssr: false,
+	});
 	return (
 		<>
 			<section className={styles.main}>

@@ -9,45 +9,6 @@ import useSWR, { useSWRConfig } from 'swr';
 import { useRouter } from 'next/navigation';
 import MoreBtn from './morebtn';
 
-// const data = [
-// 	{
-// 		idx: 0,
-// 		content: '커뮤니티내용',
-// 		userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
-// 		username: '유저이름',
-// 		commentCount: 1,
-// 		date: '',
-// 	},
-// 	{
-// 		idx: 1,
-// 		content: '커뮤니티내용',
-// 		userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
-// 		username: '유저이름',
-// 		commentCount: 2,
-// 	},
-// 	{
-// 		idx: 2,
-// 		content: '커뮤니티내용',
-// 		userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
-// 		username: '유저이름',
-// 		commentCount: 3,
-// 	},
-// 	{
-// 		idx: 3,
-// 		content: '커뮤니티내용',
-// 		userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
-// 		username: '유저이름',
-// 		commentCount: 4,
-// 	},
-// 	{
-// 		idx: 4,
-// 		content: '커뮤니티내용',
-// 		userlogo: 'https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/7aa7a4d3-2787-4f8c-afda-d2943e5b12a2.jpg',
-// 		username: '유저이름',
-// 		commentCount: 5,
-// 	},
-// ];
-
 export default function Page({ params }) {
 	const userid_ = params.userid;
 	const { userid } = useAppSelector((state) => state.login);

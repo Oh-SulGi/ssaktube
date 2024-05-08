@@ -12,8 +12,8 @@ export default function Comments({ idx, myid }) {
 		setsample([
 			{
 				userlogo: '/sample/11111.png',
-				username: '샘플유저이름1',
-				userid: '22',
+				username: '샘플스트리머이름',
+				authorid: 'sample',
 				time: 1714313757000,
 				reply: '샘플 댓글1',
 				rereply: [
@@ -112,7 +112,7 @@ export default function Comments({ idx, myid }) {
 									{
 										userlogo: '/sample/11111.png',
 										username: '샘플스트리머이름',
-										userid: 'sample',
+										authorid: 'sample',
 										time: Date.now(),
 										reply: newComment,
 										rereply: [],
@@ -142,12 +142,12 @@ export default function Comments({ idx, myid }) {
 									<span className={styles.streamerName}>{comment.username}</span>
 									<span className={styles.date}>{new Date(comment.time).toLocaleDateString()}</span>
 								</div>
-								{myid == comment.authorid ? <MoreBtnr replyid={comment.replyid} /> : ''}
+								{comment.authorid == 'sample' ? <MoreBtnr replyid={comment.replyid} /> : ''}
 							</div>
 							<div className={styles.detail}>{comment.reply}</div>
 							<div className={styles.replySection}>
 								{comment.rereply.length == 0 ? (
-									<ReplyInput boardid={idx} authorid={myid} parentreplyid={comment.replyid} />
+									<ReplyInput authorid={myid} index={index} setsample={setsample} sample={sample} />
 								) : (
 									<details id='detail'>
 										<summary>댓글보기</summary>
@@ -170,7 +170,7 @@ export default function Comments({ idx, myid }) {
 											</div>
 										))}
 										<div className={styles.replySection}>
-											<ReplyInput boardid={idx} authorid={myid} parentreplyid={comment.replyid} />
+											<ReplyInput authorid={myid} index={index} setsample={setsample} sample={sample} />
 										</div>
 									</details>
 								)}
@@ -183,7 +183,7 @@ export default function Comments({ idx, myid }) {
 	);
 }
 
-function ReplyInput({ boardid, authorid, parentreplyid, mutate }) {
+function ReplyInput({ authorid, index, setsample, sample }) {
 	const [nreply, setnreply] = useState('');
 	const [set, setset] = useState(false);
 	return set ? (
@@ -198,7 +198,22 @@ function ReplyInput({ boardid, authorid, parentreplyid, mutate }) {
 					}}
 					disabled={authorid ? false : true}
 				/>
-				<button className={styles.replyinputSubmit}>입력</button>
+				<button
+					className={styles.replyinputSubmit}
+					onClick={(e) => {
+						const newSample = [...sample];
+						newSample[index]['rereply'].push({
+							userlogo: '/sample/11111.png',
+							username: '샘플스트리머이름',
+							authorid: 'sample',
+							time: Date.now(),
+							reply: nreply,
+						});
+						setsample([...sample]);
+					}}
+				>
+					입력
+				</button>
 			</div>
 		</div>
 	) : (

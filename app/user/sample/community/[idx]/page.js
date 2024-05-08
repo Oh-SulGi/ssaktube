@@ -36,7 +36,7 @@ export default function Page({ params }) {
 					<button
 						className={styles.sortBtn}
 						onClick={(e) => {
-							router.push(`/user/${params.userid}/community`);
+							router.push(`/user/sample/community`);
 						}}
 					>
 						목록
@@ -52,7 +52,7 @@ export default function Page({ params }) {
 									<p className={styles.date}>{new Date(data_.date).toLocaleDateString()}</p>
 								</div>
 							</div>
-							{userid_ == userid ? <MoreBtn boardid={idx} /> : ''}
+							<MoreBtn boardid={idx} />
 						</div>
 						<div className={styles.detail}>{data_.content}</div>
 						<div className={styles.etc}>
@@ -69,7 +69,7 @@ export default function Page({ params }) {
 						</div>
 					</div>
 				</div>
-				<Comments idx={idx} myid={userid} />
+				<Comments idx={idx} myid={'sample'} />
 			</div>
 		</>
 	);

@@ -6,15 +6,20 @@ import { useAppDispatch, useAppSelector } from '@/util/redux/hooks';
 import { addchat, rstchat } from '@/util/redux/reducers/chat';
 
 export default function ChatLog({ id, login }) {
-	const [userid, setuserid] = useState('');
-	const [username, setusername] = useState('');
-	const [isReady, setisReady] = useState(false);
 	const dispatch = useAppDispatch();
+	const { userid } = useAppSelector((state) => state.login);
 	const { chatlog, isChatOpen } = useAppSelector((state) => state.chat);
 	const [chat, setchat] = useState('');
-	const chatEndpoint = 'wss://edge.ivschat.ap-northeast-1.amazonaws.com';
-	const ws = useRef(null);
-	useEffect(() => {}, []);
+	useEffect(() => {
+		if (userid != 'sample') {
+			document.querySelector(`.${styles.chatinput} input`).setAttribute('disabled', true);
+			document.querySelector(`.${styles.chatsubmit} button`).setAttribute('disabled', true);
+			setchat('로그인해주세요');
+		}
+		return () => {
+			dispatch(rstchat());
+		};
+	}, [userid]);
 
 	return (
 		<>
@@ -53,15 +58,17 @@ export default function ChatLog({ id, login }) {
 				<div className={styles.chatsubmit}>
 					<button
 						onClick={(e) => {
-							dispatch(
-								addchat({
-									Attributes: {
-										userlogo: `/aws.png`,
-									},
-									Content: chat,
-								})
-							);
-							setchat('');
+							if (chat != '') {
+								dispatch(
+									addchat({
+										Attributes: {
+											userlogo: `/aws.png`,
+										},
+										Content: chat,
+									})
+								);
+								setchat('');
+							}
 						}}
 					>
 						전송

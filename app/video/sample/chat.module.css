@@ -1,0 +1,61 @@
+.chat {
+	min-width: 353px !important;
+	width: 353px;
+	height: 100%;
+	background-color: var(--color-bg-01);
+	border-left: 1px solid #ffffff25;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+}
+.chat.close {
+	display: none;
+}
+.chatlabel {
+	width: 100%;
+	min-height: 44px;
+	height: 44px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-bottom: 1px solid #ffffff25;
+}
+.chatlog {
+	flex-grow: 1;
+	padding: 0 12px;
+	overflow-y: scroll;
+}
+.chatlog::-webkit-scrollbar {
+	display: none;
+}
+.vodList {
+	padding: 3px 20px 20px;
+}
+.vodItem {
+	margin-top: 12px;
+}
+.smallCard {
+	display: flex;
+}
+.thumbnail {
+	margin-right: 12px;
+	background-color: antiquewhite;
+	border-radius: 5px;
+}
+.title {
+	color: var(--color-content-02);
+	font-size: 15px;
+	font-weight: 700;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	word-break: break-all;
+	word-wrap: break-word;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	display: -webkit-box;
+}
+.streamer {
+	color: var(--color-content-04);
+	font-size: 12px;
+	margin-top: 7px;
+}
