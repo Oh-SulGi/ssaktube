@@ -1,0 +1,106 @@
+.preview {
+	padding: 24px 30px 30px 30px;
+	height: 370px;
+	overflow-y: hidden;
+	position: relative;
+}
+.overview {
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: inherit;
+	box-sizing: border-box;
+	width: 100%;
+	height: 100%;
+	z-index: 300;
+	background: linear-gradient(90deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.8) 40%, rgba(0, 0, 0, 0.2) 60% 70%, rgba(0, 0, 0, 0.5) 80%) content-box;
+}
+.previewLive {
+	background-color: var(--color-bg-03);
+	height: 100%;
+	width: 100%;
+	position: relative;
+	overflow-y: hidden;
+	z-index: 200;
+}
+
+.streaminfo1 {
+	position: absolute;
+	top: 54px;
+	left: 50px;
+}
+.viewer {
+	top: 5px;
+	left: 5px;
+}
+.live {
+	padding: 4px 7px;
+	border-radius: 3px;
+	background-color: red;
+	font-size: 17px;
+	font-weight: 600;
+	letter-spacing: 1px;
+}
+.viewercount {
+	margin-left: 9px;
+	font-weight: 800;
+	font-size: 15px;
+	padding: 4px 7px;
+	border-radius: 5px;
+	color: red;
+}
+.streamname {
+	margin-top: 15px;
+	font-size: 24px;
+	font-weight: 800;
+	color: var(--color-content-01);
+}
+.link {
+	text-decoration: none;
+}
+.streaminfo2 {
+	position: absolute;
+	bottom: 50px;
+	left: 50px;
+	display: flex;
+	align-items: center;
+}
+.stream {
+	margin-left: 15px;
+}
+.streamerName {
+	color: var(--color-content-02);
+	font-size: 20px;
+	font-weight: 800;
+	width: fit-content;
+	padding: 4px 6px;
+	border-radius: 4px;
+	margin: 0 -6px;
+}
+.streamCategory {
+	color: var(--color-theme-01);
+	font-weight: 700;
+}
+.streamerLogo {
+	margin: 8px;
+	border-radius: 50%;
+	box-shadow: 0 0 0 5px var(--color-bg-01), 0 0 0 7px #01ab8c;
+}
+.streamerLogo:hover {
+	box-shadow: 0 0 0 5px var(--color-bg-01), 0 0 0 9px #01ab8c;
+}
+.previewLive {
+	background-color: var(--color-bg-03);
+	height: 100%;
+	width: 100%;
+	position: relative;
+	overflow-y: hidden;
+	z-index: 200;
+}
+.player {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	transform: translateY(-50%);
+	width: 100%;
+}

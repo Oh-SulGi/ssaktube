@@ -48,7 +48,24 @@ export default function FollowBtn({ target_userid }) {
 			className={styles.btns}
 			onClick={(e) => {
 				console.log(userid);
-				setisfollow((isfollow) => !isfollow);
+				fetch(`/api/follow`, { method: 'POST', body: JSON.stringify({ userid, target_userid }) })
+					.then((res) => {
+						if (res.status != 200) {
+							console.log('/api/follow 에러');
+							throw new Error();
+						}
+						return res.json();
+					})
+					.then((data) => {
+						if (data.data.action == 'follow') {
+							setisfollow(true);
+						} else {
+							setisfollow(false);
+						}
+					})
+					.catch((error) => {
+						console.log(error);
+					});
 			}}
 		>
 			<button className={styles.followBtn}>팔로우 {isfollow ? '중' : ''}</button>

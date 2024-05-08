@@ -30,4 +30,15 @@ export async function POST(request, { params }) {
 	// response.cookies.set('user_logo', `streamer-userlogo.s3.ap-northeast-1.amazonaws.com/${data.userid}.jpg`);
 	return response;
 }
+
+//샘플용
+export async function OPTIONS(request, { params }) {
+	/**
+	 * @type {NextResponse}
+	 */
+	const response = NextResponse.json({ process: 'done' }, { status: 200 });
+	response.cookies.set('id_token', 'sample_id_token', { maxAge: 3 * 60 * 60 });
+	response.cookies.set('access_token', 'sample_access_token', { maxAge: 3 * 60 * 60 });
+	return response;
+}
 export const dynamic = 'force-dynamic';

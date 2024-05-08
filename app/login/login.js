@@ -12,33 +12,6 @@ export default function Login() {
 	const [isauth, setisauth] = useState(false);
 	const router = useRouter();
 	const dispatch = useAppDispatch();
-	useEffect(() => {
-		return () => {
-			fetch(`/api/user/signup/delete_unauth`, {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({
-					email,
-				}),
-			})
-				.then((res) => {
-					console.log(res);
-					if (res.status !== 200) {
-						throw new Error(res.json());
-					}
-					return res.json();
-				})
-				.then((data) => {
-					console.log(data);
-					console.log('이메일인증안한 아이디 삭제');
-				})
-				.catch((error) => {
-					console.log(error);
-				});
-		};
-	}, []);
 
 	return (
 		<div className={styles.form}>
@@ -65,34 +38,27 @@ export default function Login() {
 					className={styles.button}
 					onClick={(e) => {
 						setstatus('로그인 중입니다');
-						fetch(`/api/user/login`, {
-							method: 'POST',
-							headers: {
-								'Content-Type': 'application/json',
-							},
-							body: JSON.stringify({
-								email,
-								password,
-							}),
-						})
-							.then((res) => {
-								console.log(res);
-								if (res.status !== 200) {
-									throw new Error(res.json());
-								}
-								return res.json();
-							})
-							.then((data) => {
-								console.log(data);
+						setTimeout(() => {
+							if (email == 'sample@sample.com' && password == '1111') {
 								setstatus('로그인 되었습니다.');
-								router.push('/');
-								dispatch(setneedcheck(true));
-								router.refresh();
-							})
-							.catch((error) => {
-								console.log(error);
+								setTimeout(() => {
+									fetch(`/api/user/login`, {
+										method: 'OPTIONS',
+										headers: {
+											'Content-Type': 'application/json',
+										},
+									})
+										.then((res) => res.json())
+										.then((data) => {
+											dispatch(setneedcheck(true));
+											router.push('/');
+											router.refresh();
+										});
+								}, 1000);
+							} else {
 								setstatus('문제가 발생하였습니다. 다시 시도해주세요');
-							});
+							}
+						}, 2000);
 					}}
 				>
 					로그인
@@ -101,32 +67,10 @@ export default function Login() {
 					className={styles.button}
 					onClick={(e) => {
 						setstatus('회원가입을 진행중 입니다');
-						fetch(`/api/user/signup`, {
-							method: 'POST',
-							headers: {
-								'Content-Type': 'application/json',
-							},
-							body: JSON.stringify({
-								email,
-								password,
-							}),
-						})
-							.then((res) => {
-								console.log(res);
-								if (res.status !== 200) {
-									throw new Error(res.json());
-								}
-								return res.json();
-							})
-							.then((data) => {
-								console.log(data);
-								setisauth(true);
-								setstatus('이메일로 전송된 코드를 확인해 주세요');
-							})
-							.catch((error) => {
-								console.log(error);
-								setstatus('문제가 발생하였습니다. 다시 시도해주세요');
-							});
+						setTimeout(() => {
+							setisauth(true);
+							setstatus('이메일로 전송된 코드를 확인해 주세요(1111)');
+						}, 2000);
 					}}
 				>
 					회원가입
@@ -134,6 +78,7 @@ export default function Login() {
 			</div>
 			<div className={styles.status}>
 				<p>{status}</p>
+				<p>(id : sample@sample.com, pw : 1111)</p>
 			</div>
 			{isauth ? (
 				<>
@@ -152,31 +97,14 @@ export default function Login() {
 							className={styles.button}
 							onClick={(e) => {
 								setstatus('인증번호 확인 중 ...');
-								fetch(`/api/user/signup/email_authentication`, {
-									method: 'POST',
-									headers: {
-										'Content-Type': 'application/json',
-									},
-									body: JSON.stringify({
-										email,
-										code,
-									}),
-								})
-									.then((res) => {
-										console.log(res);
-										if (res.status !== 200) {
-											throw new Error(res.json());
-										}
-										return res.json();
-									})
-									.then((data) => {
+								setTimeout(() => {
+									if (code == '1111') {
 										setstatus('인증번호 확인 완료, 로그인해주세요');
 										setisauth(false);
-									})
-									.catch((error) => {
-										console.log(error);
+									} else {
 										setstatus('문제가 발생하였습니다. 다시 시도해주세요');
-									});
+									}
+								}, 2000);
 							}}
 						>
 							제출

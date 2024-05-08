@@ -11,7 +11,7 @@ export default function Buttons() {
 	return (
 		<div className={styles.btns}>
 			<ButtonDark />
-			{userid ? <ButtonMy userid={userid} userLogo={`https://streamer-userlogo.s3.ap-northeast-1.amazonaws.com/${userid}.jpg`} /> : <ButtonLogin />}
+			{userid ? <ButtonMy userid={userid} userLogo={`/${userid}/11111.png`} /> : <ButtonLogin />}
 		</div>
 	);
 }

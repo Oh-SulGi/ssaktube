@@ -3,8 +3,6 @@ import { useEffect, useState } from 'react';
 import styles from './profile.module.css';
 import { useRouter } from 'next/navigation';
 import Spinner from '@/util/spinner';
-import { useDispatch } from 'react-redux';
-import { setuserid } from '@/util/redux/reducers/login';
 
 export default function Profile({ username, myinfo_ }) {
 	const [nusername, setnusername] = useState(username);
@@ -22,7 +20,6 @@ export default function Profile({ username, myinfo_ }) {
 		document.getElementById('deleteuser').setAttribute('disabled', true);
 	}, []);
 	const router = useRouter();
-	const dispatch = useDispatch();
 	console.log('profile.js');
 	console.log(username);
 	console.log(myinfo_);
@@ -46,11 +43,44 @@ export default function Profile({ username, myinfo_ }) {
 						<button
 							onClick={(e) => {
 								seticonChange(true);
-								setTimeout(() => {
-									alert('아이콘 변경 완료');
-									router.refresh();
-									seticonChange(false);
-								}, 500);
+								fetch('/api/user/properties', { method: 'OPTIONS' })
+									.then((res) => res.json())
+									.then((data) => {
+										const userid = data.data.userid;
+
+										fetch(`/api/s3`, {
+											method: 'POST',
+											body: JSON.stringify({ contentType: file.type, filename: file.name, userid }),
+											headers: {
+												'Content-Type': 'application/json',
+											},
+										})
+											.then((res) => res.json())
+											.then(async ({ url, fields }) => {
+												console.log(url);
+												console.log(fields);
+												const formData = new FormData();
+												Object.entries(fields).forEach(([key, value]) => {
+													formData.append(key, value);
+												});
+												formData.append('file', file);
+												const upload = await fetch(url, {
+													method: 'POST',
+													body: formData,
+												});
+												console.log(upload);
+												if (upload.ok) {
+													router.refresh();
+													alert('아이콘 변경 완료');
+												} else {
+													alert('변경실패');
+												}
+												seticonChange(false);
+											})
+											.catch((error) => {
+												console.log(error);
+											});
+									});
 							}}
 						>
 							변경하기
@@ -94,11 +124,13 @@ export default function Profile({ username, myinfo_ }) {
 							id='nicknamebtn'
 							onClick={(e) => {
 								setnickChange(true);
-								setTimeout(() => {
-									alert('닉네임 변경 완료');
-									router.refresh();
-									setnickChange(false);
-								}, 500);
+								fetch(`/api/user/properties/change_nickname`, { method: 'POST', body: JSON.stringify({ nnickname: nusername }) })
+									.then((res) => res.json())
+									.then((data) => {
+										router.refresh();
+										alert('닉네임 변경 완료');
+										setnickChange(false);
+									});
 							}}
 						>
 							변경하기
@@ -135,11 +167,13 @@ export default function Profile({ username, myinfo_ }) {
 						<button
 							onClick={(e) => {
 								setpassChange(true);
-								setTimeout(() => {
-									alert('비밀번호 변경 완료');
-									router.refresh();
-									setpassChange(false);
-								}, 500);
+								fetch(`/api/user/properties/change_password`, { method: 'POST', body: JSON.stringify({ npassword, opassword }) })
+									.then((res) => res.json())
+									.then((data) => {
+										setpassChange(false);
+										alert('비밀번호 변경 완료');
+										router.refresh();
+									});
 							}}
 						>
 							변경하기
@@ -166,11 +200,13 @@ export default function Profile({ username, myinfo_ }) {
 						<button
 							onClick={(e) => {
 								setintroChange(true);
-								setTimeout(() => {
-									alert('자기소개 변경 완료');
-									router.refresh();
-									setintroChange(false);
-								}, 500);
+								fetch(`/api/user/properties/change_introduce`, { method: 'POST', body: JSON.stringify({ myinfo }) })
+									.then((res) => res.json())
+									.then((data) => {
+										setintroChange(false);
+										alert('자기소개 변경 완료');
+										router.refresh();
+									});
 							}}
 						>
 							변경하기
@@ -202,13 +238,17 @@ export default function Profile({ username, myinfo_ }) {
 							variant='outline'
 							className={styles.button}
 							onClick={(e) => {
-								alert('회원탈퇴 완료');
-								fetch('/api/user/logout', { method: 'POST' })
+								console.log('delete_user');
+								fetch(`/api/user/properties/delete_user`, { method: 'POST' })
 									.then((res) => res.json())
 									.then((data) => {
-										router.push('/');
-										router.refresh();
-										dispatch(setuserid(null));
+										console.log('delete_user complete');
+										fetch('/api/user/logout', { method: 'POST' })
+											.then((res) => res.json())
+											.then((data) => {
+												router.push('/');
+												router.refresh();
+											});
 									});
 							}}
 							style={{ marginLeft: '20px' }}

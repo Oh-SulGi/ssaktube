@@ -1,0 +1,89 @@
+.video {
+	margin-top: 38px;
+}
+.header {
+	display: flex;
+}
+.label {
+	margin-right: 10px;
+	display: flex;
+	font-size: 19px;
+	font-weight: 700;
+	align-items: center;
+}
+.btns {
+	flex-grow: 1;
+	display: flex;
+	justify-content: space-between;
+}
+.btngroup {
+	display: flex;
+}
+.tabs {
+	margin-top: 15px;
+	width: 100%;
+	display: flex;
+	flex-wrap: nowrap;
+	position: relative;
+	transition: all 0.5s ease;
+}
+.arrowPrev {
+	position: absolute;
+	top: 35%;
+	left: 10px;
+	transform: translateY(-50%);
+	z-index: 500;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background-color: var(--color-bg-02);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+.arrowNext {
+	position: absolute;
+	top: 35%;
+	right: 25px;
+	transform: translateY(-50%);
+	z-index: 500;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background-color: var(--color-bg-02);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+.tabsWrapper {
+	position: relative;
+	overflow-x: hidden;
+}
+
+.sortBtn {
+	height: 30px;
+	background: 0 0;
+	border: 0;
+	background-color: var(--color-bg-03);
+	border-radius: 10px;
+	padding: 5px 7px;
+	margin-right: 10px;
+	color: var(--color-content-02);
+	font-weight: 700;
+	font-size: 12px;
+}
+.sortBtn:hover {
+	background-color: var(--color-bg-04);
+}
+.sortBtn:active {
+	background-color: var(--color-bg-05);
+}
+.linkIcon {
+	width: 30px;
+	height: 30px;
+	background: 0 0;
+	border: none;
+	stroke: var(--color-content-01);
+}

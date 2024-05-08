@@ -13,7 +13,7 @@ export default function Main({ children }) {
 	useEffect(() => {
 		if (needcheck) {
 			fetch(`/api/user/properties`, {
-				method: 'PATCH',
+				method: 'OPTIONS',
 				cache: 'no-store',
 			})
 				.then((res) => {

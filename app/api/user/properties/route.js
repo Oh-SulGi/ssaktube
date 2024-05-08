@@ -37,4 +37,17 @@ export async function OPTIONS(request, { params }) {
 
 	return NextResponse.json({ data }, { status: resapi.status });
 }
+
 export const dynamic = 'force-dynamic';
+
+//샘플용
+export async function PATCH(request, { params }) {
+	const cookiestore = cookies();
+	const id_token = cookiestore.get('id_token')?.value;
+	const access_token = cookiestore.get('access_token')?.value;
+	let data = {};
+	if (id_token && access_token) {
+		data.userid = 'sample';
+	}
+	return NextResponse.json({ data }, { status: 200 });
+}

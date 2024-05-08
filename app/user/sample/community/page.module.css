@@ -1,0 +1,129 @@
+.main {
+	align-items: center;
+	padding: 20px 30px 0px;
+	box-sizing: content-box;
+	max-width: 1360px;
+	min-width: 950px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 100px;
+}
+
+.tabs {
+	margin-top: 15px;
+	width: 100%;
+	display: flex;
+	position: relative;
+	flex-direction: column;
+}
+.container {
+	position: relative;
+	max-width: 960px;
+}
+.container:not(:first-child) {
+	margin-top: 20px;
+}
+.contentWrapper {
+	box-sizing: border-box;
+	text-decoration: none;
+	color: var(--color-content-02);
+	background-color: var(--color-bg-02);
+	border-radius: 16px;
+	display: flex;
+	padding: 12px 16px;
+	gap: 10px;
+	max-width: 960px;
+}
+.streamerLogo {
+	border-radius: 50%;
+}
+.content {
+	position: relative;
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+}
+.info {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.streamerName {
+	font-size: 15px;
+	font-weight: 800;
+}
+.date {
+	font-size: 12px;
+	color: var(--color-content-04);
+}
+.detail {
+	margin-top: 10px;
+	flex-grow: 1;
+	color: var(--color-content-03);
+}
+.etc {
+	margin-top: 12px;
+	display: flex;
+}
+.comment {
+	display: flex;
+	align-items: center;
+	fill: var(--color-content-04);
+	color: var(--color-content-04);
+	line-height: 2px;
+}
+.comment p {
+	margin-left: 5px;
+}
+.inputSection {
+	margin-top: 10px;
+	max-width: 960px;
+}
+.replyinputSection {
+	display: flex;
+	padding: 10px 20px 10px 10px;
+	width: 100%;
+	background-color: var(--color-bg-03);
+	border-radius: 5px;
+	box-sizing: border-box;
+}
+.replyinput {
+	flex-grow: 1;
+	background: 0 0;
+	border: none;
+	outline: none;
+	color: var(--color-content-01);
+}
+.replyinputSubmit {
+	background: 0 0;
+	border: 1px solid ghostwhite;
+	padding: 6px 10px;
+	border-radius: 5px;
+	color: var(--color-content-01);
+	cursor: pointer;
+	position: relative;
+}
+.replyinputSubmit:hover {
+	background-color: var(--color-bg-05);
+}
+.replyinputSubmit:active {
+	background-color: var(--color-bg-02);
+}
+.sortBtn {
+	height: 30px;
+	background: 0 0;
+	border: 0;
+	background-color: var(--color-bg-03);
+	border-radius: 10px;
+	padding: 5px 11px;
+	margin-right: 10px;
+	color: var(--color-content-02);
+	font-weight: 700;
+	font-size: 12px;
+}
+.sortBtn:hover {
+	background-color: var(--color-bg-04);
+}
+.sortBtn:active {
+	background-color: var(--color-bg-05);
+}
